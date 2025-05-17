@@ -1,0 +1,35 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vite or Next.js build output
+dist/
+.next/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Editor settings
+.vscode/
+.idea/
+*.swp
+
+# Build artifacts or cache
+.cache/
+*.tsbuildinfo
+
+# macOS or Linux specific
+*.sublime-workspace
+*.sublime-project
