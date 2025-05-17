@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Financial Markets Curriculum</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="dist/output.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Young+Serif&display=swap"
+        rel="stylesheet">
+
+
+</head>
+<header>
+
+    <nav class="flex fixed mt-5" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="https://beckpiscopo.xyz/"
+                    class="inline-flex items-center font-medium text-gray-700 dark:text-gray-400 dark:hover:text-white">
+                    <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                    </svg>
+                    Home
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 9 4-4-4-4" />
+                    </svg>
+                    <a href="https://beckpiscopo.xyz/syllabus.html"
+                        class="ml-1 font-medium text-gray-700 md:ml-2 dark:text-gray-400 dark:hover:text-white">Syllabus</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 9 4-4-4-4" />
+                    </svg>
+                    <a href="#"
+                        class="ml-1 font-medium text-gray-700 md:ml-2 dark:text-gray-400 dark:hover:text-white">3.
+                        Machine Learning Fundamentals</a>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+</header>
+
+<body class="lg:ml-8 lg:pl-8">
+    <div class="flex p-8">
+
+        <aside class="w-96 h-screen fixed top-20 left-8 lg:p-4 hidden-element">
+            <ul class="list-inside text-lg">
+
+                <li class="pb-4 underline"><a href="#section-1">3.1 Machine Learning Basics</a></li>
+                <ul class="list-inside text-lg ml-5">
+                    <li class="pb-4"><a href="#section-1-1">3.1.1 Introduction to Machine Learning</a></li>
+                    <li class="pb-4"><a href="#section-1-2">3.1.2 Supervised Learning</a></li>
+                    <li class="pb-4"><a href="#section-1-3">3.1.3 Unsupervised Learning</a></li>
+                </ul>
+                <li class="pb-4 underline"><a href="#section-2">3.2 Feature Engineering</a></li>
+                <ul class="list-inside text-lg ml-5">
+                    <li class="pb-4"><a href="#section-2-1">3.2.1 Data Preprocessing</a></li>
+                    <li class="pb-4"><a href="#section-2-2">3.2.2 Feature Selection</a></li>
+                    <li class="pb-4"><a href="#section-2-3">3.2.3 Feature Extraction</a></li>
+                </ul>
+
+                <li class="pb-4 underline"><a href="#section-3">3.3 Practical Project</a></li>
+                <ul class="list-inside text-lg ml-5">
+                    <li class="pb-4"><a href="#section-3-1">3.3.1 Predictive Modeling</a></li>
+                    <li class="pb-4"><a href="#section-3-2">3.3.2 Evaluate and Tune</a></li>
+                    <li class="pb-4"><a href="#section-3-3">3.3.3 Model Deployment</a></li>
+                </ul>
+
+
+        </aside>
+        <main class="lg:ml-96 lg:p-4 text-lg lg:mr-20">
+
+            <div class="text-lg">
+                <div class="divide-y divide-gray-100 mt-8">
+
+                    <details id="section-1" class="group" open>
+                        <summary
+                            class="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-medium text-secondary-900">
+                            <h2 class="text-3xl font-libre">Module 3.1: Machine Learning Basics</h2">
+                                </h1>
+                                <div class="text-secondary-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="block h-5 w-5 transition-all duration-300 group-open:rotate-180">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </div>
+                        </summary>
+                        <div class="pb-4 text-secondary-500">
+                            <p><strong><em>Duration:</strong> 4-6 weeks</em></p>
+                            <ul class="list-disc list-outside pl-3 ml-6">
+                                <li>
+                                    <h3 class="text-lg">Lesson 3.1.1: Introduction to Machine Learning</h3>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <li>Three types of Machine learning:</li>
+                                        <ul class="list-disc list-outside pl-3 ml-6">
+                                            <li>Supervised learning</li>
+                                            <li>Unsupervised Learning</li>
+                                            <li>Reinforcement Learning</li>
+                                        </ul>
+                                        <li>Explore real-world applications of machine learning in finance.</li>
+                                    </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                                <li>
+                                    <h3 class="text-lg">Lesson 3.1.2: Supervised Learning</h3>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <ul class="list-disc list-outside pl-3 ml-6">
+                                            <li>Supervised learning is a type of machine learning where an algorithm
+                                                learns to make predictions or decisions based on labeled training data.
+                                                In supervised learning, the algorithm is provided with a dataset
+                                                consisting of input-output pairs, where each input is associated with
+                                                the corresponding correct output or label. The goal of supervised
+                                                learning is to learn a mapping or relationship between inputs and
+                                                outputs, allowing the algorithm to generalize and make accurate
+                                                predictions on new, unseen data. </li>
+                                            <li>Key characteristics of supervised learning:</li>
+                                            <ol class="list-decimal list-outside pl-3 ml-6">
+
+
+                                                <li> Labeled Data: In supervised learning, the training dataset contains
+                                                    both input features and their corresponding output labels. These
+                                                    labels serve as the ground truth, providing guidance to the
+                                                    algorithm.</li>
+
+                                                <li>Prediction or Classification: Supervised learning tasks can be
+                                                    categorized into two main types:</li>
+                                                <ul class="list-outside list-disc pl-3 ml-6">
+                                                    <li>Regression: In regression tasks, the goal is to predict a
+                                                        continuous numerical value. For example, predicting house prices
+                                                        based on features like size, location, and number of bedrooms.
+                                                    </li>
+                                                    <li>Classification: In classification tasks, the goal is to assign
+                                                        input data to one of several predefined categories or classes.
+                                                        For example, classifying emails as spam or not spam based on
+                                                        their content.</li>
+                                                </ul>
+                                            
+
+                                                <li>Training Phase: During the training phase, the algorithm learns to
+                                                    recognize patterns, relationships, or decision boundaries within the
+                                                    labeled training data. It adjusts its internal parameters or model
+                                                    to minimize the difference between its predictions and the true
+                                                    labels.</li>
+
+                                                <li>Generalization: After training, the model is evaluated on unseen or
+                                                    test data to assess its ability to generalize and make accurate
+                                                    predictions or classifications. The goal is to perform well on data
+                                                    it has never encountered before. </li>
+
+                                                <li>Feedback Loop: Supervised learning often involves an iterative
+                                                    feedback loop. If the model's predictions on the test data are not
+                                                    satisfactory, it may be refined by adjusting its parameters,
+                                                    collecting more data, or using more complex algorithms.</li>
+
+
+
+
+                                    
+
+                
+                            </ul class="list-disc list-outside pl-3 ml-6">
+                            </li>
+                            <li>
+                                <h3 class="text-lg">Lesson 3.1.3: Unsupervised Learning</h3>
+                                <ul class="list-disc list-outside pl-3 ml-6">
+                                    <li>Explore unsupervised learning techniques, such as clustering and
+                                        dimensionality
+                                        reduction.</li>
+                                    <li>Understand how to group data points based on similarities.</li>
+                                </ul class="list-disc list-outside pl-3 ml-6">
+                            </li>
+                            </ul class="list-disc list-outside pl-3 ml-6">
+
+                    </details>
+                    <details id="section-1" class="group" open>
+                        <summary
+                            class="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-medium text-secondary-900">
+                            <h2 class="text-3xl font-libre">Module 3.2: Feature Engineering</h2">
+                                </h1>
+                                <div class="text-secondary-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="block h-5 w-5 transition-all duration-300 group-open:rotate-180">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </div>
+                        </summary>
+                        <div class="pb-4 text-secondary-500">
+
+                            <h3 class="text-lg">Module 3.2: Feature Engineering</h3 class="text-lg">
+                            <p><strong><em>Duration:</strong> 3-4 weeks</em></p>
+                            <ul class="list-disc list-outside pl-3 ml-6">
+                                <li>
+                                    <h3 class="text-lg">Lesson 3.2.1: Data Preprocessing</h3>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <li>Learn the importance of data preprocessing, including handling missing data
+                                            and
+                                            outliers.</li>
+                                        <li>Standardize and normalize data for machine learning models.</li>
+                                    </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                                <li>
+                                    <h3 class="text-lg">Lesson 3.2.2: Feature Selection</h3>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <li>Understand feature selection techniques to choose the most relevant features
+                                            for
+                                            modeling.</li>
+                                        <li>Explore methods like correlation analysis and feature importance.</li>
+                                    </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                                <li>
+                                    <h3 class="text-lg">Lesson 3.2.3: Feature Extraction</h4>
+                                        <ul class="list-disc list-outside pl-3 ml-6">
+                                            <li>Study feature extraction methods for transforming data.</li>
+                                            <li>Learn about Principal Component Analysis (PCA) and other dimensionality
+                                                reduction
+                                                techniques.
+                                            </li>
+                                        </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                            </ul class="list-disc list-outside pl-3 ml-6">
+                        </div>
+                    </details>
+                    <details id="section-1" class="group" open>
+                        <summary
+                            class="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-medium text-secondary-900">
+                            <h2 class="text-3xl font-libre">Module 3.3: Practical Project - Machine Learning
+                                Fundamentals</h2">
+                                </h1>
+                                <div class="text-secondary-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="block h-5 w-5 transition-all duration-300 group-open:rotate-180">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </div>
+                        </summary>
+                        <div class="pb-4 text-secondary-500">
+
+
+
+                            <p><strong><em>Duration:</strong> 4-6 weeks</em></p>
+                            <ul class="list-disc list-outside pl-3 ml-6">
+                                <li>
+                                    <h3 class="text-lg">Project 3.3.1: Predictive Modeling</h3>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <li>Select a financial dataset for regression or classification tasks.</li>
+                                        <li>Preprocess the data, perform feature engineering, and split it into training
+                                            and testing
+                                            sets.
+                                        </li>
+                                        <li>Implement machine learning algorithms such as linear regression, decision
+                                            trees, or
+                                            random
+                                            forests
+                                            for predictive modeling.</li>
+                                    </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                                <li>
+                                    <h3 class="text-lg">Project 3.3.2: Model Evaluation and Hyperparameter Tuning</h3>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <li>Evaluate model performance using metrics like Mean Absolute Error (MAE) or
+                                            F1-score.
+                                        </li>
+                                        <li>Perform hyperparameter tuning to optimize model performance.</li>
+                                        <li>Visualize results and analyze model predictions.</li>
+                                    </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                                <li>
+                                    <h3 class="text-lg">Project 3.3.3: Model Deployment</h3>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <li>Explore options for deploying machine learning models in a trading or
+                                            investment
+                                            context.</li>
+                                        <li>Develop a simple web-based interface to showcase model predictions.</li>
+                                    </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                            </ul class="list-disc list-outside pl-3 ml-6">
+
+
+                        </div>
+                    </details>
+                    <details id="section-1" class="group" open>
+                        <summary
+                            class="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-medium text-secondary-900">
+                            <h2 class="text-3xl font-libre">Additional Resources for Phase 3:</h2">
+                                </h1>
+                                <div class="text-secondary-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="block h-5 w-5 transition-all duration-300 group-open:rotate-180">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </div>
+                        </summary>
+                        <div class="pb-4 text-secondary-500">
+
+
+                            <ul class="list-disc list-outside pl-3 ml-6">
+                                <li>
+                                    <p class="underline">Books:</p>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <li><a
+                                                href="https://www.nrigroupindia.com/e-book/Introduction%20to%20Machine%20Learning%20with%20Python%20(%20PDFDrive.com%20)-min.pdf">"Introduction
+                                                to Machine Learning with Python"</a> by Andreas C. Müller & Sarah
+                                            Guido.</li>
+                                        <li><a
+                                                href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/">"Hands-On
+                                                Machine Learning with Scikit-Learn, Keras, and TensorFlow"</a> by
+                                            Aurélien Géron. (Note: you can find a lot of helpful content using this <a
+                                                href="https://github.com/ageron/handson-ml2">github repo</a>.)
+                                        </li>
+                                    </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                                <li>
+                                    <p class="underline">Online Courses:</p>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <li><a href="https://app.datacamp.com/learn/courses?technologies=2">Machine
+                                                Learning for Finance in Python, DataCamp</a></li>
+                                        <li><a href="https://developers.google.com/machine-learning/crash-course">Machine
+                                                Learning Crash Course, Google</a></li>
+                                        <li><a
+                                                href="https://www.tensorflow.org/resources/learn-ml/basics-of-machine-learning">Basics
+                                                of Machine Learning Crash Course, Tensorflow</a></li>
+                                    </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                                <li>
+                                    <p class="underline">Machine Learning Libraries:</p>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <li><a href="https://scikit-learn.org/stable/">SciKit Learn</a>: a Python
+                                            library used for machine learning tasks such as classification, regression,
+                                            clustering, and dimensionality reduction, making it ideal for traditional
+                                            machine learning algorithms.</li>
+                                        <li><a href="https://www.tensorflow.org/">TensorFlow</a>: an open-source deep
+                                            learning framework developed by Google that excels at building and training
+                                            deep neural networks for various machine learning tasks, including image
+                                            recognition and natural language processing.</li>
+                                        <li><a href="https://keras.io/">Keras</a>: a high-level neural networks API that
+                                            runs on top of frameworks like TensorFlow, designed for easy and fast
+                                            prototyping of deep learning models with a user-friendly interface.</li>
+                                        <li><a href="https://pytorch.org/">PyTorch</a>: an open-source deep learning
+                                            framework known for its dynamic computation graph, making it suitable for
+                                            research and development of complex deep learning models with dynamic
+                                            structure and flexible experimentation.</li>
+
+                                    </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                                <li>
+                                    <p class="underline">Kaggle Competitions:</p>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <li>Participate in Kaggle competitions to apply your machine learning skills to
+                                            real-world
+                                            problems.
+                                        </li>
+                                    </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                                <li>
+                                    <p class="underline">OpenAI Gym (Reinforcement Learning):</p>
+                                    <ul class="list-disc list-outside pl-3 ml-6">
+                                        <li>Explore OpenAI Gym for hands-on reinforcement learning projects.</li>
+                                    </ul class="list-disc list-outside pl-3 ml-6">
+                                </li>
+                            </ul class="list-disc list-outside pl-3 ml-6">
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </main>
+    </div>
+
+</body>
+
+</html>
