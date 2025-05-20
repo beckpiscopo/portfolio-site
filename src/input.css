@@ -1,69 +1,7 @@
+@import './theme.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Young+Serif&display=swap');
 
-
-
-
-h1,
-h2,
-h3{
-    font-family: 'Young Serif', serif;
-    color: black;
-}
-
-ol,
-ul {
-    font-family: 'Cormorant Garamond', serif;
-
-}
-
-p {
-    color: rgb(9, 9, 9);
-    font-family: 'Cormorant Garamond', serif;
-
-}
-
-a {
-    font-family: 'Cormorant Garamond', serif;
-    text-decoration: underline;
-    padding: 4px;
-}
-
-a:hover {
-    background-color: rgb(9, 9, 9);
-    color:#fff4f4; 
-    
-}
-
-/* Style for active links (when clicked) */
-a:active {
-    background-color: rgb(9, 9, 9);
-    color:#fff4f4; 
-}
-
-
-nav {
-    background-color: #fff4f4;
-}
-    
-
-/* Mobile styles */
-@media (max-width: 768px) {
-    body {
-        background-color: #fff4f4;
-    }
-        .hidden-element {
-            visibility: hidden;
-        }
-    
-}
-
-/* Desktop styles */
-@media (min-width: 768px) {
-    body {
-        background-color: #fff4f4;
-    }
-
-}
+/* Add any additional component-specific or utility styles below. */

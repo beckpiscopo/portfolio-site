@@ -1,0 +1,88 @@
+/* src/theme.css */
+
+/* CSS Variables for colors and fonts */
+:root {
+  --color-background: var(--color-isabelline);
+  --color-text: var(--color-van-dyke);
+  --color-link-hover-bg: var(--color-caramel);
+  --color-link-hover-text: var(--color-isabelline);
+  --color-nav-link: var(--color-van-dyke);
+
+  --font-serif-display: 'Young Serif', serif;
+  --font-serif-body: 'Cormorant Garamond', serif;
+
+  --color-van-dyke: #3E1F14;
+  --color-caramel: #BE7C4D;
+  --color-jasper: #BE5A38;
+  --color-isabelline: #F2E9E4;
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-background: var(--color-van-dyke);
+  --color-text: var(--color-isabelline);
+  --color-link-hover-bg: var(--color-caramel);
+  --color-link-hover-text: var(--color-van-dyke);
+  --color-nav-link: var(--color-caramel);
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: var(--font-serif-display);
+  color: var(--color-text);
+}
+
+ol, ul, p, a {
+  font-family: var(--font-serif-body);
+}
+
+p {
+  color: var(--color-text);
+}
+
+a {
+  text-decoration: underline;
+  padding: 4px;
+}
+
+a:hover, a:active {
+  background-color: var(--color-link-hover-bg);
+  color: var(--color-link-hover-text);
+}
+
+/* Nav background */
+nav {
+  background-color: var(--color-background);
+}
+
+/* Responsive background */
+body {
+  background-color: var(--color-background);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .hidden-element {
+    visibility: hidden;
+  }
+}
+
+/* Desktop styles */
+/* (No extra rules needed, body background is already set above) */
+
+nav a {
+    color: var(--color-nav-link);
+  }
+  
+#theme-svg {
+  stroke: var(--color-van-dyke);
+  fill: none;
+  color: var(--color-van-dyke);
+  background: none;
+}
+
+.dark #theme-svg {
+  stroke: var(--color-caramel);
+  color: var(--color-caramel);
+}
+  

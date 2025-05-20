@@ -1,0 +1,75 @@
+<!doctype html>
+<html class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="dist/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Young+Serif&display=swap" rel="stylesheet">
+</head>
+
+<body class="h-full">
+    <!-- Dark mode toggle button -->
+    <button id="dark-toggle" class="absolute top-4 right-4 p-2 rounded bg-gray-200 dark:bg-gray-700 transition-colors">
+      <span id="icon-sun" style="display: none;">
+        <svg id="icon-sun" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="display:none; color: var(--toggle-icon-color, #3E1F14);" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="5"/>
+        </svg>
+      </span>
+      <span id="icon-moon" style="display: none;">
+        <svg id="icon-moon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="display:none; color: var(--toggle-icon-color, #3E1F14);" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </span>
+    </button>
+    <div class="h-screen w-full flex items-center justify-center">
+        <div class="w-full max-w-4xl mx-auto px-6 text-center">
+            <div class="mt-8 mb-6">
+                <h3 class="text-3xl italic">Hello,</h3>
+                <h1 class="font-libre lg:text-6xl text-4xl font-bold my-8 mt-4">I'm Beck Piscopo.</h1>
+                <p class="mb-8 text-4xl italic">I'm a <span class="underline">data product engineer</span> and <span class="underline">writer</span> <br>based in the Dominican Republic.</p>
+
+                <p class="lg:text-2xl font-thin mb-6">
+                    I like to reflect analyze topics that capture my curiosity, usually in web3, decentralized science (DeSci), multi-omics, and wellness.
+                    I'd also consider myself a philosopher, having been inspired by so many brilliant thinkers in the past.
+                    <br><br>
+                    I'm currently looking for work in the web3 space. If you're interested in my skills and experience, please reach out!
+                </p>
+            </div>
+
+            <nav class="flex justify-center space-x-8 lg:text-2xl text-lg mt-8">
+                <a href="https://paragraph.xyz/@beckpiscopo.eth" class="hover:underline">Writing</a>
+                <a href="https://paragraph.xyz/@beckpiscopo.eth" class="hover:underline">Data Projects</a>
+                <a href="resume.html" class="hover:underline">Resume</a>
+                <a href="connect.html" class="hover:underline">Connect</a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+      const toggle = document.getElementById('dark-toggle');
+      const icon = document.getElementById('dark-toggle-icon');
+      const root = document.documentElement;
+
+      // Load preference
+      if (localStorage.theme === 'dark' || 
+          (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+
+      toggle.addEventListener('click', () => {
+        root.classList.toggle('dark');
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+</body>
+
+</main>
+
+
+</html>
