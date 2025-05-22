@@ -11,59 +11,122 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Young+Serif&display=swap" rel="stylesheet">
 </head>
 
-<body class="h-full">
-    <!-- Dark mode toggle button -->
-    <button id="dark-toggle" class="absolute top-4 right-4 p-2 rounded bg-gray-200 dark:bg-gray-700 transition-colors">
-      <span id="icon-sun" style="display: none;">
-        <svg id="icon-sun" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="display:none; color: var(--toggle-icon-color, #3E1F14);" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="5"/>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="mx-auto px-4 max-w-4xl mt-8 pt-8">
+      <button
+        id="dark-toggle"
+        class="fixed top-4 right-4 p-2 rounded transition-colors z-50"
+        aria-label="Toggle dark mode"
+        style="right: 2rem; top: 2rem;"
+      >
+        <svg id="theme-toggle-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--toggle-border, #3E1F14)" stroke-width="2">
+          <circle cx="14" cy="14" r="12" fill="var(--toggle-bg, #F2E9E4)" />
+          <path d="M14 2a12 12 0 0 1 0 24z" fill="var(--toggle-half, #3E1F14)" stroke="none"/>
         </svg>
-      </span>
-      <span id="icon-moon" style="display: none;">
-        <svg id="icon-moon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="display:none; color: var(--toggle-icon-color, #3E1F14);" xmlns="http://www.w3.org/2000/svg">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-      </span>
-    </button>
-    <div class="h-screen w-full flex items-center justify-center">
-        <div class="w-full max-w-4xl mx-auto px-6 text-center">
-            <div class="mt-8 mb-6">
-                <h3 class="text-3xl italic">Hello,</h3>
-                <h1 class="font-libre lg:text-6xl text-4xl font-bold my-8 mt-4">I'm Beck Piscopo.</h1>
-                <p class="mb-8 text-4xl italic">I'm a <span class="underline">data product engineer</span> and <span class="underline">writer</span> <br>based in the Dominican Republic.</p>
+      </button>
 
-                <p class="lg:text-2xl font-thin mb-6">
-                    I like to reflect analyze topics that capture my curiosity, usually in web3, decentralized science (DeSci), multi-omics, and wellness.
-                    I'd also consider myself a philosopher, having been inspired by so many brilliant thinkers in the past.
+            <div class="w-[60%] mt-8 px-6 sm:px-8 md:px-12">
+                <h3 class="fade-in-up text-3xl italic">Hello,</h3>
+                <h1 class="fade-in-up font-libre lg:text-6xl text-4xl font-bold my-8 mt-4">I'm Beck Piscopo.</h1>
+                <p class="fade-in-up mb-8 text-4xl italic">I'm a <span class="underline">data product engineer</span> and <span class="underline">writer</span>.</p>
+
+                <p class="fade-in-up text-2xl sm:text-1xl mb-6">
+                   
+                    Building data products that reduce friction and increase impact is my favorite kind of challenge.
                     <br><br>
-                    I'm currently looking for work in the web3 space. If you're interested in my skills and experience, please reach out!
-                </p>
-            </div>
+                    I write about decentralized science (DeSci), the verifiable web, explainable AI, and any other topics that capture my curiosity. I'm passionate about privacy-focused and decentralizing tech. 
+                    <br><br>
 
-            <nav class="flex justify-center space-x-8 lg:text-2xl text-lg mt-8">
-                <a href="https://paragraph.xyz/@beckpiscopo.eth" class="hover:underline">Writing</a>
-                <a href="https://paragraph.xyz/@beckpiscopo.eth" class="hover:underline">Data Projects</a>
-                <a href="resume.html" class="hover:underline">Resume</a>
-                <a href="connect.html" class="hover:underline">Connect</a>
-            </nav>
-        </div>
+                    If you're interested in my skills and experience, please reach out!
+                </p>
+
+                <nav class="w-full flex justify-center mb-4 mt-8">
+                    <a href="index.html" class="text-base sm:text-xl md:text-2xl pl-3">
+                    // Writing
+                    </a>
+                    <a href="projects.html" class=" text-base sm:text-xl md:text-2xl pl-3">
+                      // Data Projects
+                    </a>
+                    <a href="resume.html" class="text-base sm:text-xl md:text-2xl pl-3">
+                      // Resume
+                    </a>
+                  </nav>
+
+                  <div class="flex justify-center space-x-4 mt-8">
+                    <a href="https://github.com/beckpiscopo" target="_blank" class= !text-[#3E1F14] dark:!text-[#F2E9E4]">
+                      <svg id="Social_Media_Icons" data-name="Social Media Icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" class="w-10 h-10" fill="none" stroke="currentColor">
+                        <path class="cls-1" d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="currentColor"/>
+                      </svg>
+                    </a>
+                    
+                    <a href="https://x.com/beckpiscopo" target="_blank" class="dark:currentColor"> 
+                        <svg class="w-10 h-10" id="Social_Media_Icons" data-name="Social Media Icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" fill="none" stroke="currentColor">
+                        <path id="_Compound_Path_" data-name="&lt;Compound Path&gt;" class="cls-1" d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="currentColor"/>
+                        </svg> 
+                    </a>
+                    <a href="https://paragraph.com/@beckpiscopo.eth" target="_blank" class="!text-[#3E1F14] dark:!text-[#F2E9E4]"> 
+                        <svg id="Social_Media_Icons" data-name="Social Media Icons" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 81 82" style="scale:0.7;" fill="none" stroke="currentColor">
+                            <path d="M6 0V76.1345H81" stroke="currentColor" stroke-width="10.6585" stroke-miterlimit="10"/>
+                            <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="currentColor" stroke-width="10.6585" stroke-linejoin="round"/>
+                            <path d="M6 76.129L59.0302 21.5845" stroke="currentColor" stroke-width="10.6585" stroke-miterlimit="10"/>
+                        </svg>
+                    </a>
+            
+                        
+                  </div>
+            </div>
     </div>
 
     <script>
+      // Fade-in animation for paragraphs
+      document.addEventListener('DOMContentLoaded', () => {
+        const fadeEls = document.querySelectorAll('.fade-in-up');
+        fadeEls.forEach((el, i) => {
+          el.style.opacity = 0;
+          el.style.transform = 'translateY(24px)';
+          setTimeout(() => {
+            el.style.transition = 'opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1)';
+            el.style.opacity = 1;
+            el.style.transform = 'translateY(0)';
+          }, 200 + i * 200);
+        });
+      });
       const toggle = document.getElementById('dark-toggle');
       const root = document.documentElement;
-
-      // Always set dark mode by default
       root.classList.add('dark');
-
       toggle.addEventListener('click', () => {
         root.classList.toggle('dark');
       });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        menuToggle.addEventListener('click', () => {
+          sidebar.classList.toggle('hidden');
+        });
+      });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+    <script defer src="https://vercel.com/analytics/script.js"></script>
+
+
+<style>
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+#svg-container svg {
+  color: var(--toggle-border, #3E1F14);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+#svg-container:hover svg {
+  opacity: .9;
+}
+</style>
+
 </body>
 
-</main>
-
-
-</html>
+</html> 

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "autoprefixer": "^10.4.16",
     "flowbite": "^1.8.1",
     "postcss": "^8.4.31",
@@ -8,8 +9,8 @@
   },
   "devDependencies": {
     "postcss-import": "^15.1.0"
-  }, 
+  },
   "scripts": {
     "build-css": "postcss src/input.css -o dist/output.css"
-  }  
+  }
 }

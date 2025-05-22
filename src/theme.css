@@ -15,6 +15,10 @@
   --color-caramel: #BE7C4D;
   --color-jasper: #BE5A38;
   --color-isabelline: #F2E9E4;
+
+  --toggle-bg: #F2E9E4;         /* Light half */
+  --toggle-half: #3E1F14;    /* Dark half */
+  --toggle-border: #3E1F14;  /* Border color */
 }
 
 /* Dark mode overrides */
@@ -24,6 +28,10 @@
   --color-link-hover-bg: var(--color-caramel);
   --color-link-hover-text: var(--color-van-dyke);
   --color-nav-link: var(--color-caramel);
+
+  --toggle-bg: #3E1F14;      /* Dark half */
+  --toggle-half: #F2E9E4;    /* Light half */
+  --toggle-border: #F2E9E4;  /* Border color */
 }
 
 /* Typography */
@@ -36,7 +44,9 @@ ol, ul, p, a {
   font-family: var(--font-serif-body);
 }
 
+
 p {
+  font-size: 2rem;
   color: var(--color-text);
 }
 
@@ -46,7 +56,6 @@ a {
 }
 
 a:hover, a:active {
-  background-color: var(--color-link-hover-bg);
   color: var(--color-link-hover-text);
 }
 
@@ -65,14 +74,15 @@ body {
   .hidden-element {
     visibility: hidden;
   }
+  .main-container {
+    padding-left: 3rem ;
+    padding-right: 3rem;
+  }
 }
 
 /* Desktop styles */
 /* (No extra rules needed, body background is already set above) */
 
-nav a {
-    color: var(--color-nav-link);
-  }
   
 #theme-svg {
   stroke: var(--color-van-dyke);
@@ -81,8 +91,14 @@ nav a {
   background: none;
 }
 
+
 .dark #theme-svg {
   stroke: var(--color-caramel);
   color: var(--color-caramel);
+}
+
+/* Make the flower SVG light in dark mode */
+.dark #svg-container svg {
+  color: #fff;
 }
   

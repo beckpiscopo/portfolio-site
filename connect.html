@@ -44,7 +44,19 @@
   
 </header>
 <body class="m-5"> 
-<div class="flex flex-col justify-center min-h-screen lg:mx-40 text-2xl">
+    <!-- Dark mode toggle button -->
+    <button
+      id="dark-toggle"
+      class="fixed top-4 right-4 p-2 rounded transition-colors z-50"
+      aria-label="Toggle dark mode"
+      style="right: 1rem; top: 1rem;"
+    >
+      <svg id="theme-toggle-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--toggle-border, #3E1F14)" stroke-width="2">
+        <circle cx="14" cy="14" r="12" fill="var(--toggle-bg, #fff)" />
+        <path d="M14 2a12 12 0 0 1 0 24z" fill="var(--toggle-half, #3E1F14)" stroke="none"/>
+      </svg>
+    </button>
+    <div class="flex flex-col justify-center min-h-screen lg:mx-40 text-2xl">
     <h2 class="pb-4 float-left">Email</h2>
     <p class="pb-4">web3 email: <a href="">beckpiscopo@mailchain.com</a>
     <p class="pb-8">web2 email: <a href="mailto:beckpiscopo@gmail.com">beckpiscopo@gmail.com</a>
@@ -59,5 +71,14 @@
     <p class ="text-3xl">Schedule a 15 min chat on my calendar <a class="underline" href="https://meetwithwallet.xyz/address/0x4d32c2084039cb88b72fe9357faa570d6f17dbb2">here.</a></p>
     </div>
 </body>
+
+<script>
+  const toggle = document.getElementById('dark-toggle');
+  const root = document.documentElement;
+  root.classList.add('dark');
+  toggle.addEventListener('click', () => {
+    root.classList.toggle('dark');
+  });
+</script>
 
 </html>
