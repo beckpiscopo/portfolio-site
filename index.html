@@ -124,6 +124,16 @@
           sidebar.classList.toggle('hidden');
         });
       });
+
+      // Hide dark mode toggle on scroll
+      window.addEventListener('scroll', function() {
+        const toggle = document.getElementById('dark-toggle');
+        if (window.scrollY > 0) {
+          toggle.classList.add('hidden');
+        } else {
+          toggle.classList.remove('hidden');
+        }
+      });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <script defer src="https://vercel.com/analytics/script.js"></script>
