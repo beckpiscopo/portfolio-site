@@ -40,7 +40,7 @@
                     <br><br>
                     
 
-                    If you’d like to explore how I can help your team, let’s connect!
+                    If you'd like to explore how I can help your team, let's connect!
                 </p>
 
                 <nav class="w-full flex justify-center mb-4 mt-8">
@@ -101,9 +101,18 @@
           }, 200 + i * 200);
         });
       });
-      const toggle = document.getElementById('dark-toggle');
       const root = document.documentElement;
-      root.classList.add('dark');
+      const hour = new Date().getHours();
+
+      // Enable dark mode between 7pm (19) and 7am (7)
+      if (hour >= 19 || hour < 7) {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+
+      // Keep your manual toggle as well
+      const toggle = document.getElementById('dark-toggle');
       toggle.addEventListener('click', () => {
         root.classList.toggle('dark');
       });

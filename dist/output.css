@@ -142,6 +142,20 @@ svg {
   color: var(--color-isabelline);
 }
 
+::-moz-selection {
+  background: #BE7C4D;
+  /* caramel */
+  color: #F2E9E4;
+  /* isabelline, for good contrast */
+}
+
+::selection {
+  background: #BE7C4D;
+  /* caramel */
+  color: #F2E9E4;
+  /* isabelline, for good contrast */
+}
+
 /* ! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com */
 
 /*

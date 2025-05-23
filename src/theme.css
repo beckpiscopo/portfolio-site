@@ -131,4 +131,9 @@ svg {
 .dark svg {
   color: var(--color-isabelline);
 }
+
+::selection {
+  background: #BE7C4D; /* caramel */
+  color: #F2E9E4;      /* isabelline, for good contrast */
+}
   
