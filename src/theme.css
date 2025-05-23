@@ -28,10 +28,12 @@
   --color-link-hover-bg: var(--color-caramel);
   --color-link-hover-text: var(--color-van-dyke);
   --color-nav-link: var(--color-caramel);
+  
 
   --toggle-bg: #3E1F14;      /* Dark half */
   --toggle-half: #F2E9E4;    /* Light half */
   --toggle-border: #F2E9E4;  /* Border color */
+
 }
 
 /* Typography */
@@ -100,5 +102,33 @@ body {
 /* Make the flower SVG light in dark mode */
 .dark #svg-container svg {
   color: #fff;
+}
+
+/* Ensure nav links use the CSS variable colors */
+nav a {
+  color: var(--color-nav-link);
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: var(--color-link-hover-bg);
+  color: var(--color-link-hover-text);
+}
+
+/* Dark mode link color override */
+.dark nav a {
+  color: var(--color-isabelline);
+}
+
+/* Make SVG icons inherit text color via currentColor */
+svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* Ensure icons pick up dark mode text color */
+.dark svg {
+  color: var(--color-isabelline);
 }
   

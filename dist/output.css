@@ -110,6 +110,38 @@ body {
   color: #fff;
 }
 
+/* Ensure nav links use the CSS variable colors */
+
+nav a {
+  color: var(--color-nav-link);
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: var(--color-link-hover-bg);
+  color: var(--color-link-hover-text);
+}
+
+/* Dark mode link color override */
+
+.dark nav a {
+  color: var(--color-isabelline);
+}
+
+/* Make SVG icons inherit text color via currentColor */
+
+svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* Ensure icons pick up dark mode text color */
+
+.dark svg {
+  color: var(--color-isabelline);
+}
+
 /* ! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com */
 
 /*
