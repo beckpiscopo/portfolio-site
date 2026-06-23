@@ -295,7 +295,7 @@
         const days = snap.days || [];
         if (!days.length) { if (caption) caption.textContent = 'No activity data.'; return; }
 
-        const COL_PITCH = 14; // 11px cell + 3px gap
+        const COL_PITCH = 12; // 10px cell + 2px gap
         const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
         // Month labels: place above the first column whose top (Sunday) cell starts a new month.
@@ -350,6 +350,11 @@
         if (caption) {
           caption.textContent = `${snap.total.toLocaleString()} contributions in the last year`;
         }
+
+        // If the grid is wider than its container (narrow screens), scroll to the
+        // most recent end so the latest months are visible by default.
+        const wrap = grid.closest('.heatmap-wrap');
+        if (wrap) wrap.scrollLeft = wrap.scrollWidth;
       })();
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>

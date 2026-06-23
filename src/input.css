@@ -72,29 +72,29 @@ html { scroll-behavior: smooth; }
 .heatmap-months {
   position: relative;
   height: 1.1em;
-  margin-left: 34px;
-  font-size: 0.78rem;
+  margin-left: 30px;
+  font-size: 0.72rem;
   opacity: 0.7;
 }
 .heatmap-months span { position: absolute; white-space: nowrap; top: 0; }
 .heatmap-body { display: flex; gap: 6px; }
 .heatmap-days {
   display: grid;
-  grid-template-rows: repeat(7, 11px);
-  gap: 3px;
-  width: 28px;
-  font-size: 0.68rem;
+  grid-template-rows: repeat(7, 10px);
+  gap: 2px;
+  width: 24px;
+  font-size: 0.62rem;
   opacity: 0.65;
 }
-.heatmap-days span { line-height: 11px; }
+.heatmap-days span { line-height: 10px; }
 .heatmap-grid {
   display: grid;
-  grid-template-rows: repeat(7, 11px);
+  grid-template-rows: repeat(7, 10px);
   grid-auto-flow: column;
-  grid-auto-columns: 11px;
-  gap: 3px;
+  grid-auto-columns: 10px;
+  gap: 2px;
 }
-.heatmap-grid i { width: 11px; height: 11px; border-radius: 9999px; display: block; }
+.heatmap-grid i { width: 10px; height: 10px; border-radius: 9999px; display: block; }
 
 /* Light-mode level ramp: faint -> caramel -> jasper -> van dyke */
 .heatmap-grid i.lvl-0 { background: color-mix(in srgb, var(--color-van-dyke) 9%, transparent); }
