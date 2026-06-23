@@ -221,6 +221,23 @@
     }
   }, { passive: true });
   updateProgress();
+
+  // Highlight the active section in the TOC
+  const tocLinks = Array.from(document.querySelectorAll('.toc a[data-nav]'));
+  const byId = id => tocLinks.find(a => a.dataset.nav === id);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(a => a.classList.remove('active'));
+        const link = byId(entry.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  ['about', 'projects', 'writing', 'contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean)
+    .forEach(sec => observer.observe(sec));
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <script>

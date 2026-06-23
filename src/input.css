@@ -38,3 +38,6 @@ html:not(.js) #sidebar { opacity: 1; transform: none; }
   .hero-inner { opacity: 1 !important; transform: none !important; }
   html.js #sidebar { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
 }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
