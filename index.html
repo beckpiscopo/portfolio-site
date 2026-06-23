@@ -27,6 +27,7 @@
     <nav class="toc flex flex-col gap-3 text-lg">
       <a data-nav="about"    href="#about">// About</a>
       <a data-nav="projects" href="#projects">// Projects</a>
+      <a data-nav="activity" href="#activity">// Activity</a>
       <a data-nav="writing"  href="#writing">// Writing</a>
       <a href="assets/pdf/v2_light_resume_2025.pdf" target="_blank" rel="noopener">// Resume</a>
       <a data-nav="contact"  href="#contact">// Contact</a>
@@ -138,6 +139,15 @@
         </div>
       </section>
 
+      <section id="activity" class="py-20 scroll-mt-20">
+        <h2 class="font-libre text-4xl font-bold mb-6">Activity</h2>
+        <p id="heatmap-caption" class="text-base opacity-80 mb-6">Loading GitHub activity…</p>
+        <div class="heatmap-wrap">
+          <div id="heatmap" class="heatmap"></div>
+        </div>
+        <p class="text-sm opacity-60 mt-4">A year of public GitHub contributions.</p>
+      </section>
+
       <section id="writing" class="py-20 scroll-mt-20">
         <h2 class="font-libre text-4xl font-bold mb-6">Writing</h2>
         <!-- TODO: replace placeholder -->
@@ -187,20 +197,6 @@
               <path d="M6 76.129L59.0302 21.5845" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
             </svg>
           </a>
-          <a href="https://farcaster.xyz/beckpiscopo">
-            <!-- Light mode SVG -->
-            <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" style="scale:0.9;" fill="#3E1F14">
-              <path d="M64.444 38.889H185.556V211.111H167.778V132.222H167.604C165.639 110.419 147.315 93.3333 125 93.3333C102.685 93.3333 84.3611 110.419 82.3961 132.222H82.2222V211.111H64.4444V38.889Z"/>
-              <path d="M32.2222 63.3333L39.4444 87.7778H45.5556V186.667C42.4873 186.667 40 189.154 40 192.222V198.889H38.8889C35.8206 198.889 33.3333 201.376 33.3333 204.444V211.111H95.5556V204.444C95.5556 201.376 93.0683 198.889 90 198.889H88.8889V192.222C88.8889 189.154 86.4016 186.667 83.3333 186.667H76.6667V63.3333H32.2222Z"/>
-              <path d="M168.889 186.667C165.821 186.667 163.333 189.154 163.333 192.222V198.889H162.222C159.154 198.889 156.667 201.376 156.667 204.444V211.111H218.889V204.444C218.889 201.376 216.402 198.889 213.333 198.889H212.222V192.222C212.222 189.154 209.735 186.667 206.667 186.667V87.7778H212.778L220 63.3333H175.556V186.667H168.889Z"/>
-            </svg>
-            <!-- Dark mode SVG -->
-            <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" style="scale:0.9;" fill="#F2E9E4">
-              <path d="M64.444 38.889H185.556V211.111H167.778V132.222H167.604C165.639 110.419 147.315 93.3333 125 93.3333C102.685 93.3333 84.3611 110.419 82.3961 132.222H82.2222V211.111H64.4444V38.889Z"/>
-              <path d="M32.2222 63.3333L39.4444 87.7778H45.5556V186.667C42.4873 186.667 40 189.154 40 192.222V198.889H38.8889C35.8206 198.889 33.3333 201.376 33.3333 204.444V211.111H95.5556V204.444C95.5556 201.376 93.0683 198.889 90 198.889H88.8889V192.222C88.8889 189.154 86.4016 186.667 83.3333 186.667H76.6667V63.3333H32.2222Z"/>
-              <path d="M168.889 186.667C165.821 186.667 163.333 189.154 163.333 192.222V198.889H162.222C159.154 198.889 156.667 201.376 156.667 204.444V211.111H218.889V204.444C218.889 201.376 216.402 198.889 213.333 198.889H212.222V192.222C212.222 189.154 209.735 186.667 206.667 186.667V87.7778H212.778L220 63.3333H175.556V186.667H168.889Z"/>
-            </svg>
-          </a>
         </div>
       </section>
     </main>
@@ -245,7 +241,7 @@
       if (link) link.classList.add('active');
     }
   }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-  ['about', 'projects', 'writing', 'contact']
+  ['about', 'projects', 'activity', 'writing', 'contact']
     .map(id => document.getElementById(id))
     .filter(Boolean)
     .forEach(sec => observer.observe(sec));
@@ -279,6 +275,76 @@
       menuToggle && menuToggle.setAttribute('aria-label', 'Open menu');
     }
   });
+    </script>
+    <script>
+      // Render the GitHub contribution heatmap from the baked-in snapshot.
+      (async () => {
+        const grid = document.getElementById('heatmap');
+        const caption = document.getElementById('heatmap-caption');
+        if (!grid) return;
+        let snap;
+        try {
+          const res = await fetch('assets/data/contributions.json', { cache: 'no-cache' });
+          snap = await res.json();
+        } catch (e) {
+          if (caption) caption.textContent = 'GitHub activity unavailable.';
+          return;
+        }
+        const days = snap.days || [];
+        if (!days.length) { if (caption) caption.textContent = 'No activity data.'; return; }
+
+        const COL_PITCH = 14; // 11px cell + 3px gap
+        const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+        // Month labels: place above the first column whose top (Sunday) cell starts a new month.
+        const monthsRow = document.createElement('div');
+        monthsRow.className = 'heatmap-months';
+        let lastMonth = -1;
+        for (let col = 0; col * 7 < days.length; col++) {
+          const top = days[col * 7];
+          if (!top) continue;
+          const m = new Date(top.date + 'T00:00:00').getMonth();
+          if (m !== lastMonth) {
+            const label = document.createElement('span');
+            label.textContent = MONTHS[m];
+            label.style.left = (col * COL_PITCH) + 'px';
+            monthsRow.appendChild(label);
+            lastMonth = m;
+          }
+        }
+
+        // Body = weekday labels (Mon/Wed/Fri) + the cell grid.
+        const body = document.createElement('div');
+        body.className = 'heatmap-body';
+
+        const dayLabels = document.createElement('div');
+        dayLabels.className = 'heatmap-days';
+        [['Mon', 2], ['Wed', 4], ['Fri', 6]].forEach(([name, row]) => {
+          const s = document.createElement('span');
+          s.textContent = name;
+          s.style.gridRow = String(row);
+          dayLabels.appendChild(s);
+        });
+
+        const cells = document.createElement('div');
+        cells.className = 'heatmap-grid';
+        for (const d of days) {
+          const i = document.createElement('i');
+          i.className = 'lvl-' + d.level;
+          const n = d.count;
+          i.title = `${n} contribution${n === 1 ? '' : 's'} on ${d.date}`;
+          cells.appendChild(i);
+        }
+
+        body.appendChild(dayLabels);
+        body.appendChild(cells);
+        grid.appendChild(monthsRow);
+        grid.appendChild(body);
+
+        if (caption) {
+          caption.textContent = `${snap.total.toLocaleString()} contributions in the last year`;
+        }
+      })();
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <script>
