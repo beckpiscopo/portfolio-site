@@ -15,7 +15,7 @@
   <!-- Mobile sticky top bar (hidden on md+) -->
   <header id="mobile-bar" class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-14 backdrop-blur">
     <span class="font-libre text-xl font-bold">Beck Piscopo</span>
-    <button id="menu-toggle" aria-label="Open menu" class="p-2 text-3xl leading-none">&#9776;</button>
+    <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="p-2 text-3xl leading-none">&#9776;</button>
   </header>
 
   <!-- Sidebar: fixed rail on md+, slide-out drawer on mobile -->
@@ -210,7 +210,7 @@
   function updateProgress() {
     const h = hero.offsetHeight || window.innerHeight;
     const p = Math.min(Math.max(window.scrollY / h, 0), 1);
-    root.style.setProperty('--p', p);
+    root.style.setProperty('--p', p.toFixed(4));
     document.body.classList.toggle('scrolled', p > 0.05);
   }
   let ticking = false;
@@ -245,12 +245,18 @@
   if (menuToggle) {
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      document.body.classList.toggle('drawer-open');
+      const open = document.body.classList.toggle('drawer-open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
   }
   // Close drawer after choosing a destination
   document.querySelectorAll('.toc a').forEach(a => {
-    a.addEventListener('click', () => document.body.classList.remove('drawer-open'));
+    a.addEventListener('click', () => {
+      document.body.classList.remove('drawer-open');
+      menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle && menuToggle.setAttribute('aria-label', 'Open menu');
+    });
   });
   // Close drawer when tapping outside it (e.g. the backdrop scrim)
   document.addEventListener('click', (e) => {
@@ -258,6 +264,8 @@
         sidebarEl && !sidebarEl.contains(e.target) &&
         menuToggle && !menuToggle.contains(e.target)) {
       document.body.classList.remove('drawer-open');
+      menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle && menuToggle.setAttribute('aria-label', 'Open menu');
     }
   });
     </script>

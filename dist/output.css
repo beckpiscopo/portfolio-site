@@ -1240,7 +1240,7 @@ video {
   transition-duration: 300ms;
 }.ease-out{
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-}/* Add any additional component-specific or utility styles below. *//* ---- Scroll-assembled sidebar ---- */:root { --p: 0; }/* Active TOC link */.toc a { opacity: 0.6; transition: opacity 0.2s ease; }.toc a:hover { opacity: 1; }.toc a.active { opacity: 1; font-weight: 700; }/* Sidebar/top-bar surface matches the page background (auto light/dark) */#sidebar, #mobile-bar { background-color: var(--color-background); }@media (min-width: 768px) {
+}/* Add any additional component-specific or utility styles below. *//* ---- Scroll-assembled sidebar ---- */:root { --p: 0; }/* Active TOC link */.toc a { opacity: 0.6; text-decoration: none; transition: opacity 0.2s ease; }.toc a:hover { opacity: 1; }.toc a.active { opacity: 1; font-weight: 700; }/* Sidebar/top-bar surface matches the page background (auto light/dark) */#sidebar, #mobile-bar { background-color: var(--color-background); }@media (min-width: 768px) {
   /* Hero copy fades and lifts as you scroll */
   .hero-inner {
     opacity: calc(1 - var(--p));
