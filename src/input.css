@@ -16,3 +16,25 @@
 
 /* Sidebar/top-bar surface matches the page background (auto light/dark) */
 #sidebar, #mobile-bar { background-color: var(--color-background); }
+
+@media (min-width: 768px) {
+  /* Hero copy fades and lifts as you scroll */
+  .hero-inner {
+    opacity: calc(1 - var(--p));
+    transform: translateY(calc(var(--p) * -32px));
+  }
+  /* Sidebar travels in from the left; name scales up */
+  html.js #sidebar {
+    opacity: var(--p);
+    transform: translateX(calc((var(--p) - 1) * 40px));
+    pointer-events: none;
+  }
+  html.js body.scrolled #sidebar { pointer-events: auto; }
+}
+
+/* Fallbacks: no JS or reduced motion -> sidebar docked, hero static */
+html:not(.js) #sidebar { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-inner { opacity: 1 !important; transform: none !important; }
+  html.js #sidebar { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
+}

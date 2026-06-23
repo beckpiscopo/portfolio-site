@@ -196,66 +196,38 @@
   </div>
 
     <script>
-      // Fade-in animation for paragraphs
-      document.addEventListener('DOMContentLoaded', () => {
-        const fadeEls = document.querySelectorAll('.fade-in-up');
-        fadeEls.forEach((el, i) => {
-          el.style.opacity = 0;
-          el.style.transform = 'translateY(24px)';
-          setTimeout(() => {
-            el.style.transition = 'opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1)';
-            el.style.opacity = 1;
-            el.style.transform = 'translateY(0)';
-          }, 200 + i * 200);
-        });
-      });
-      const root = document.documentElement;
-      const hour = new Date().getHours();
+  const root = document.documentElement;
+  root.classList.add('js');
 
-      // Enable dark mode between 7pm (19) and 7am (7)
-      if (hour >= 19 || hour < 7) {
-        root.classList.add('dark');
-      } else {
-        root.classList.remove('dark');
-      }
+  // Dark mode: auto by hour, plus manual toggle
+  const hour = new Date().getHours();
+  if (hour >= 19 || hour < 7) root.classList.add('dark');
+  document.getElementById('dark-toggle')
+    .addEventListener('click', () => root.classList.toggle('dark'));
 
-      // Keep your manual toggle as well
-      const toggle = document.getElementById('dark-toggle');
-      toggle.addEventListener('click', () => {
-        root.classList.toggle('dark');
-      });
-
-      document.addEventListener('DOMContentLoaded', () => {
-        const menuToggle = document.getElementById('menu-toggle');
-        const sidebar = document.getElementById('sidebar');
-        menuToggle.addEventListener('click', () => {
-          sidebar.classList.toggle('hidden');
-        });
-      });
-
-      // Hide dark mode toggle on scroll
-      window.addEventListener('scroll', function() {
-        const toggle = document.getElementById('dark-toggle');
-        if (window.scrollY > 0) {
-          toggle.classList.add('hidden');
-        } else {
-          toggle.classList.remove('hidden');
-        }
-      });
-    </script>
+  // Scroll-driven morph: --p goes 0 -> 1 across the hero height
+  const hero = document.getElementById('hero');
+  function updateProgress() {
+    const h = hero.offsetHeight || window.innerHeight;
+    const p = Math.min(Math.max(window.scrollY / h, 0), 1);
+    root.style.setProperty('--p', p);
+    document.body.classList.toggle('scrolled', p > 0.05);
+  }
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { updateProgress(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+  updateProgress();
+</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
 
-
-<style>
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(24px);
-}
-</style>
 
 </body> 
 </html> 
