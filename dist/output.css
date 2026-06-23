@@ -1265,8 +1265,6 @@ video {
     content: ""; position: fixed; inset: 0; z-index: 40;
     background: rgba(0,0,0,0.4);
   }
-}.hover\:border-current:hover{
-  border-color: currentColor;
 }.hover\:border-gray-300:hover{
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
