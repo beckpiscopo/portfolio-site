@@ -241,12 +241,24 @@
 
   // Mobile drawer
   const menuToggle = document.getElementById('menu-toggle');
-  menuToggle.addEventListener('click', () => {
-    document.body.classList.toggle('drawer-open');
-  });
+  const sidebarEl = document.getElementById('sidebar');
+  if (menuToggle) {
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.body.classList.toggle('drawer-open');
+    });
+  }
   // Close drawer after choosing a destination
   document.querySelectorAll('.toc a').forEach(a => {
     a.addEventListener('click', () => document.body.classList.remove('drawer-open'));
+  });
+  // Close drawer when tapping outside it (e.g. the backdrop scrim)
+  document.addEventListener('click', (e) => {
+    if (document.body.classList.contains('drawer-open') &&
+        sidebarEl && !sidebarEl.contains(e.target) &&
+        menuToggle && !menuToggle.contains(e.target)) {
+      document.body.classList.remove('drawer-open');
+    }
   });
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
