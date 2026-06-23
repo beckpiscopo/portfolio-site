@@ -238,6 +238,16 @@
     .map(id => document.getElementById(id))
     .filter(Boolean)
     .forEach(sec => observer.observe(sec));
+
+  // Mobile drawer
+  const menuToggle = document.getElementById('menu-toggle');
+  menuToggle.addEventListener('click', () => {
+    document.body.classList.toggle('drawer-open');
+  });
+  // Close drawer after choosing a destination
+  document.querySelectorAll('.toc a').forEach(a => {
+    a.addEventListener('click', () => document.body.classList.remove('drawer-open'));
+  });
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <script>

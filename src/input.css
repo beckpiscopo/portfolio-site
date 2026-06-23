@@ -41,3 +41,13 @@ html:not(.js) #sidebar { opacity: 1; transform: none; }
 
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+@media (max-width: 767px) {
+  /* Drawer hidden off-canvas by default (matches -translate-x-full utility);
+     slide in when body.drawer-open */
+  body.drawer-open #sidebar { transform: translateX(0); }
+  body.drawer-open::after {
+    content: ""; position: fixed; inset: 0; z-index: 40;
+    background: rgba(0,0,0,0.4);
+  }
+}
