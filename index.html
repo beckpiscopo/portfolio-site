@@ -11,105 +11,189 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Young+Serif&display=swap" rel="stylesheet">
 </head>
 
-<body class="min-h-screen flex items-center justify-center">
-    <div class="mx-auto px-4 max-w-4xl mt-8 pt-8">
-      <button
-        id="dark-toggle"
-        class="fixed top-4 right-4 p-2 rounded transition-colors z-50"
-        aria-label="Toggle dark mode"
-        style="right: 2rem; top: 2rem;"
-      >
-        <svg id="theme-toggle-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--toggle-border, #3E1F14)" stroke-width="2">
+<body class="min-h-screen">
+  <!-- Mobile sticky top bar (hidden on md+) -->
+  <header id="mobile-bar" class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-14 backdrop-blur">
+    <span class="font-libre text-xl font-bold">Beck Piscopo</span>
+    <button id="menu-toggle" aria-label="Open menu" class="p-2 text-3xl leading-none">&#9776;</button>
+  </header>
+
+  <!-- Sidebar: fixed rail on md+, slide-out drawer on mobile -->
+  <aside id="sidebar" class="fixed z-50 top-0 left-0 h-screen w-64 px-6 py-8 flex flex-col gap-8
+              -translate-x-full md:translate-x-0 transition-transform duration-300">
+    <div>
+      <span class="font-libre text-2xl font-bold block leading-tight">Beck<br>Piscopo</span>
+    </div>
+    <nav class="toc flex flex-col gap-3 text-lg">
+      <a data-nav="about"    href="#about">// About</a>
+      <a data-nav="projects" href="#projects">// Projects</a>
+      <a data-nav="writing"  href="#writing">// Writing</a>
+      <a data-nav="contact"  href="#contact">// Contact</a>
+    </nav>
+    <div class="flex gap-4 mt-auto items-center">
+      <a href="https://github.com/beckpiscopo" target="_blank">
+        <!-- Light mode SVG -->
+        <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" fill="#3E1F14">
+          <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#3E1F14"/>
+        </svg>
+        <!-- Dark mode SVG -->
+        <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" fill="#F2E9E4">
+          <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#F2E9E4"/>
+        </svg>
+      </a>
+
+      <a href="https://x.com/beckpiscopo" target="_blank">
+        <!-- Light mode SVG -->
+        <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" fill="none">
+          <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#3E1F14"/>
+        </svg>
+        <!-- Dark mode SVG -->
+        <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" fill="none">
+          <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#F2E9E4"/>
+        </svg>
+      </a>
+      <a href="https://paragraph.com/@beckpiscopo.eth" target="_blank">
+        <!-- Light mode SVG -->
+        <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#3E1F14">
+          <path d="M6 0V76.1345H81" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+          <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#3E1F14" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
+          <path d="M6 76.129L59.0302 21.5845" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+        </svg>
+        <!-- Dark mode SVG -->
+        <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#F2E9E4">
+          <path d="M6 0V76.1345H81" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+          <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#F2E9E4" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
+          <path d="M6 76.129L59.0302 21.5845" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+        </svg>
+      </a>
+      <a href="https://farcaster.xyz/beckpiscopo">
+        <!-- Light mode SVG -->
+        <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" style="scale:0.9;" fill="#3E1F14">
+          <path d="M64.444 38.889H185.556V211.111H167.778V132.222H167.604C165.639 110.419 147.315 93.3333 125 93.3333C102.685 93.3333 84.3611 110.419 82.3961 132.222H82.2222V211.111H64.4444V38.889Z"/>
+          <path d="M32.2222 63.3333L39.4444 87.7778H45.5556V186.667C42.4873 186.667 40 189.154 40 192.222V198.889H38.8889C35.8206 198.889 33.3333 201.376 33.3333 204.444V211.111H95.5556V204.444C95.5556 201.376 93.0683 198.889 90 198.889H88.8889V192.222C88.8889 189.154 86.4016 186.667 83.3333 186.667H76.6667V63.3333H32.2222Z"/>
+          <path d="M168.889 186.667C165.821 186.667 163.333 189.154 163.333 192.222V198.889H162.222C159.154 198.889 156.667 201.376 156.667 204.444V211.111H218.889V204.444C218.889 201.376 216.402 198.889 213.333 198.889H212.222V192.222C212.222 189.154 209.735 186.667 206.667 186.667V87.7778H212.778L220 63.3333H175.556V186.667H168.889Z"/>
+        </svg>
+        <!-- Dark mode SVG -->
+        <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" style="scale:0.9;" fill="#F2E9E4">
+          <path d="M64.444 38.889H185.556V211.111H167.778V132.222H167.604C165.639 110.419 147.315 93.3333 125 93.3333C102.685 93.3333 84.3611 110.419 82.3961 132.222H82.2222V211.111H64.4444V38.889Z"/>
+          <path d="M32.2222 63.3333L39.4444 87.7778H45.5556V186.667C42.4873 186.667 40 189.154 40 192.222V198.889H38.8889C35.8206 198.889 33.3333 201.376 33.3333 204.444V211.111H95.5556V204.444C95.5556 201.376 93.0683 198.889 90 198.889H88.8889V192.222C88.8889 189.154 86.4016 186.667 83.3333 186.667H76.6667V63.3333H32.2222Z"/>
+          <path d="M168.889 186.667C165.821 186.667 163.333 189.154 163.333 192.222V198.889H162.222C159.154 198.889 156.667 201.376 156.667 204.444V211.111H218.889V204.444C218.889 201.376 216.402 198.889 213.333 198.889H212.222V192.222C212.222 189.154 209.735 186.667 206.667 186.667V87.7778H212.778L220 63.3333H175.556V186.667H168.889Z"/>
+        </svg>
+      </a>
+      <button id="dark-toggle" aria-label="Toggle dark mode" class="p-1 ml-auto">
+        <svg id="theme-toggle-icon" width="24" height="24" viewBox="0 0 28 28" fill="none" stroke="var(--toggle-border, #3E1F14)" stroke-width="2">
           <circle cx="14" cy="14" r="12" fill="var(--toggle-bg, #F2E9E4)" />
           <path d="M14 2a12 12 0 0 1 0 24z" fill="var(--toggle-half, #3E1F14)" stroke="none"/>
         </svg>
       </button>
-
-            <div class="w-full mt-8 px-6 sm:px-8 md:px-12">
-                <h3 class="fade-in-up text-3xl italic">Hello,</h3>
-                <h1 class="fade-in-up font-libre lg:text-6xl text-4xl font-bold my-8 mt-4">I'm Beck Piscopo.</h1>
-                <p class="fade-in-up mb-8 text-4xl italic">I build <span class="underline">research intelligence systems</span></p>
-
-                <p class="fade-in-up text-2xl sm:text-1xl mb-6">
-                   
-                  I enjoy finding complex problems, translating my analysis clearly, and then building simple, effective solutions. My goal is to reduce friction and increase impact quantitatively. 
-                    <br><br>
-                    I care about privacy-by-design and building products that protect individual autonomy while strengthening collective agency.
-
-                    I write about decentralized science (DeSci), the verifiable web, explainable AI, and any other topics that capture my curiosity. 
-                    <br><br>
-                    
-
-                    If you'd like to explore how I can help your team, let's connect!
-                </p>
-
-                <nav class="w-full flex justify-center mb-4 mt-8">
-                    <a href="https://paragraph.com/@beckpiscopo.eth" class="text-base sm:text-xl md:text-2xl pl-3">
-                    // Writing
-                    </a>
-                    <a href="https://github.com/beckpiscopo" class=" text-base sm:text-xl md:text-2xl pl-3">
-                      // Data Projects
-                    </a>
-                    <a href="assets/pdf/v2_light_resume_2025.pdf" class="text-base sm:text-xl md:text-2xl pl-3">
-                      // Resume
-                    </a>
-                  </nav>
-
-                  <div class="flex justify-center space-x-4 mt-8">
-                    <a href="https://github.com/beckpiscopo" target="_blank">
-                      <!-- Light mode SVG -->
-                      <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" fill="#3E1F14">
-                        <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#3E1F14"/>
-                      </svg>
-                      <!-- Dark mode SVG -->
-                      <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" fill="#F2E9E4">
-                        <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#F2E9E4"/>
-                      </svg>
-                    </a>
-                    
-                    <a href="https://x.com/beckpiscopo" target="_blank">
-                      <!-- Light mode SVG -->
-                      <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" fill="none">
-                        <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#3E1F14"/>
-                      </svg>
-                      <!-- Dark mode SVG -->
-                      <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" fill="none">
-                        <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#F2E9E4"/>
-                      </svg>
-                    </a>
-                    <a href="https://paragraph.com/@beckpiscopo.eth" target="_blank">
-                      <!-- Light mode SVG -->
-                      <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#3E1F14">
-                        <path d="M6 0V76.1345H81" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-                        <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#3E1F14" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
-                        <path d="M6 76.129L59.0302 21.5845" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-                      </svg>
-                      <!-- Dark mode SVG -->
-                      <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#F2E9E4">
-                        <path d="M6 0V76.1345H81" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-                        <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#F2E9E4" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
-                        <path d="M6 76.129L59.0302 21.5845" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-                      </svg>
-                    </a>
-                    <a href="https://farcaster.xyz/beckpiscopo">
-                      <!-- Light mode SVG -->
-                      <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" style="scale:0.9;" fill="#3E1F14">
-                        <path d="M64.444 38.889H185.556V211.111H167.778V132.222H167.604C165.639 110.419 147.315 93.3333 125 93.3333C102.685 93.3333 84.3611 110.419 82.3961 132.222H82.2222V211.111H64.4444V38.889Z"/>
-                        <path d="M32.2222 63.3333L39.4444 87.7778H45.5556V186.667C42.4873 186.667 40 189.154 40 192.222V198.889H38.8889C35.8206 198.889 33.3333 201.376 33.3333 204.444V211.111H95.5556V204.444C95.5556 201.376 93.0683 198.889 90 198.889H88.8889V192.222C88.8889 189.154 86.4016 186.667 83.3333 186.667H76.6667V63.3333H32.2222Z"/>
-                        <path d="M168.889 186.667C165.821 186.667 163.333 189.154 163.333 192.222V198.889H162.222C159.154 198.889 156.667 201.376 156.667 204.444V211.111H218.889V204.444C218.889 201.376 216.402 198.889 213.333 198.889H212.222V192.222C212.222 189.154 209.735 186.667 206.667 186.667V87.7778H212.778L220 63.3333H175.556V186.667H168.889Z"/>
-                      </svg>
-                      <!-- Dark mode SVG -->
-                      <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" style="scale:0.9;" fill="#F2E9E4">
-                        <path d="M64.444 38.889H185.556V211.111H167.778V132.222H167.604C165.639 110.419 147.315 93.3333 125 93.3333C102.685 93.3333 84.3611 110.419 82.3961 132.222H82.2222V211.111H64.4444V38.889Z"/>
-                        <path d="M32.2222 63.3333L39.4444 87.7778H45.5556V186.667C42.4873 186.667 40 189.154 40 192.222V198.889H38.8889C35.8206 198.889 33.3333 201.376 33.3333 204.444V211.111H95.5556V204.444C95.5556 201.376 93.0683 198.889 90 198.889H88.8889V192.222C88.8889 189.154 86.4016 186.667 83.3333 186.667H76.6667V63.3333H32.2222Z"/>
-                        <path d="M168.889 186.667C165.821 186.667 163.333 189.154 163.333 192.222V198.889H162.222C159.154 198.889 156.667 201.376 156.667 204.444V211.111H218.889V204.444C218.889 201.376 216.402 198.889 213.333 198.889H212.222V192.222C212.222 189.154 209.735 186.667 206.667 186.667V87.7778H212.778L220 63.3333H175.556V186.667H168.889Z"/>
-                      </svg>
-                    </a>
-        
-                        
-                  </div>
-            </div>
     </div>
+  </aside>
+
+  <!-- Main scroll area; inset from rail on md+ -->
+  <div class="md:ml-64">
+    <!-- HERO -->
+    <section id="hero" class="min-h-screen flex items-center justify-center px-6">
+      <div class="hero-inner max-w-2xl">
+        <h3 class="font-libre text-3xl italic">Hello,</h3>
+        <h1 class="font-libre lg:text-6xl text-4xl font-bold my-6">I'm Beck Piscopo.</h1>
+        <p class="text-3xl italic">I build <span class="underline">research intelligence systems</span></p>
+      </div>
+    </section>
+
+    <main class="max-w-3xl mx-auto px-6 pb-32">
+      <section id="about" class="py-20 scroll-mt-20">
+        <h2 class="font-libre text-4xl font-bold mb-6">About</h2>
+        <p class="text-xl mb-6">I enjoy finding complex problems, translating my analysis clearly, and then building simple, effective solutions. My goal is to reduce friction and increase impact quantitatively.</p>
+        <p class="text-xl mb-6">I care about privacy-by-design and building products that protect individual autonomy while strengthening collective agency. I write about decentralized science (DeSci), the verifiable web, explainable AI, and any other topics that capture my curiosity.</p>
+        <p class="text-xl">If you'd like to explore how I can help your team, let's connect!</p>
+      </section>
+
+      <section id="projects" class="py-20 scroll-mt-20">
+        <h2 class="font-libre text-4xl font-bold mb-6">Projects</h2>
+        <!-- TODO: replace placeholder -->
+        <div class="grid gap-6 sm:grid-cols-2">
+          <a href="#" class="block p-6 rounded-lg border border-current/20 hover:border-current transition-colors">
+            <h3 class="font-libre text-2xl mb-2">Project One</h3>
+            <p class="text-base opacity-80">Placeholder description of a data project. Replace with a real blurb and GitHub link.</p>
+          </a>
+          <a href="#" class="block p-6 rounded-lg border border-current/20 hover:border-current transition-colors">
+            <h3 class="font-libre text-2xl mb-2">Project Two</h3>
+            <p class="text-base opacity-80">Placeholder description of a data project. Replace with a real blurb and GitHub link.</p>
+          </a>
+          <a href="#" class="block p-6 rounded-lg border border-current/20 hover:border-current transition-colors">
+            <h3 class="font-libre text-2xl mb-2">Project Three</h3>
+            <p class="text-base opacity-80">Placeholder description of a data project. Replace with a real blurb and GitHub link.</p>
+          </a>
+        </div>
+      </section>
+
+      <section id="writing" class="py-20 scroll-mt-20">
+        <h2 class="font-libre text-4xl font-bold mb-6">Writing</h2>
+        <!-- TODO: replace placeholder -->
+        <ul class="flex flex-col gap-5">
+          <li><a href="#" class="flex justify-between gap-4 group"><span class="text-xl group-hover:underline">Placeholder post title one</span><span class="opacity-60 whitespace-nowrap">2025</span></a></li>
+          <li><a href="#" class="flex justify-between gap-4 group"><span class="text-xl group-hover:underline">Placeholder post title two</span><span class="opacity-60 whitespace-nowrap">2025</span></a></li>
+          <li><a href="#" class="flex justify-between gap-4 group"><span class="text-xl group-hover:underline">Placeholder post title three</span><span class="opacity-60 whitespace-nowrap">2024</span></a></li>
+        </ul>
+      </section>
+
+      <section id="contact" class="py-20 scroll-mt-20">
+        <h2 class="font-libre text-4xl font-bold mb-6">Contact</h2>
+        <p class="text-xl mb-8">If you'd like to explore how I can help your team, let's connect.</p>
+        <div class="flex gap-4 items-center">
+          <a href="https://github.com/beckpiscopo" target="_blank">
+            <!-- Light mode SVG -->
+            <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" fill="#3E1F14">
+              <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#3E1F14"/>
+            </svg>
+            <!-- Dark mode SVG -->
+            <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" fill="#F2E9E4">
+              <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#F2E9E4"/>
+            </svg>
+          </a>
+
+          <a href="https://x.com/beckpiscopo" target="_blank">
+            <!-- Light mode SVG -->
+            <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" fill="none">
+              <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#3E1F14"/>
+            </svg>
+            <!-- Dark mode SVG -->
+            <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" fill="none">
+              <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#F2E9E4"/>
+            </svg>
+          </a>
+          <a href="https://paragraph.com/@beckpiscopo.eth" target="_blank">
+            <!-- Light mode SVG -->
+            <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#3E1F14">
+              <path d="M6 0V76.1345H81" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+              <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#3E1F14" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
+              <path d="M6 76.129L59.0302 21.5845" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+            </svg>
+            <!-- Dark mode SVG -->
+            <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#F2E9E4">
+              <path d="M6 0V76.1345H81" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+              <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#F2E9E4" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
+              <path d="M6 76.129L59.0302 21.5845" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+            </svg>
+          </a>
+          <a href="https://farcaster.xyz/beckpiscopo">
+            <!-- Light mode SVG -->
+            <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" style="scale:0.9;" fill="#3E1F14">
+              <path d="M64.444 38.889H185.556V211.111H167.778V132.222H167.604C165.639 110.419 147.315 93.3333 125 93.3333C102.685 93.3333 84.3611 110.419 82.3961 132.222H82.2222V211.111H64.4444V38.889Z"/>
+              <path d="M32.2222 63.3333L39.4444 87.7778H45.5556V186.667C42.4873 186.667 40 189.154 40 192.222V198.889H38.8889C35.8206 198.889 33.3333 201.376 33.3333 204.444V211.111H95.5556V204.444C95.5556 201.376 93.0683 198.889 90 198.889H88.8889V192.222C88.8889 189.154 86.4016 186.667 83.3333 186.667H76.6667V63.3333H32.2222Z"/>
+              <path d="M168.889 186.667C165.821 186.667 163.333 189.154 163.333 192.222V198.889H162.222C159.154 198.889 156.667 201.376 156.667 204.444V211.111H218.889V204.444C218.889 201.376 216.402 198.889 213.333 198.889H212.222V192.222C212.222 189.154 209.735 186.667 206.667 186.667V87.7778H212.778L220 63.3333H175.556V186.667H168.889Z"/>
+            </svg>
+            <!-- Dark mode SVG -->
+            <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" style="scale:0.9;" fill="#F2E9E4">
+              <path d="M64.444 38.889H185.556V211.111H167.778V132.222H167.604C165.639 110.419 147.315 93.3333 125 93.3333C102.685 93.3333 84.3611 110.419 82.3961 132.222H82.2222V211.111H64.4444V38.889Z"/>
+              <path d="M32.2222 63.3333L39.4444 87.7778H45.5556V186.667C42.4873 186.667 40 189.154 40 192.222V198.889H38.8889C35.8206 198.889 33.3333 201.376 33.3333 204.444V211.111H95.5556V204.444C95.5556 201.376 93.0683 198.889 90 198.889H88.8889V192.222C88.8889 189.154 86.4016 186.667 83.3333 186.667H76.6667V63.3333H32.2222Z"/>
+              <path d="M168.889 186.667C165.821 186.667 163.333 189.154 163.333 192.222V198.889H162.222C159.154 198.889 156.667 201.376 156.667 204.444V211.111H218.889V204.444C218.889 201.376 216.402 198.889 213.333 198.889H212.222V192.222C212.222 189.154 209.735 186.667 206.667 186.667V87.7778H212.778L220 63.3333H175.556V186.667H168.889Z"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
 
     <script>
       // Fade-in animation for paragraphs
