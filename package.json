@@ -11,6 +11,7 @@
     "postcss-import": "^15.1.0"
   },
   "scripts": {
-    "build-css": "postcss src/input.css -o dist/output.css"
+    "build-css": "postcss src/input.css -o dist/output.css",
+    "watch-css": "postcss src/input.css -o dist/output.css --watch"
   }
 }
