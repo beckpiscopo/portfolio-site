@@ -109,3 +109,26 @@ html { scroll-behavior: smooth; }
 .dark .heatmap-grid i.lvl-2 { background: color-mix(in srgb, var(--color-caramel) 80%, transparent); }
 .dark .heatmap-grid i.lvl-3 { background: var(--color-caramel); }
 .dark .heatmap-grid i.lvl-4 { background: var(--color-isabelline); }
+
+/* ---- Editorial accents ---- */
+/* Inline emphasis */
+.accent { color: var(--color-jasper); font-style: italic; }
+.dark .accent { color: var(--color-caramel); }
+
+/* Inline body links (distinct from nav links; sane hover that won't wash out) */
+.link { color: var(--color-jasper); text-decoration: underline; text-underline-offset: 2px; }
+.link:hover { color: var(--color-van-dyke); background: none; }
+.dark .link { color: var(--color-caramel); }
+.dark .link:hover { color: var(--color-isabelline); }
+
+/* Caramel hairline under each section heading */
+main section > h2 { position: relative; padding-bottom: 0.5rem; }
+main section > h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--color-caramel);
+}

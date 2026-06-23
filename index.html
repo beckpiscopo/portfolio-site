@@ -27,7 +27,6 @@
     <nav class="toc flex flex-col gap-3 text-lg">
       <a data-nav="about"    href="#about">// About</a>
       <a data-nav="projects" href="#projects">// Projects</a>
-      <a data-nav="activity" href="#activity">// Activity</a>
       <a data-nav="writing"  href="#writing">// Writing</a>
       <a href="assets/pdf/v2_light_resume_2025.pdf" target="_blank" rel="noopener">// Resume</a>
       <a data-nav="contact"  href="#contact">// Contact</a>
@@ -92,9 +91,12 @@
     <main class="max-w-3xl mx-auto px-6 pb-32">
       <section id="about" class="py-20 scroll-mt-20">
         <h2 class="font-libre text-4xl font-bold mb-6">About</h2>
-        <p class="text-xl mb-6">I enjoy finding complex problems, translating my analysis clearly, and then building simple, effective solutions. My goal is to reduce friction and increase impact quantitatively.</p>
-        <p class="text-xl mb-6">I care about privacy-by-design and building products that protect individual autonomy while strengthening collective agency. I write about decentralized science (DeSci), the verifiable web, explainable AI, and any other topics that capture my curiosity.</p>
-        <p class="text-xl">If you'd like to explore how I can help your team, let's connect!</p>
+        <p class="text-2xl leading-relaxed mb-6">As a deeply <em class="accent">curious-yet-practical</em> person, I find great satisfaction in employing my skills to solve problems that actually need solutions. Being able to effectively communicate complex ideas means understanding what the other person needs to know, and being able to speak their language. This is a skill, maybe even an art, that I have intentionally cultivated throughout my life, and I hope you'll find it demonstrated in my portfolio projects and writing.</p>
+        <p class="text-xl mb-4">My portfolio consists of projects that I created because I needed them to exist:</p>
+        <ul class="flex flex-col gap-4 text-xl">
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>I built <a class="link" href="#projects">Noeron</a> because I wanted to remove the friction between consuming scientific podcasts and validating the claims being made.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>While shopping for a new house, I found the existing platforms didn't provide the data I needed to make an informed decision, so I built <a class="link" href="#projects">St. Pete Analytics</a>.</span></li>
+        </ul>
       </section>
 
       <section id="projects" class="py-20 scroll-mt-20">
@@ -326,11 +328,15 @@
           dayLabels.appendChild(s);
         });
 
+        // Recompute intensity from raw counts — the source's own levels bunch
+        // most active days into the faintest shade, making the grid look empty.
+        const levelFor = (n) => n === 0 ? 0 : n <= 3 ? 1 : n <= 9 ? 2 : n <= 19 ? 3 : 4;
+
         const cells = document.createElement('div');
         cells.className = 'heatmap-grid';
         for (const d of days) {
           const i = document.createElement('i');
-          i.className = 'lvl-' + d.level;
+          i.className = 'lvl-' + levelFor(d.count);
           const n = d.count;
           i.title = `${n} contribution${n === 1 ? '' : 's'} on ${d.date}`;
           cells.appendChild(i);
