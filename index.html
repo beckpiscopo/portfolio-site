@@ -226,13 +226,13 @@
   const tocLinks = Array.from(document.querySelectorAll('.toc a[data-nav]'));
   const byId = id => tocLinks.find(a => a.dataset.nav === id);
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        tocLinks.forEach(a => a.classList.remove('active'));
-        const link = byId(entry.target.id);
-        if (link) link.classList.add('active');
-      }
-    });
+    const intersecting = entries.filter(e => e.isIntersecting);
+    if (intersecting.length) {
+      tocLinks.forEach(a => a.classList.remove('active'));
+      const entry = intersecting[intersecting.length - 1]; // last = lowest on page
+      const link = byId(entry.target.id);
+      if (link) link.classList.add('active');
+    }
   }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
   ['about', 'projects', 'writing', 'contact']
     .map(id => document.getElementById(id))
