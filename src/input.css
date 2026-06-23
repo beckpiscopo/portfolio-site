@@ -34,13 +34,14 @@
 
 /* Fallbacks: no JS or reduced motion -> sidebar docked, hero static */
 html:not(.js) #sidebar { opacity: 1; transform: none; }
+
+html { scroll-behavior: smooth; }
+
 @media (prefers-reduced-motion: reduce) {
   .hero-inner { opacity: 1 !important; transform: none !important; }
   html.js #sidebar { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
+  html { scroll-behavior: auto; }
 }
-
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 @media (max-width: 767px) {
   /* Drawer hidden off-canvas by default (matches -translate-x-full utility);
