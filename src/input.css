@@ -55,12 +55,13 @@ html { scroll-behavior: smooth; }
 
 /* Project card thumbnails: uniform aspect, tinted placeholder before image loads */
 .project-thumb {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   background-color: color-mix(in srgb, var(--color-caramel) 16%, transparent);
 }
 .project-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center; /* per-image focal point set inline where needed */
   display: block;
 }
