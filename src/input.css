@@ -5,3 +5,14 @@
 @tailwind utilities;
 
 /* Add any additional component-specific or utility styles below. */
+
+/* ---- Scroll-assembled sidebar ---- */
+:root { --p: 0; }
+
+/* Active TOC link */
+.toc a { opacity: 0.6; transition: opacity 0.2s ease; }
+.toc a:hover { opacity: 1; }
+.toc a.active { opacity: 1; font-weight: 700; }
+
+/* Sidebar/top-bar surface matches the page background (auto light/dark) */
+#sidebar, #mobile-bar { background-color: var(--color-background); }
