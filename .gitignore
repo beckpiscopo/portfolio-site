@@ -1,3 +1,6 @@
+# Duplicate resume export (tool emits an underscore-suffixed copy; not used)
+assets/pdf/v2_light_resume_2025_.pdf
+
 # Node.js
 node_modules/
 npm-debug.log*
