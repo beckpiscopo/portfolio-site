@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noeron — Beck Piscopo</title>
+    <title>Noeron · Beck Piscopo</title>
     <link href="../dist/output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,7 +86,7 @@
       <dl class="flex flex-wrap gap-x-10 gap-y-3 mb-5 pb-6 border-b border-faint-soft">
         <div>
           <dt class="text-sm uppercase tracking-wide opacity-50">Role</dt>
-          <dd class="text-lg">Solo — design, backend &amp; frontend</dd>
+          <dd class="text-lg">Solo (design, backend, frontend)</dd>
         </div>
         <div>
           <dt class="text-sm uppercase tracking-wide opacity-50">Timeline</dt>
@@ -105,14 +105,14 @@
 
       <section class="mb-16 md:mb-20">
         <h2 class="font-libre text-3xl font-bold mb-5">Why it exists</h2>
-        <p class="text-xl mb-5">Science-podcast listeners constantly hit claims they can't evaluate. When Michael Levin says "bioelectric patterns control morphogenesis" partway through a three-hour Lex Fridman episode, what actually backs that up — and where would you even start reading? Today every curious listener re-runs the same research from scratch: a massive, invisible duplication of effort across thousands of people.</p>
-        <p class="text-xl">Noeron turns that one-time synthesis into shared infrastructure. It sits alongside a podcast and connects what's being said, as it's said, to the academic literature that supports it — so one person's deep reading becomes reusable for everyone who comes after. Think of it as a research assistant who has already read every paper the guest is referencing.</p>
+        <p class="text-xl mb-5">Science-podcast listeners constantly hit claims they can't evaluate. When Michael Levin says "bioelectric patterns control morphogenesis" partway through a three-hour Lex Fridman episode, what actually backs that up, and where would you even start reading? Today every curious listener re-runs the same research from scratch: a massive, invisible duplication of effort across thousands of people.</p>
+        <p class="text-xl">Noeron turns that one-time synthesis into shared infrastructure. It sits alongside a podcast and connects what's being said, as it's said, to the academic literature that supports it, so one person's deep reading becomes reusable for everyone who comes after. Think of it as a research assistant who has already read every paper the guest is referencing.</p>
       </section>
 
       <section class="mb-16 md:mb-20">
         <h2 class="font-libre text-3xl font-bold mb-5">How it works</h2>
         <p class="text-xl mb-5">Noeron is a real-time pipeline from audio to evidence. A podcast is transcribed and speaker-diarized with AssemblyAI, then split into overlapping ~60-second windows. Gemini 3 runs two passes over each window: first detecting the scientific claims and tagging them (organism, mechanism), then generating targeted research queries from those claims.</p>
-        <p class="text-xl mb-5">Each query hits a retrieval index built from 150+ bioelectricity papers — parsed from PDF with GROBID, chunked with tiktoken, embedded with Gemini embeddings, and stored in Supabase pgvector. Gemini 3 synthesizes the retrieved passages into a <em class="accent">context card</em>: a scannable summary with citations and a confidence score, surfaced at the exact timestamp the claim was made.</p>
+        <p class="text-xl mb-5">Each query hits a retrieval index built from 150+ bioelectricity papers: parsed from PDF with GROBID, chunked with tiktoken, embedded with Gemini embeddings, and stored in Supabase pgvector. Gemini 3 synthesizes the retrieved passages into a <em class="accent">context card</em>: a scannable summary with citations and a confidence score, surfaced at the exact timestamp the claim was made.</p>
 
         <img src="../assets/img/projects/noeron.png" alt="Noeron's live research stream surfacing context cards as a podcast plays" loading="lazy" class="rounded-lg border border-faint w-full my-8">
 
@@ -126,7 +126,7 @@
         <h3 id="demo" class="font-libre text-2xl mt-12 mb-4 scroll-mt-20">Demo</h3>
         <!-- Replace this placeholder with the YouTube/Loom embed:
         <div class="video-embed"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Noeron demo" allowfullscreen></iframe></div> -->
-        <div class="video-embed video-placeholder"><span class="opacity-60">▶ Demo video — embed goes here</span></div>
+        <div class="video-embed video-placeholder"><span class="opacity-60">▶ Demo video goes here</span></div>
       </section>
 
       <section class="mb-16 md:mb-20">

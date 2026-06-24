@@ -1,0 +1,283 @@
+<!doctype html>
+<html class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Pete Housing Analytics · Beck Piscopo</title>
+    <link href="../dist/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Young+Serif&display=swap" rel="stylesheet">
+</head>
+
+<!-- DRAFT analysis case study — content drafted from the project README + CLAUDE.md for Beck to rewrite.
+     This is the ANALYTICS layout (chart-forward / data story), distinct from the product layout.
+     Replace each .chart-placeholder with an embedded chart (iframe) or exported image, verify the
+     findings against the real analysis, and add role/timeline/repo. -->
+<body class="min-h-screen">
+  <!-- Sticky light/dark toggle, fixed to the top-right of the viewport -->
+  <button id="dark-toggle" aria-label="Toggle dark mode" class="theme-toggle-fixed">
+    <svg id="theme-toggle-icon" width="24" height="24" viewBox="0 0 28 28" fill="none" stroke="var(--toggle-border, #3E1F14)" stroke-width="2">
+      <circle cx="14" cy="14" r="12" fill="var(--toggle-bg, #F2E9E4)" />
+      <path d="M14 2a12 12 0 0 1 0 24z" fill="var(--toggle-half, #3E1F14)" stroke="none"/>
+    </svg>
+  </button>
+
+  <!-- Mobile sticky top bar (hidden on md+) -->
+  <header id="mobile-bar" class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-14 backdrop-blur">
+    <a href="../index.html" class="font-libre text-xl font-bold">Beck Piscopo</a>
+    <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="p-2 text-3xl leading-none">&#9776;</button>
+  </header>
+
+  <!-- Sidebar: static rail on md+, slide-out drawer on mobile (links back to home) -->
+  <aside id="sidebar" class="fixed z-50 top-0 left-0 h-screen w-64 px-6 py-8 flex flex-col gap-8
+              -translate-x-full md:translate-x-0 transition-transform duration-300">
+    <div>
+      <a href="../index.html" class="font-libre text-2xl font-bold block leading-tight">Beck<br>Piscopo</a>
+    </div>
+    <nav class="toc flex flex-col gap-3 text-lg">
+      <a href="../index.html#about">// About</a>
+      <a href="../index.html#projects">// Projects</a>
+      <a href="../index.html#writing">// Writing</a>
+      <a href="../assets/pdf/v2_light_resume_2025.pdf" target="_blank" rel="noopener">// Resume</a>
+      <a href="../index.html#contact">// Contact</a>
+    </nav>
+    <div class="flex gap-4 mt-auto items-center">
+      <a href="https://github.com/beckpiscopo" target="_blank">
+        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 250 250" fill="#3E1F14">
+          <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#3E1F14"/>
+        </svg>
+        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 250 250" fill="#F2E9E4">
+          <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#F2E9E4"/>
+        </svg>
+      </a>
+      <a href="https://x.com/beckpiscopo" target="_blank">
+        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 250 250" fill="none">
+          <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#3E1F14"/>
+        </svg>
+        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 250 250" fill="none">
+          <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#F2E9E4"/>
+        </svg>
+      </a>
+      <a href="https://paragraph.com/@beckpiscopo.eth" target="_blank">
+        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#3E1F14">
+          <path d="M6 0V76.1345H81" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+          <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#3E1F14" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
+          <path d="M6 76.129L59.0302 21.5845" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+        </svg>
+        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#F2E9E4">
+          <path d="M6 0V76.1345H81" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+          <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#F2E9E4" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
+          <path d="M6 76.129L59.0302 21.5845" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+        </svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main content; wider column for charts (analysis layout). Prose stays narrow via .max-w-3xl wrappers. -->
+  <div class="md:ml-64">
+    <main class="max-w-4xl mx-auto px-6 py-16 md:py-24">
+      <a class="link" href="../index.html#projects">← Projects</a>
+
+      <h1 class="font-libre text-4xl md:text-5xl font-bold mt-5 mb-3">St. Housing Pete Analytics</h1>
+      <p class="text-2xl italic opacity-80 mb-8 max-w-3xl">Using parcel-level data the consumer tools don't expose to answer one question: which St. Petersburg house is actually a good buy?</p>
+
+      <!-- Metadata -->
+      <dl class="flex flex-wrap gap-x-10 gap-y-3 mb-5 pb-6 border-b border-faint-soft">
+        <div>
+          <dt class="text-sm uppercase tracking-wide opacity-50">Role</dt>
+          <dd class="text-lg">Solo (data pipeline, modeling, UI)</dd>
+        </div>
+        <div>
+          <dt class="text-sm uppercase tracking-wide opacity-50">Timeline</dt>
+          <dd class="text-lg">Personal project · 2026</dd>
+        </div>
+        <div>
+          <dt class="text-sm uppercase tracking-wide opacity-50">Stack</dt>
+          <dd class="text-lg">DuckDB · dbt · FastAPI · Next.js + MapLibre</dd>
+        </div>
+      </dl>
+      <div class="flex flex-wrap gap-5 mb-14 text-lg">
+        <!-- TODO: add real repo URL. Runs locally — no public deploy. -->
+        <a class="link" href="#" target="_blank" rel="noopener">Repo ↗</a>
+      </div>
+
+      <section class="mb-16 md:mb-20 max-w-3xl">
+        <h2 class="font-libre text-3xl font-bold mb-5">The question</h2>
+        <p class="text-xl mb-5">I was buying a house in St. Petersburg, and Zillow and Redfin couldn't answer the questions that actually decide a purchase in Florida: what will this place really cost to own once insurance and flood risk are priced in? Is this "renovated" listing a cosmetic flip? Which neighborhoods are quietly gaining momentum?</p>
+        <p class="text-xl">The data to answer all of that exists in public records. It's just scattered across county parcel files, FEMA flood maps, Census tables, and insurance quotes, and nobody joins it. So I built a parcel-level analytics platform for two zip codes (33710 / 33713) to answer the question for myself.</p>
+      </section>
+
+      <section class="mb-16 md:mb-20">
+        <h2 class="font-libre text-3xl font-bold mb-5 max-w-3xl">The data</h2>
+        <div class="max-w-3xl">
+          <p class="text-xl mb-5">Eight sources, joined at the parcel and zip level: county parcel records and sales history (PCPAO / FL DOR), building permits, Zillow &amp; Redfin market metrics, Census ACS demographics, FEMA flood-claim history, and a crowdsourced insurance table I assembled by hand. It's the most differentiated layer, because real premiums are the single hardest number to get and the most important.</p>
+          <p class="text-xl mb-5">The honest hard part wasn't analysis, it was reconciliation: these sources don't share keys, flood zones aren't a native parcel field (I spatial-joined FEMA FIRM maps to parcel lat/lon), and insurance has to be estimated per property. The figures below come from that joined dataset.</p>
+          <p class="text-lg"><a class="link" href="#data-sources">See every source and derived metric ↓</a></p>
+        </div>
+      </section>
+
+      <section class="mb-16 md:mb-20">
+        <h2 class="font-libre text-3xl font-bold mb-8">What the data showed</h2>
+
+        <!-- Finding 1 -->
+        <h3 class="font-libre text-2xl mb-3 max-w-3xl">Asking price hides the real cost</h3>
+        <p class="text-xl max-w-3xl">Listings at the same sticker price diverge sharply once you compute <em class="accent">true monthly cost</em> (PITI plus insurance plus HOA/CDD). Insurance dominates: a ~$1,500/yr premium gap offsets a $50k price difference over a ten-year hold, which reorders "comparable" homes completely.</p>
+        <figure class="figure">
+          <!-- Replace placeholder with: <div class="figure-frame"><iframe src="../assets/charts/true-cost.html" title="Asking price vs true monthly cost"></iframe></div>
+               or a static image: <div class="figure-frame"><img src="../assets/img/charts/true-cost.png" alt="..."></div> -->
+          <div class="figure-frame chart-placeholder"><span class="opacity-60">Chart: asking price vs. true monthly cost</span></div>
+          <figcaption class="figcaption">Each point a listing; color by insurance burden. (placeholder)</figcaption>
+        </figure>
+
+        <!-- Finding 2 -->
+        <h3 class="font-libre text-2xl mb-3 mt-14 max-w-3xl">Cosmetic flips, priced like renovations</h3>
+        <p class="text-xl max-w-3xl">A <em class="accent">flip score</em> (days between purchase and relist, permit activity in that window, and price delta vs. zip comps) surfaces homes bought and re-listed within months at 2–3× replacement cost, with little real work permitted in between.</p>
+        <figure class="figure">
+          <div class="figure-frame chart-placeholder"><span class="opacity-60">Chart: relist gap vs. price delta, flips flagged</span></div>
+          <figcaption class="figcaption">Flagged flips highlighted; bubble size = permit value. (placeholder)</figcaption>
+        </figure>
+
+        <!-- Finding 3 -->
+        <h3 class="font-libre text-2xl mb-3 mt-14 max-w-3xl">Flood &amp; insurability quietly remove a big share of inventory</h3>
+        <p class="text-xl max-w-3xl">Applying the hard disqualifiers (FEMA flood zones, hurricane evac zones, roofs over 20 years, Federal Pacific / Zinsco panels, frame construction) eliminates a substantial fraction of listings before any deeper analysis, and the share varies a lot block to block.</p>
+        <figure class="figure">
+          <div class="figure-frame chart-placeholder"><span class="opacity-60">Map: eligible vs. auto-failed parcels by zone</span></div>
+          <figcaption class="figcaption">MapLibre choropleth of disqualification rate. (placeholder)</figcaption>
+        </figure>
+
+        <!-- Finding 4 -->
+        <h3 class="font-libre text-2xl mb-3 mt-14 max-w-3xl">Where momentum is actually building</h3>
+        <p class="text-xl max-w-3xl">A <em class="accent">neighborhood-momentum</em> signal (permit-issuance trend, days-on-market trend, price-cut rate, and ACS income growth) separates blocks that are heating up from those that just look active.</p>
+        <figure class="figure">
+          <div class="figure-frame chart-placeholder"><span class="opacity-60">Chart: momentum components by sub-neighborhood</span></div>
+          <figcaption class="figcaption">Small multiples per signal. (placeholder)</figcaption>
+        </figure>
+      </section>
+
+      <section class="mb-16 md:mb-20 max-w-3xl">
+        <h2 class="font-libre text-3xl font-bold mb-5">How I built it</h2>
+        <p class="text-xl mb-6">Everything runs locally, with no cloud. Python scripts ingest each source into <strong>DuckDB</strong>, an in-process analytical database; <strong>dbt</strong> models turn the raw tables into the decision metrics above; a read-only <strong>FastAPI</strong> layer serves them; and a <strong>Next.js + MapLibre</strong> map-first UI puts every parcel on the map. DuckDB in-process means no infrastructure and fast iteration, the right call for a single-user decision tool.</p>
+        <ul class="flex flex-wrap gap-2 text-base">
+          <li class="border border-faint rounded px-3 py-1">DuckDB</li>
+          <li class="border border-faint rounded px-3 py-1">dbt</li>
+          <li class="border border-faint rounded px-3 py-1">Python · pandas</li>
+          <li class="border border-faint rounded px-3 py-1">FastAPI</li>
+          <li class="border border-faint rounded px-3 py-1">Next.js</li>
+          <li class="border border-faint rounded px-3 py-1">MapLibre GL</li>
+          <li class="border border-faint rounded px-3 py-1">Census ACS API</li>
+          <li class="border border-faint rounded px-3 py-1">FEMA OpenFEMA</li>
+          <li class="border border-faint rounded px-3 py-1">PCPAO parcel data</li>
+          <li class="border border-faint rounded px-3 py-1">marimo</li>
+        </ul>
+      </section>
+
+      <section class="max-w-3xl">
+        <h2 class="font-libre text-3xl font-bold mb-5">What it told me</h2>
+        <ul class="flex flex-col gap-4 text-xl">
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>The hard part of a data product isn't the model — it's joining messy public sources into something trustworthy. Parcel records, flood maps, and insurance quotes don't share keys, and reconciling them was most of the work.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Encoding the <em class="accent">actual decision</em> — hard disqualifiers, true cost, insurance weighting — mattered more than any single metric. The tool was useful because it scored what I cared about, not a generic "estimate."</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>DuckDB + dbt running locally is a genuinely great analytics stack: no infrastructure, fast iteration, and real transformation discipline without a warehouse bill.</span></li>
+        </ul>
+      </section>
+
+      <section id="data-sources" class="mt-16 md:mt-20 pt-10 border-t border-faint-soft scroll-mt-20">
+        <h2 class="font-libre text-3xl font-bold mb-5 max-w-3xl">Data &amp; metrics</h2>
+        <p class="text-lg opacity-80 mb-6 max-w-3xl">Eight public and crowdsourced sources, joined at the parcel and zip level.</p>
+        <div class="overflow-x-auto mb-12">
+          <table class="data-table">
+            <thead>
+              <tr><th>Source</th><th>Grain</th><th>Provider</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Parcels</td><td>1 row / parcel</td><td>PCPAO</td></tr>
+              <tr><td>Sales history</td><td>1 row / transaction</td><td>PCPAO · FL DOR</td></tr>
+              <tr><td>Permits</td><td>1 row / permit</td><td>StPeteStat · PCPAO</td></tr>
+              <tr><td>Market metrics</td><td>zip + month</td><td>Zillow Research · Redfin</td></tr>
+              <tr><td>Demographics</td><td>zip + year</td><td>Census ACS</td></tr>
+              <tr><td>Insurance (crowdsourced)</td><td>1 row / submission</td><td>Web form</td></tr>
+              <tr><td>Flood claims</td><td>zip + year</td><td>FEMA OpenFEMA</td></tr>
+              <tr><td>Listings</td><td>1 row / listing</td><td>Zillow · Redfin</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="font-libre text-2xl mb-5 max-w-3xl">Derived metrics</h3>
+        <dl class="max-w-3xl flex flex-col gap-4 text-lg">
+          <div><dt class="term mb-1">true_monthly_cost</dt><dd class="opacity-85">PITI + insurance + HOA/CDD. The primary apples-to-apples cost comparison across listings.</dd></div>
+          <div><dt class="term mb-1">flip_score</dt><dd class="opacity-85">Days-to-relist + permit activity in that window + price delta vs. zip comp. Flags cosmetic flips priced at 2–3× replacement cost.</dd></div>
+          <div><dt class="term mb-1">rental_exit_yield</dt><dd class="opacity-85">Net yield after insurance, taxes, property management, and vacancy. Must be positive to qualify as a rental exit.</dd></div>
+          <div><dt class="term mb-1">flood_risk_score</dt><dd class="opacity-85">FEMA zone (spatial-joined onto parcels) plus NFIP claims history by zip.</dd></div>
+          <div><dt class="term mb-1">neighborhood_momentum</dt><dd class="opacity-85">Permit-rate trend + days-on-market trend + price-cut rate + ACS income growth.</dd></div>
+        </dl>
+
+        <h3 class="font-libre text-2xl mt-12 mb-3 max-w-3xl">The full analysis</h3>
+        <p class="text-lg opacity-80 mb-5 max-w-3xl">Static exports of the marimo notebooks behind the findings above. Read-only snapshots, but the interactive charts still respond.</p>
+        <ul class="flex flex-col gap-3 text-lg max-w-3xl">
+          <li><a class="link" href="../notebooks/st-pete/overview.html" target="_blank" rel="noopener">Overview ↗</a></li>
+          <li><a class="link" href="../notebooks/st-pete/criteria_funnel.html" target="_blank" rel="noopener">Disqualifier criteria funnel ↗</a></li>
+          <li><a class="link" href="../notebooks/st-pete/flood_wind_risk.html" target="_blank" rel="noopener">Flood &amp; wind risk ↗</a></li>
+          <li><a class="link" href="../notebooks/st-pete/flood_catmodel_validation.html" target="_blank" rel="noopener">Flood cat-model validation ↗</a></li>
+          <li><a class="link" href="../notebooks/st-pete/blockgroup_flood_mechanism.html" target="_blank" rel="noopener">Block-group flood mechanism ↗</a></li>
+          <li><a class="link" href="../notebooks/st-pete/parcel_flood_regression.html" target="_blank" rel="noopener">Parcel flood regression ↗</a></li>
+          <li><a class="link" href="../notebooks/st-pete/social_vulnerability.html" target="_blank" rel="noopener">Social vulnerability ↗</a></li>
+          <li><a class="link" href="../notebooks/st-pete/explore.html" target="_blank" rel="noopener">Exploratory analysis ↗</a></li>
+        </ul>
+      </section>
+
+      <footer class="mt-16 pt-8 border-t border-faint-soft max-w-3xl">
+        <a class="link text-lg" href="../index.html#projects">← Back to all projects</a>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    root.classList.add('js');
+    // No hero on case-study pages: dock the sidebar (skip the scroll morph).
+    root.style.setProperty('--p', 1);
+    document.body.classList.add('scrolled');
+
+    // Dark mode: auto by hour + manual toggle
+    const hour = new Date().getHours();
+    if (hour >= 19 || hour < 7) root.classList.add('dark');
+    document.getElementById('dark-toggle')
+      .addEventListener('click', () => root.classList.toggle('dark'));
+
+    // Mobile drawer
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebarEl = document.getElementById('sidebar');
+    if (menuToggle) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = document.body.classList.toggle('drawer-open');
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+    }
+    document.querySelectorAll('.toc a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.body.classList.remove('drawer-open');
+        menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle && menuToggle.setAttribute('aria-label', 'Open menu');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (document.body.classList.contains('drawer-open') &&
+          sidebarEl && !sidebarEl.contains(e.target) &&
+          menuToggle && !menuToggle.contains(e.target)) {
+        document.body.classList.remove('drawer-open');
+        menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle && menuToggle.setAttribute('aria-label', 'Open menu');
+      }
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
