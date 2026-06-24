@@ -80,21 +80,21 @@ html { scroll-behavior: smooth; }
 .heatmap-body { display: flex; gap: 6px; }
 .heatmap-days {
   display: grid;
-  grid-template-rows: repeat(7, 10px);
-  gap: 2px;
+  grid-template-rows: repeat(7, var(--cell, 10px));
+  gap: var(--cell-gap, 2px);
   width: 24px;
   font-size: 0.62rem;
   opacity: 0.65;
 }
-.heatmap-days span { line-height: 10px; }
+.heatmap-days span { line-height: var(--cell, 10px); }
 .heatmap-grid {
   display: grid;
-  grid-template-rows: repeat(7, 10px);
+  grid-template-rows: repeat(7, var(--cell, 10px));
   grid-auto-flow: column;
-  grid-auto-columns: 10px;
-  gap: 2px;
+  grid-auto-columns: var(--cell, 10px);
+  gap: var(--cell-gap, 2px);
 }
-.heatmap-grid i { width: 10px; height: 10px; border-radius: 9999px; display: block; }
+.heatmap-grid i { width: var(--cell, 10px); height: var(--cell, 10px); border-radius: 9999px; display: block; }
 
 /* Light-mode level ramp: faint -> caramel -> jasper -> van dyke */
 .heatmap-grid i.lvl-0 { background: color-mix(in srgb, var(--color-van-dyke) 9%, transparent); }
@@ -121,6 +121,9 @@ html { scroll-behavior: smooth; }
 .dark .link { color: var(--color-caramel); }
 .dark .link:hover { color: var(--color-isabelline); }
 
+/* Writing list links: keep text color on hover (avoid nav-style wash-out) */
+#writing a:hover { color: inherit; background: none; }
+
 /* Caramel hairline under each section heading */
 main section > h2 { position: relative; padding-bottom: 0.5rem; }
 main section > h2::after {
@@ -132,3 +135,77 @@ main section > h2::after {
   height: 2px;
   background: var(--color-caramel);
 }
+
+/* ---- Project case-study: demo video ---- */
+.video-embed { aspect-ratio: 16 / 9; width: 100%; border-radius: 0.5rem; overflow: hidden; }
+.video-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
+.video-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  background: color-mix(in srgb, var(--color-caramel) 12%, transparent);
+}
+
+/* ---- Sticky light/dark toggle ---- */
+/* Fixed to the top-right of the viewport, above sidebar (z-50) and mobile bar (z-40). */
+.theme-toggle-fixed {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 60;
+  padding: 0.25rem;
+  line-height: 0;
+  cursor: pointer;
+}
+/* On mobile the hamburger lives at the top-right, so sit just to its left. */
+@media (max-width: 767px) {
+  .theme-toggle-fixed { top: 0.85rem; right: 3.5rem; }
+}
+
+/* ---- Hero "handwritten" reveal ---- */
+/* Sweeps the line in left-to-right behind a moving pen tip; font is unchanged. */
+.hero-handwrite {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+.hero-handwrite .hw-text {
+  display: inline-block;
+  clip-path: inset(0 100% 0 0);
+  animation: hw-reveal 3.8s cubic-bezier(0.77, 0, 0.18, 1) 0.35s forwards;
+}
+/* The travelling pen tip */
+.hero-handwrite::after {
+  content: "";
+  position: absolute;
+  top: 0.12em;
+  bottom: 0.18em;
+  left: 0;
+  width: 2px;
+  background: var(--color-jasper);
+  opacity: 0;
+  animation: hw-pen 3.8s cubic-bezier(0.77, 0, 0.18, 1) 0.35s forwards;
+}
+.dark .hero-handwrite::after { background: var(--color-caramel); }
+
+@keyframes hw-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes hw-pen {
+  0%   { left: 0;    opacity: 1; }
+  92%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* No animation when the user prefers reduced motion: show the line at rest */
+@media (prefers-reduced-motion: reduce) {
+  .hero-handwrite .hw-text { animation: none; clip-path: none; }
+  .hero-handwrite::after { display: none; }
+}
+
+/* ---- Faint borders in the current text color (auto light/dark) ---- */
+/* Tailwind can't put an opacity modifier on currentColor, so do it here. */
+.border-faint { border-color: color-mix(in srgb, currentColor 20%, transparent); }
+.border-faint-soft { border-color: color-mix(in srgb, currentColor 14%, transparent); }

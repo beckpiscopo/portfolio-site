@@ -12,6 +12,14 @@
 </head>
 
 <body class="min-h-screen">
+  <!-- Sticky light/dark toggle, fixed to the top-right of the viewport -->
+  <button id="dark-toggle" aria-label="Toggle dark mode" class="theme-toggle-fixed">
+    <svg id="theme-toggle-icon" width="24" height="24" viewBox="0 0 28 28" fill="none" stroke="var(--toggle-border, #3E1F14)" stroke-width="2">
+      <circle cx="14" cy="14" r="12" fill="var(--toggle-bg, #F2E9E4)" />
+      <path d="M14 2a12 12 0 0 1 0 24z" fill="var(--toggle-half, #3E1F14)" stroke="none"/>
+    </svg>
+  </button>
+
   <!-- Mobile sticky top bar (hidden on md+) -->
   <header id="mobile-bar" class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-14 backdrop-blur">
     <span class="font-libre text-xl font-bold">Beck Piscopo</span>
@@ -34,46 +42,39 @@
     <div class="flex gap-4 mt-auto items-center">
       <a href="https://github.com/beckpiscopo" target="_blank">
         <!-- Light mode SVG -->
-        <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" fill="#3E1F14">
+        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 250 250" fill="#3E1F14">
           <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#3E1F14"/>
         </svg>
         <!-- Dark mode SVG -->
-        <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" fill="#F2E9E4">
+        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 250 250" fill="#F2E9E4">
           <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#F2E9E4"/>
         </svg>
       </a>
 
       <a href="https://x.com/beckpiscopo" target="_blank">
         <!-- Light mode SVG -->
-        <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" fill="none">
+        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 250 250" fill="none">
           <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#3E1F14"/>
         </svg>
         <!-- Dark mode SVG -->
-        <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" fill="none">
+        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 250 250" fill="none">
           <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#F2E9E4"/>
         </svg>
       </a>
       <a href="https://paragraph.com/@beckpiscopo.eth" target="_blank">
         <!-- Light mode SVG -->
-        <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#3E1F14">
+        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#3E1F14">
           <path d="M6 0V76.1345H81" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
           <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#3E1F14" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
           <path d="M6 76.129L59.0302 21.5845" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
         </svg>
         <!-- Dark mode SVG -->
-        <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#F2E9E4">
+        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#F2E9E4">
           <path d="M6 0V76.1345H81" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
           <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#F2E9E4" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
           <path d="M6 76.129L59.0302 21.5845" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
         </svg>
       </a>
-      
-      <button id="dark-toggle" aria-label="Toggle dark mode" class="p-1 ml-auto">
-        <svg id="theme-toggle-icon" width="24" height="24" viewBox="0 0 28 28" fill="none" stroke="var(--toggle-border, #3E1F14)" stroke-width="2">
-          <circle cx="14" cy="14" r="12" fill="var(--toggle-bg, #F2E9E4)" />
-          <path d="M14 2a12 12 0 0 1 0 24z" fill="var(--toggle-half, #3E1F14)" stroke="none"/>
-        </svg>
-      </button>
     </div>
   </aside>
 
@@ -84,7 +85,7 @@
       <div class="hero-inner max-w-2xl">
         <h3 class="font-libre text-3xl italic">Hello,</h3>
         <h1 class="font-libre lg:text-6xl text-4xl font-bold my-6">I'm Beck Piscopo.</h1>
-        <p class="text-3xl italic">I build <span class="underline">research intelligence systems</span></p>
+        <p class="text-3xl italic hero-handwrite"><span class="hw-text">I build <span class="underline">research intelligence systems</span></span></p>
       </div>
     </section>
 
@@ -92,8 +93,8 @@
       <section id="about" class="py-20 scroll-mt-20">
         <h2 class="font-libre text-4xl font-bold mb-6">About</h2>
         <p class="text-2xl leading-relaxed mb-6">As a deeply <em class="accent">curious-yet-practical</em> person, I find great satisfaction in employing my skills to solve problems that actually need solutions. Being able to effectively communicate complex ideas means understanding what the other person needs to know, and being able to speak their language. This is a skill, maybe even an art, that I have intentionally cultivated throughout my life, and I hope you'll find it demonstrated in my portfolio projects and writing.</p>
-        <p class="text-xl mb-4">My portfolio consists of projects that I created because I needed them to exist:</p>
-        <ul class="flex flex-col gap-4 text-xl">
+        <p class="text-2xl mb-4">My portfolio consists of projects that I created because I needed them to exist:</p>
+        <ul class="flex flex-col gap-4 text-2xl">
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>I built <a class="link" href="#projects">Noeron</a> because I wanted to remove the friction between consuming scientific podcasts and validating the claims being made.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>While shopping for a new house, I found the existing platforms didn't provide the data I needed to make an informed decision, so I built <a class="link" href="#projects">St. Pete Analytics</a>.</span></li>
         </ul>
@@ -102,16 +103,27 @@
       <section id="projects" class="py-20 scroll-mt-20">
         <h2 class="font-libre text-4xl font-bold mb-6">Projects</h2>
         <div class="grid gap-6 sm:grid-cols-2">
-          <div class="rounded-lg border border-current/20 overflow-hidden transition-colors hover:border-current">
+          <a href="projects/noeron.html" class="group block p-0 no-underline rounded-lg border border-faint overflow-hidden transition-colors hover:border-current">
             <div class="project-thumb">
               <img src="assets/img/projects/noeron.png" alt="Noeron screenshot" loading="lazy" style="object-position: left center" onerror="this.style.display='none'">
             </div>
             <div class="p-6">
               <h3 class="font-libre text-2xl mb-2">Noeron</h3>
               <p class="text-base opacity-80">Built a knowledge layer for podcasts. The platform detects scientific claims made in an episode, then validates those claims by examining the academic literature.</p>
+              <span class="accent text-sm mt-3 inline-block">View case study →</span>
             </div>
-          </div>
-          <div class="rounded-lg border border-current/20 overflow-hidden transition-colors hover:border-current">
+          </a>
+          <a href="projects/morphic.html" class="group block p-0 no-underline rounded-lg border border-faint overflow-hidden transition-colors hover:border-current">
+            <div class="project-thumb">
+              <img src="assets/img/projects/morphic.png" alt="Morphic screenshot" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <div class="p-6">
+              <h3 class="font-libre text-2xl mb-2">Morphic</h3>
+              <p class="text-base opacity-80">Built a cross-domain research engine that extracts structural patterns from a 150+ paper corpus and routes them to autonomous domain-specialist agents — mycology, medicine, distributed computing — that synthesize insights no single field could reach.</p>
+              <span class="accent text-sm mt-3 inline-block">View case study →</span>
+            </div>
+          </a>
+          <div class="rounded-lg border border-faint overflow-hidden transition-colors hover:border-current">
             <div class="project-thumb">
               <img src="assets/img/projects/critical-minerals.png" alt="Critical Minerals Intelligence screenshot" loading="lazy" onerror="this.style.display='none'">
             </div>
@@ -120,16 +132,7 @@
               <p class="text-base opacity-80">Designed a geopolitical analysis platform with interactive mapping, automated news monitoring, and HHI-based supply chain risk scoring.</p>
             </div>
           </div>
-          <div class="rounded-lg border border-current/20 overflow-hidden transition-colors hover:border-current">
-            <div class="project-thumb">
-              <img src="assets/img/projects/morphic.png" alt="Morphic screenshot" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="p-6">
-              <h3 class="font-libre text-2xl mb-2">Morphic</h3>
-              <p class="text-base opacity-80">Built a cross-domain research engine that extracts structural patterns from a 150+ paper corpus and routes them to autonomous domain-specialist agents — mycology, medicine, distributed computing — that synthesize insights no single field could reach.</p>
-            </div>
-          </div>
-          <div class="rounded-lg border border-current/20 overflow-hidden transition-colors hover:border-current">
+          <div class="rounded-lg border border-faint overflow-hidden transition-colors hover:border-current">
             <div class="project-thumb">
               <img src="assets/img/projects/st-pete.png" alt="St. Pete Analytics screenshot" loading="lazy" onerror="this.style.display='none'">
             </div>
@@ -147,16 +150,21 @@
         <div class="heatmap-wrap">
           <div id="heatmap" class="heatmap"></div>
         </div>
-        <p class="text-sm opacity-60 mt-4">A year of public GitHub contributions.</p>
+        <p class="text-sm mt-4 text-right"><a class="link" href="https://github.com/beckpiscopo" target="_blank" rel="noopener">View on GitHub ↗</a></p>
       </section>
 
       <section id="writing" class="py-20 scroll-mt-20">
         <h2 class="font-libre text-4xl font-bold mb-6">Writing</h2>
-        <!-- TODO: replace placeholder -->
         <ul class="flex flex-col gap-5">
-          <li><a href="#" class="flex justify-between gap-4 group"><span class="text-xl group-hover:underline">Placeholder post title one</span><span class="opacity-60 whitespace-nowrap">2025</span></a></li>
-          <li><a href="#" class="flex justify-between gap-4 group"><span class="text-xl group-hover:underline">Placeholder post title two</span><span class="opacity-60 whitespace-nowrap">2025</span></a></li>
-          <li><a href="#" class="flex justify-between gap-4 group"><span class="text-xl group-hover:underline">Placeholder post title three</span><span class="opacity-60 whitespace-nowrap">2024</span></a></li>
+          <li>
+            <a href="https://beckpiscopo.substack.com/p/the-desci-solution" target="_blank" class="group block">
+              <div class="flex justify-between gap-4">
+                <span class="text-2xl group-hover:underline">The DeSci Solution</span>
+                <span class="text-xl opacity-60 whitespace-nowrap">2026</span>
+              </div>
+              <p class="text-xl italic opacity-60 mt-1">Moving Beyond the Limitations of Traditional Science</p>
+            </a>
+          </li>
         </ul>
       </section>
 
@@ -292,10 +300,35 @@
           if (caption) caption.textContent = 'GitHub activity unavailable.';
           return;
         }
-        const days = snap.days || [];
+        let days = snap.days || [];
         if (!days.length) { if (caption) caption.textContent = 'No activity data.'; return; }
 
-        const COL_PITCH = 12; // 10px cell + 2px gap
+        // Show only the last ~6 months. Snap the start back to a 7-day boundary
+        // so each column stays a Sunday-aligned week (month labels rely on this).
+        const cutoff = new Date();
+        cutoff.setMonth(cutoff.getMonth() - 6);
+        let startIdx = days.findIndex(d => new Date(d.date + 'T00:00:00') >= cutoff);
+        if (startIdx < 0) startIdx = 0;
+        startIdx -= startIdx % 7;
+        days = days.slice(startIdx);
+        const visibleTotal = days.reduce((sum, d) => sum + d.count, 0);
+
+        // Grow the cells so the (now shorter) 6-month grid fills the same width
+        // the full-year grid used to span. Falls back to 10px if too narrow,
+        // letting the container scroll as before.
+        const numCols = Math.ceil(days.length / 7);
+        const CELL_GAP = 3;          // px between cells
+        const DAY_LABELS_W = 24;     // .heatmap-days width
+        const BODY_GAP = 6;          // .heatmap-body gap
+        const wrap = grid.closest('.heatmap-wrap');
+        const containerW = wrap ? wrap.clientWidth : 660;
+        const availForCells = containerW - DAY_LABELS_W - BODY_GAP;
+        let cell = Math.floor((availForCells - (numCols - 1) * CELL_GAP) / numCols);
+        cell = Math.max(10, cell); // never smaller than the original cell size
+        grid.style.setProperty('--cell', cell + 'px');
+        grid.style.setProperty('--cell-gap', CELL_GAP + 'px');
+
+        const COL_PITCH = cell + CELL_GAP;
         const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
         // Month labels: place above the first column whose top (Sunday) cell starts a new month.
@@ -348,12 +381,11 @@
         grid.appendChild(body);
 
         if (caption) {
-          caption.textContent = `${snap.total.toLocaleString()} contributions in the last year`;
+          caption.textContent = `${visibleTotal.toLocaleString()} contributions in the last 6 months`;
         }
 
         // If the grid is wider than its container (narrow screens), scroll to the
         // most recent end so the latest months are visible by default.
-        const wrap = grid.closest('.heatmap-wrap');
         if (wrap) wrap.scrollLeft = wrap.scrollWidth;
       })();
     </script>

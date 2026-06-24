@@ -46,6 +46,7 @@
   background-color: var(--color-background);
 }/* Responsive background */body {
   background-color: var(--color-background);
+  color: var(--color-text);
 }/* Mobile styles */@media (max-width: 768px) {
   .hidden-element {
     visibility: hidden;
@@ -785,14 +786,10 @@ video {
   left: 2rem;
 }.right-0{
   right: 0px;
-}.right-4{
-  right: 1rem;
 }.top-0{
   top: 0px;
 }.top-20{
   top: 5rem;
-}.top-4{
-  top: 1rem;
 }.z-10{
   z-index: 10;
 }.z-20{
@@ -807,10 +804,6 @@ video {
   grid-column: span 1 / span 1;
 }.col-span-2{
   grid-column: span 2 / span 2;
-}.float-left{
-  float: left;
-}.m-5{
-  margin: 1.25rem;
 }.mx-1{
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -820,16 +813,25 @@ video {
 }.my-6{
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+}.my-8{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }.mb-1{
   margin-bottom: 0.25rem;
 }.mb-12{
   margin-bottom: 3rem;
+}.mb-14{
+  margin-bottom: 3.5rem;
+}.mb-16{
+  margin-bottom: 4rem;
 }.mb-2{
   margin-bottom: 0.5rem;
 }.mb-3{
   margin-bottom: 0.75rem;
 }.mb-4{
   margin-bottom: 1rem;
+}.mb-5{
+  margin-bottom: 1.25rem;
 }.mb-6{
   margin-bottom: 1.5rem;
 }.mb-8{
@@ -840,14 +842,20 @@ video {
   margin-left: 1.25rem;
 }.ml-6{
   margin-left: 1.5rem;
-}.ml-auto{
-  margin-left: auto;
 }.mr-2{
   margin-right: 0.5rem;
 }.mr-2\.5{
   margin-right: 0.625rem;
+}.mt-1{
+  margin-top: 0.25rem;
+}.mt-12{
+  margin-top: 3rem;
+}.mt-16{
+  margin-top: 4rem;
 }.mt-2{
   margin-top: 0.5rem;
+}.mt-3{
+  margin-top: 0.75rem;
 }.mt-4{
   margin-top: 1rem;
 }.mt-5{
@@ -886,6 +894,8 @@ video {
   height: 1.25rem;
 }.h-6{
   height: 1.5rem;
+}.h-7{
+  height: 1.75rem;
 }.h-9{
   height: 2.25rem;
 }.h-full{
@@ -906,8 +916,12 @@ video {
   width: 1.25rem;
 }.w-64{
   width: 16rem;
+}.w-7{
+  width: 1.75rem;
 }.w-96{
   width: 24rem;
+}.w-full{
+  width: 100%;
 }.max-w-2xl{
   max-width: 42rem;
 }.max-w-3xl{
@@ -972,6 +986,8 @@ video {
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }.flex-col{
   flex-direction: column;
+}.flex-wrap{
+  flex-wrap: wrap;
 }.items-start{
   align-items: flex-start;
 }.items-end{
@@ -986,6 +1002,8 @@ video {
   justify-content: center;
 }.justify-between{
   justify-content: space-between;
+}.gap-2{
+  gap: 0.5rem;
 }.gap-3{
   gap: 0.75rem;
 }.gap-4{
@@ -996,6 +1014,11 @@ video {
   gap: 1.5rem;
 }.gap-8{
   gap: 2rem;
+}.gap-x-10{
+  -moz-column-gap: 2.5rem;
+       column-gap: 2.5rem;
+}.gap-y-3{
+  row-gap: 0.75rem;
 }.space-x-1 > :not([hidden]) ~ :not([hidden]){
   --tw-space-x-reverse: 0;
   margin-right: calc(0.25rem * var(--tw-space-x-reverse));
@@ -1041,6 +1064,10 @@ video {
   border-width: 1px;
 }.border-0{
   border-width: 0px;
+}.border-b{
+  border-bottom-width: 1px;
+}.border-t{
+  border-top-width: 1px;
 }.border-blue-600{
   --tw-border-opacity: 1;
   border-color: rgb(28 100 242 / var(--tw-border-opacity));
@@ -1075,6 +1102,8 @@ video {
   background-color: rgb(255 255 255 / 0.5);
 }.bg-opacity-50{
   --tw-bg-opacity: 0.5;
+}.p-0{
+  padding: 0px;
 }.p-1{
   padding: 0.25rem;
 }.p-2{
@@ -1090,6 +1119,9 @@ video {
 }.px-2{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}.px-3{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }.px-4{
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1099,6 +1131,12 @@ video {
 }.px-6{
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}.py-1{
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}.py-16{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }.py-2{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1121,14 +1159,18 @@ video {
   padding-bottom: 8rem;
 }.pb-4{
   padding-bottom: 1rem;
-}.pb-8{
-  padding-bottom: 2rem;
+}.pb-6{
+  padding-bottom: 1.5rem;
 }.pl-3{
   padding-left: 0.75rem;
 }.pt-2{
   padding-top: 0.5rem;
+}.pt-8{
+  padding-top: 2rem;
 }.text-center{
   text-align: center;
+}.text-right{
+  text-align: right;
 }.font-libre{
   font-family: "Young Serif", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }.text-2xl{
@@ -1161,6 +1203,8 @@ video {
   font-weight: 500;
 }.font-semibold{
   font-weight: 600;
+}.uppercase{
+  text-transform: uppercase;
 }.italic{
   font-style: italic;
 }.leading-6{
@@ -1173,6 +1217,8 @@ video {
   line-height: 1.625;
 }.leading-tight{
   line-height: 1.25;
+}.tracking-wide{
+  letter-spacing: 0.025em;
 }.text-blue-600{
   --tw-text-opacity: 1;
   color: rgb(28 100 242 / var(--tw-text-opacity));
@@ -1199,10 +1245,14 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }.underline{
   text-decoration-line: underline;
+}.no-underline{
+  text-decoration-line: none;
 }.opacity-0{
   opacity: 0;
 }.opacity-100{
   opacity: 1;
+}.opacity-50{
+  opacity: 0.5;
 }.opacity-60{
   opacity: 0.6;
 }.opacity-80{
@@ -1296,18 +1346,18 @@ video {
   opacity: 0.7;
 }.heatmap-months span { position: absolute; white-space: nowrap; top: 0; }.heatmap-body { display: flex; gap: 6px; }.heatmap-days {
   display: grid;
-  grid-template-rows: repeat(7, 10px);
-  gap: 2px;
+  grid-template-rows: repeat(7, var(--cell, 10px));
+  gap: var(--cell-gap, 2px);
   width: 24px;
   font-size: 0.62rem;
   opacity: 0.65;
-}.heatmap-days span { line-height: 10px; }.heatmap-grid {
+}.heatmap-days span { line-height: var(--cell, 10px); }.heatmap-grid {
   display: grid;
-  grid-template-rows: repeat(7, 10px);
+  grid-template-rows: repeat(7, var(--cell, 10px));
   grid-auto-flow: column;
-  grid-auto-columns: 10px;
-  gap: 2px;
-}.heatmap-grid i { width: 10px; height: 10px; border-radius: 9999px; display: block; }/* Light-mode level ramp: faint -> caramel -> jasper -> van dyke */.heatmap-grid i.lvl-0 { background: color-mix(in srgb, var(--color-van-dyke) 9%, transparent); }.heatmap-grid i.lvl-1 { background: color-mix(in srgb, var(--color-caramel) 45%, transparent); }.heatmap-grid i.lvl-2 { background: color-mix(in srgb, var(--color-caramel) 75%, transparent); }.heatmap-grid i.lvl-3 { background: var(--color-jasper); }.heatmap-grid i.lvl-4 { background: var(--color-van-dyke); }/* Dark-mode level ramp: faint light -> caramel -> isabelline */.dark .heatmap-grid i.lvl-0 { background: color-mix(in srgb, var(--color-isabelline) 12%, transparent); }.dark .heatmap-grid i.lvl-1 { background: color-mix(in srgb, var(--color-caramel) 50%, transparent); }.dark .heatmap-grid i.lvl-2 { background: color-mix(in srgb, var(--color-caramel) 80%, transparent); }.dark .heatmap-grid i.lvl-3 { background: var(--color-caramel); }.dark .heatmap-grid i.lvl-4 { background: var(--color-isabelline); }/* ---- Editorial accents ---- *//* Inline emphasis */.accent { color: var(--color-jasper); font-style: italic; }.dark .accent { color: var(--color-caramel); }/* Inline body links (distinct from nav links; sane hover that won't wash out) */.link { color: var(--color-jasper); text-decoration: underline; text-underline-offset: 2px; }.link:hover { color: var(--color-van-dyke); background: none; }.dark .link { color: var(--color-caramel); }.dark .link:hover { color: var(--color-isabelline); }/* Caramel hairline under each section heading */main section > h2 { position: relative; padding-bottom: 0.5rem; }main section > h2::after {
+  grid-auto-columns: var(--cell, 10px);
+  gap: var(--cell-gap, 2px);
+}.heatmap-grid i { width: var(--cell, 10px); height: var(--cell, 10px); border-radius: 9999px; display: block; }/* Light-mode level ramp: faint -> caramel -> jasper -> van dyke */.heatmap-grid i.lvl-0 { background: color-mix(in srgb, var(--color-van-dyke) 9%, transparent); }.heatmap-grid i.lvl-1 { background: color-mix(in srgb, var(--color-caramel) 45%, transparent); }.heatmap-grid i.lvl-2 { background: color-mix(in srgb, var(--color-caramel) 75%, transparent); }.heatmap-grid i.lvl-3 { background: var(--color-jasper); }.heatmap-grid i.lvl-4 { background: var(--color-van-dyke); }/* Dark-mode level ramp: faint light -> caramel -> isabelline */.dark .heatmap-grid i.lvl-0 { background: color-mix(in srgb, var(--color-isabelline) 12%, transparent); }.dark .heatmap-grid i.lvl-1 { background: color-mix(in srgb, var(--color-caramel) 50%, transparent); }.dark .heatmap-grid i.lvl-2 { background: color-mix(in srgb, var(--color-caramel) 80%, transparent); }.dark .heatmap-grid i.lvl-3 { background: var(--color-caramel); }.dark .heatmap-grid i.lvl-4 { background: var(--color-isabelline); }/* ---- Editorial accents ---- *//* Inline emphasis */.accent { color: var(--color-jasper); font-style: italic; }.dark .accent { color: var(--color-caramel); }/* Inline body links (distinct from nav links; sane hover that won't wash out) */.link { color: var(--color-jasper); text-decoration: underline; text-underline-offset: 2px; }.link:hover { color: var(--color-van-dyke); background: none; }.dark .link { color: var(--color-caramel); }.dark .link:hover { color: var(--color-isabelline); }/* Writing list links: keep text color on hover (avoid nav-style wash-out) */#writing a:hover { color: inherit; background: none; }/* Caramel hairline under each section heading */main section > h2 { position: relative; padding-bottom: 0.5rem; }main section > h2::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1315,7 +1365,52 @@ video {
   width: 2.5rem;
   height: 2px;
   background: var(--color-caramel);
-}.hover\:border-current:hover{
+}/* ---- Project case-study: demo video ---- */.video-embed { aspect-ratio: 16 / 9; width: 100%; border-radius: 0.5rem; overflow: hidden; }.video-embed iframe { width: 100%; height: 100%; border: 0; display: block; }.video-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  background: color-mix(in srgb, var(--color-caramel) 12%, transparent);
+}/* ---- Sticky light/dark toggle ---- *//* Fixed to the top-right of the viewport, above sidebar (z-50) and mobile bar (z-40). */.theme-toggle-fixed {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 60;
+  padding: 0.25rem;
+  line-height: 0;
+  cursor: pointer;
+}/* On mobile the hamburger lives at the top-right, so sit just to its left. */@media (max-width: 767px) {
+  .theme-toggle-fixed { top: 0.85rem; right: 3.5rem; }
+}/* ---- Hero "handwritten" reveal ---- *//* Sweeps the line in left-to-right behind a moving pen tip; font is unchanged. */.hero-handwrite {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}.hero-handwrite .hw-text {
+  display: inline-block;
+  -webkit-clip-path: inset(0 100% 0 0);
+          clip-path: inset(0 100% 0 0);
+  animation: hw-reveal 3.8s cubic-bezier(0.77, 0, 0.18, 1) 0.35s forwards;
+}/* The travelling pen tip */.hero-handwrite::after {
+  content: "";
+  position: absolute;
+  top: 0.12em;
+  bottom: 0.18em;
+  left: 0;
+  width: 2px;
+  background: var(--color-jasper);
+  opacity: 0;
+  animation: hw-pen 3.8s cubic-bezier(0.77, 0, 0.18, 1) 0.35s forwards;
+}.dark .hero-handwrite::after { background: var(--color-caramel); }@keyframes hw-reveal {
+  from { -webkit-clip-path: inset(0 100% 0 0); clip-path: inset(0 100% 0 0); }
+  to   { -webkit-clip-path: inset(0 0 0 0); clip-path: inset(0 0 0 0); }
+}@keyframes hw-pen {
+  0%   { left: 0;    opacity: 1; }
+  92%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}/* No animation when the user prefers reduced motion: show the line at rest */@media (prefers-reduced-motion: reduce) {
+  .hero-handwrite .hw-text { animation: none; -webkit-clip-path: none; clip-path: none; }
+  .hero-handwrite::after { display: none; }
+}/* ---- Faint borders in the current text color (auto light/dark) ---- *//* Tailwind can't put an opacity modifier on currentColor, so do it here. */.border-faint { border-color: color-mix(in srgb, currentColor 20%, transparent); }.border-faint-soft { border-color: color-mix(in srgb, currentColor 14%, transparent); }.hover\:border-current:hover{
   border-color: currentColor;
 }.hover\:border-gray-300:hover{
   --tw-border-opacity: 1;
@@ -1421,7 +1516,9 @@ video {
 }@media (min-width: 640px){.sm\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}@media (min-width: 768px){.md\:ml-2{
+}@media (min-width: 768px){.md\:mb-20{
+    margin-bottom: 5rem;
+  }.md\:ml-2{
     margin-left: 0.5rem;
   }.md\:ml-64{
     margin-left: 16rem;
@@ -1434,11 +1531,14 @@ video {
     --tw-space-x-reverse: 0;
     margin-right: calc(0.75rem * var(--tw-space-x-reverse));
     margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+  }.md\:py-24{
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }.md\:text-5xl{
+    font-size: 3rem;
+    line-height: 1;
   }
-}@media (min-width: 1024px){.lg\:mx-40{
-    margin-left: 10rem;
-    margin-right: 10rem;
-  }.lg\:ml-8{
+}@media (min-width: 1024px){.lg\:ml-8{
     margin-left: 2rem;
   }.lg\:ml-96{
     margin-left: 24rem;

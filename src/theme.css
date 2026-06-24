@@ -69,6 +69,7 @@ nav {
 /* Responsive background */
 body {
   background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 /* Mobile styles */
