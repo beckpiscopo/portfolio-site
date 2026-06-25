@@ -41,7 +41,10 @@
   color: var(--color-text);
 }ol, ul, p {
   font-family: var(--font-serif-body);
-}/* Base typographic scale — elements size themselves; utilities still override */h1 { font-size: var(--step-3); line-height: 1.08; }h2 { font-size: var(--step-2); line-height: 1.15; }h3 { font-size: var(--step-1); line-height: 1.20; }p {
+}/* NOTE: heading font-SIZES live in src/input.css inside `@layer base`, NOT here.
+   Tailwind's Preflight (@tailwind base) resets h1–h3 to `font-size: inherit`, and
+   theme.css is @imported BEFORE @tailwind base — so any font-size set here is
+   overridden by Preflight and headings collapse to body size. @layer base wins. */p {
   font-size: var(--step-0);
   line-height: 1.6;
   color: var(--color-text);
@@ -645,7 +648,7 @@ video {
 }input:checked + .toggle-bg{
   background: #1C64F2;
   border-color: #1C64F2;
-}*, ::before, ::after{
+}h1 { font-size: var(--step-3); line-height: 1.08; }h2 { font-size: var(--step-2); line-height: 1.15; }h3 { font-size: var(--step-1); line-height: 1.20; }*, ::before, ::after{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -1265,7 +1268,10 @@ video {
   transition-duration: 300ms;
 }.ease-out{
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-}/* Add any additional component-specific or utility styles below. *//* ---- Display-font helper for non-heading elements (e.g. sidebar name) ---- */.font-display { font-family: var(--font-serif-display); }/* ---- Scroll-assembled sidebar ---- */:root { --p: 0; }/* Active TOC link */.toc a { opacity: 0.6; text-decoration: none; transition: opacity 0.2s ease; }.toc a:hover { opacity: 1; }.toc a.active { opacity: 1; font-weight: 700; }/* Sidebar/top-bar surface matches the page background (auto light/dark) */#sidebar, #mobile-bar { background-color: var(--color-background); }@media (min-width: 768px) {
+}/* Add any additional component-specific or utility styles below. *//* Base heading sizes — MUST be in @layer base so they win over Tailwind
+   Preflight's `h1,h2,h3 { font-size: inherit }` reset. (The fluid --step-*
+   scale vars are defined in theme.css :root.) Tailwind `text-*` utilities
+   still override these when explicitly applied. *//* ---- Display-font helper for non-heading elements (e.g. sidebar name) ---- */.font-display { font-family: var(--font-serif-display); }/* ---- Scroll-assembled sidebar ---- */:root { --p: 0; }/* Active TOC link */.toc a { opacity: 0.6; text-decoration: none; transition: opacity 0.2s ease; }.toc a:hover { opacity: 1; }.toc a.active { opacity: 1; font-weight: 700; }/* Sidebar/top-bar surface matches the page background (auto light/dark) */#sidebar, #mobile-bar { background-color: var(--color-background); }@media (min-width: 768px) {
   /* Hero copy fades and lifts as you scroll */
   .hero-inner {
     opacity: calc(1 - var(--p));

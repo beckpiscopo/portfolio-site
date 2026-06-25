@@ -6,6 +6,16 @@
 
 /* Add any additional component-specific or utility styles below. */
 
+/* Base heading sizes — MUST be in @layer base so they win over Tailwind
+   Preflight's `h1,h2,h3 { font-size: inherit }` reset. (The fluid --step-*
+   scale vars are defined in theme.css :root.) Tailwind `text-*` utilities
+   still override these when explicitly applied. */
+@layer base {
+  h1 { font-size: var(--step-3); line-height: 1.08; }
+  h2 { font-size: var(--step-2); line-height: 1.15; }
+  h3 { font-size: var(--step-1); line-height: 1.20; }
+}
+
 /* ---- Display-font helper for non-heading elements (e.g. sidebar name) ---- */
 .font-display { font-family: var(--font-serif-display); }
 

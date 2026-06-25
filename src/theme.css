@@ -53,10 +53,10 @@ ol, ul, p {
   font-family: var(--font-serif-body);
 }
 
-/* Base typographic scale — elements size themselves; utilities still override */
-h1 { font-size: var(--step-3); line-height: 1.08; }
-h2 { font-size: var(--step-2); line-height: 1.15; }
-h3 { font-size: var(--step-1); line-height: 1.20; }
+/* NOTE: heading font-SIZES live in src/input.css inside `@layer base`, NOT here.
+   Tailwind's Preflight (@tailwind base) resets h1–h3 to `font-size: inherit`, and
+   theme.css is @imported BEFORE @tailwind base — so any font-size set here is
+   overridden by Preflight and headings collapse to body size. @layer base wins. */
 
 p {
   font-size: var(--step-0);
