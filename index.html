@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="dist/output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <link href="dist/output.css?v=20260625b" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Young+Serif&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
 
   <!-- Mobile sticky top bar (hidden on md+) -->
   <header id="mobile-bar" class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-14 backdrop-blur">
-    <span class="font-libre text-xl font-bold">Beck Piscopo</span>
+    <span class="font-display text-xl font-bold">Beck Piscopo</span>
     <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="p-2 text-3xl leading-none">&#9776;</button>
   </header>
 
@@ -30,7 +30,7 @@
   <aside id="sidebar" class="fixed z-50 top-0 left-0 h-screen w-64 px-6 py-8 flex flex-col gap-8
               -translate-x-full md:translate-x-0 transition-transform duration-300">
     <div>
-      <span class="font-libre text-2xl font-bold block leading-tight">Beck<br>Piscopo</span>
+      <span class="font-display text-2xl font-bold block leading-tight">Beck<br>Piscopo</span>
     </div>
     <nav class="toc flex flex-col gap-3 text-lg">
       <a data-nav="about"    href="#about">// About</a>
@@ -41,38 +41,21 @@
     </nav>
     <div class="flex gap-4 mt-auto items-center">
       <a href="https://github.com/beckpiscopo" target="_blank">
-        <!-- Light mode SVG -->
-        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 250 250" fill="#3E1F14">
-          <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#3E1F14"/>
-        </svg>
-        <!-- Dark mode SVG -->
-        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 250 250" fill="#F2E9E4">
-          <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#F2E9E4"/>
+        <svg class="w-7 h-7" viewBox="0 0 250 250" aria-hidden="true">
+          <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="currentColor"/>
         </svg>
       </a>
 
       <a href="https://x.com/beckpiscopo" target="_blank">
-        <!-- Light mode SVG -->
-        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 250 250" fill="none">
-          <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#3E1F14"/>
-        </svg>
-        <!-- Dark mode SVG -->
-        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 250 250" fill="none">
-          <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#F2E9E4"/>
+        <svg class="w-7 h-7" viewBox="0 0 250 250" aria-hidden="true">
+          <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="currentColor"/>
         </svg>
       </a>
       <a href="https://paragraph.com/@beckpiscopo.eth" target="_blank">
-        <!-- Light mode SVG -->
-        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#3E1F14">
-          <path d="M6 0V76.1345H81" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-          <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#3E1F14" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
-          <path d="M6 76.129L59.0302 21.5845" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-        </svg>
-        <!-- Dark mode SVG -->
-        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#F2E9E4">
-          <path d="M6 0V76.1345H81" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-          <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#F2E9E4" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
-          <path d="M6 76.129L59.0302 21.5845" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+        <svg class="w-7 h-7 icon-paragraph" viewBox="0 0 81 82" fill="none" aria-hidden="true">
+          <path d="M6 0V76.1345H81" stroke="currentColor" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+          <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="currentColor" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
+          <path d="M6 76.129L59.0302 21.5845" stroke="currentColor" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
         </svg>
       </a>
     </div>
@@ -83,32 +66,32 @@
     <!-- HERO -->
     <section id="hero" class="min-h-screen flex items-center justify-center px-6">
       <div class="hero-inner max-w-2xl">
-        <h3 class="font-libre text-3xl italic">Hello,</h3>
-        <h1 class="font-libre lg:text-6xl text-4xl font-bold my-6">I'm Beck Piscopo.</h1>
+        <h3 class="italic">Hello,</h3>
+        <h1 class="font-bold my-6">I'm Beck Piscopo.</h1>
         <p class="text-3xl italic hero-handwrite"><span class="hw-text">I build <span class="underline" style="color: var(--color-caramel)">research intelligence systems</span></span></p>
       </div>
     </section>
 
     <main class="max-w-3xl mx-auto px-6 pb-32">
       <section id="about" class="py-20 scroll-mt-20">
-        <h2 class="font-libre text-4xl font-bold mb-6">About</h2>
-        <p class="text-2xl leading-relaxed mb-6">As a deeply <em class="accent">curious-yet-practical</em> person, I find great satisfaction in employing my skills to solve problems that actually need solutions. Being able to effectively communicate complex ideas means understanding what the other person needs to know, and being able to speak their language. This is a skill, maybe even an art, that I have intentionally cultivated throughout my life, and I hope you'll find it demonstrated in my portfolio projects and writing.</p>
-        <p class="text-2xl mb-4">My portfolio consists of projects that I created because I needed them to exist:</p>
-        <ul class="flex flex-col gap-4 text-2xl">
+        <h2 class="font-bold mb-6">About</h2>
+        <p class="leading-relaxed mb-6">As a deeply <em class="accent">curious-yet-practical</em> person, I find great satisfaction in employing my skills to solve problems that actually need solutions. Being able to effectively communicate complex ideas means understanding what the other person needs to know, and being able to speak their language. This is a skill, maybe even an art, that I have intentionally cultivated throughout my life, and I hope you'll find it demonstrated in my portfolio projects and writing.</p>
+        <p class="mb-4">My portfolio consists of projects that I created because I needed them to exist:</p>
+        <ul class="flex flex-col gap-4">
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>I built <a class="link" href="#projects">Noeron</a> because I wanted to remove the friction between consuming scientific podcasts and validating the claims being made.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>While shopping for a new house, I found the existing platforms didn't provide the data I needed to make an informed decision, so I built <a class="link" href="#projects">St. Pete Analytics</a>.</span></li>
         </ul>
       </section>
 
       <section id="projects" class="py-20 scroll-mt-20">
-        <h2 class="font-libre text-4xl font-bold mb-6">Projects</h2>
+        <h2 class="font-bold mb-6">Projects</h2>
         <div class="grid gap-6 sm:grid-cols-2">
           <a href="projects/noeron.html" class="group block p-0 no-underline rounded-lg border border-faint overflow-hidden transition-colors hover:border-current">
             <div class="project-thumb">
               <img src="assets/img/projects/noeron.png" alt="Noeron screenshot" loading="lazy" style="object-position: left center" onerror="this.style.display='none'">
             </div>
             <div class="p-6">
-              <h3 class="font-libre text-2xl mb-2">Noeron</h3>
+              <h3 class="mb-2">Noeron</h3>
               <p class="text-base opacity-80">Built a knowledge layer for podcasts. The platform detects scientific claims made in an episode, then validates those claims by examining the academic literature.</p>
               <span class="accent text-sm mt-3 inline-block">View case study →</span>
             </div>
@@ -118,7 +101,7 @@
               <img src="assets/img/projects/morphic.png" alt="Morphic screenshot" loading="lazy" onerror="this.style.display='none'">
             </div>
             <div class="p-6">
-              <h3 class="font-libre text-2xl mb-2">Morphic</h3>
+              <h3 class="mb-2">Morphic</h3>
               <p class="text-base opacity-80">Built a cross-domain research engine that extracts structural patterns from a 150+ paper corpus and routes them to autonomous domain-specialist agents (mycology, medicine, distributed computing) that synthesize insights no single field could reach.</p>
               <span class="accent text-sm mt-3 inline-block">View case study →</span>
             </div>
@@ -128,7 +111,7 @@
               <img src="assets/img/projects/critical-minerals.png" alt="Critical Minerals Intelligence screenshot" loading="lazy" onerror="this.style.display='none'">
             </div>
             <div class="p-6">
-              <h3 class="font-libre text-2xl mb-2">Critical Minerals Intelligence</h3>
+              <h3 class="mb-2">Critical Minerals Intelligence</h3>
               <p class="text-base opacity-80">Designed a geopolitical analysis platform with interactive mapping, automated news monitoring, and HHI-based supply chain risk scoring.</p>
             </div>
           </div>
@@ -137,7 +120,7 @@
               <img src="assets/img/projects/st-pete.png" alt="St. Pete Analytics screenshot" loading="lazy" onerror="this.style.display='none'">
             </div>
             <div class="p-6">
-              <h3 class="font-libre text-2xl mb-2">St. Pete Housing Analytics</h3>
+              <h3 class="mb-2">St. Pete Housing Analytics</h3>
               <p class="text-base opacity-80">Built a parcel-level housing market analytics platform for St. Petersburg, FL. It ingests county assessor, Census, and FEMA data into DuckDB/dbt to derive true monthly cost, flip detection, and rental-yield metrics unavailable in Zillow or Redfin.</p>
               <span class="accent text-sm mt-3 inline-block">View case study →</span>
             </div>
@@ -146,7 +129,7 @@
       </section>
 
       <section id="activity" class="py-20 scroll-mt-20">
-        <h2 class="font-libre text-4xl font-bold mb-6">Activity</h2>
+        <h2 class="font-bold mb-6">Activity</h2>
         <p id="heatmap-caption" class="text-base opacity-80 mb-6">Loading GitHub activity…</p>
         <div class="heatmap-wrap">
           <div id="heatmap" class="heatmap"></div>
@@ -155,66 +138,49 @@
       </section>
 
       <section id="writing" class="py-20 scroll-mt-20">
-        <h2 class="font-libre text-4xl font-bold mb-6">Writing</h2>
+        <h2 class="font-bold mb-6">Writing</h2>
         <ul class="flex flex-col gap-5">
           <li>
             <a href="https://beckpiscopo.substack.com/p/the-case-for-quantum-bioelectricity" target="_blank" class="group block">
               <div class="flex justify-between gap-4">
-                <span class="text-2xl group-hover:underline">The Case for Quantum Bioelectricity</span>
-                <span class="text-xl opacity-60 whitespace-nowrap">2026</span>
+                <span class="group-hover:underline">The Case for Quantum Bioelectricity</span>
+                <span class="opacity-60 whitespace-nowrap">2026</span>
               </div>
-              <p class="text-xl italic opacity-60 mt-1">How Decentralized Science Can Propel Emerging Fields</p>
+              <p class="italic opacity-60 mt-1">How Decentralized Science Can Propel Emerging Fields</p>
             </a>
           </li>
           <li>
             <a href="https://beckpiscopo.substack.com/p/the-desci-solution" target="_blank" class="group block">
               <div class="flex justify-between gap-4">
-                <span class="text-2xl group-hover:underline">The DeSci Solution</span>
-                <span class="text-xl opacity-60 whitespace-nowrap">2026</span>
+                <span class="group-hover:underline">The DeSci Solution</span>
+                <span class="opacity-60 whitespace-nowrap">2026</span>
               </div>
-              <p class="text-xl italic opacity-60 mt-1">Moving Beyond the Limitations of Traditional Science</p>
+              <p class="italic opacity-60 mt-1">Moving Beyond the Limitations of Traditional Science</p>
             </a>
           </li>
         </ul>
       </section>
 
       <section id="contact" class="py-20 scroll-mt-20">
-        <h2 class="font-libre text-4xl font-bold mb-6">Contact</h2>
-        <p class="text-xl mb-8">If you'd like to explore how I can help your team, let's connect.</p>
+        <h2 class="font-bold mb-6">Contact</h2>
+        <p class="mb-8">If you'd like to explore how I can help your team, let's connect.</p>
         <div class="flex gap-4 items-center">
           <a href="https://github.com/beckpiscopo" target="_blank">
-            <!-- Light mode SVG -->
-            <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" fill="#3E1F14">
-              <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#3E1F14"/>
-            </svg>
-            <!-- Dark mode SVG -->
-            <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" fill="#F2E9E4">
-              <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#F2E9E4"/>
+            <svg class="w-10 h-10" viewBox="0 0 250 250" aria-hidden="true">
+              <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="currentColor"/>
             </svg>
           </a>
 
           <a href="https://x.com/beckpiscopo" target="_blank">
-            <!-- Light mode SVG -->
-            <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 250 250" fill="none">
-              <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#3E1F14"/>
-            </svg>
-            <!-- Dark mode SVG -->
-            <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 250 250" fill="none">
-              <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#F2E9E4"/>
+            <svg class="w-10 h-10" viewBox="0 0 250 250" aria-hidden="true">
+              <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="currentColor"/>
             </svg>
           </a>
           <a href="https://paragraph.com/@beckpiscopo.eth" target="_blank">
-            <!-- Light mode SVG -->
-            <svg class="w-10 h-10 block dark:hidden" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#3E1F14">
-              <path d="M6 0V76.1345H81" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-              <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#3E1F14" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
-              <path d="M6 76.129L59.0302 21.5845" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-            </svg>
-            <!-- Dark mode SVG -->
-            <svg class="w-10 h-10 hidden dark:block" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#F2E9E4">
-              <path d="M6 0V76.1345H81" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-              <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#F2E9E4" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
-              <path d="M6 76.129L59.0302 21.5845" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+            <svg class="w-10 h-10 icon-paragraph" viewBox="0 0 81 82" fill="none" aria-hidden="true">
+              <path d="M6 0V76.1345H81" stroke="currentColor" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+              <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="currentColor" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
+              <path d="M6 76.129L59.0302 21.5845" stroke="currentColor" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
             </svg>
           </a>
         </div>
@@ -222,15 +188,9 @@
     </main>
   </div>
 
+    <script src="assets/js/site.js"></script>
     <script>
   const root = document.documentElement;
-  root.classList.add('js');
-
-  // Dark mode: auto by hour, plus manual toggle
-  const hour = new Date().getHours();
-  if (hour >= 19 || hour < 7) root.classList.add('dark');
-  document.getElementById('dark-toggle')
-    .addEventListener('click', () => root.classList.toggle('dark'));
 
   // Scroll-driven morph: --p goes 0 -> 1 across the hero height
   const hero = document.getElementById('hero');
@@ -265,36 +225,6 @@
     .map(id => document.getElementById(id))
     .filter(Boolean)
     .forEach(sec => observer.observe(sec));
-
-  // Mobile drawer
-  const menuToggle = document.getElementById('menu-toggle');
-  const sidebarEl = document.getElementById('sidebar');
-  if (menuToggle) {
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const open = document.body.classList.toggle('drawer-open');
-      menuToggle.setAttribute('aria-expanded', String(open));
-      menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    });
-  }
-  // Close drawer after choosing a destination
-  document.querySelectorAll('.toc a').forEach(a => {
-    a.addEventListener('click', () => {
-      document.body.classList.remove('drawer-open');
-      menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle && menuToggle.setAttribute('aria-label', 'Open menu');
-    });
-  });
-  // Close drawer when tapping outside it (e.g. the backdrop scrim)
-  document.addEventListener('click', (e) => {
-    if (document.body.classList.contains('drawer-open') &&
-        sidebarEl && !sidebarEl.contains(e.target) &&
-        menuToggle && !menuToggle.contains(e.target)) {
-      document.body.classList.remove('drawer-open');
-      menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle && menuToggle.setAttribute('aria-label', 'Open menu');
-    }
-  });
     </script>
     <script>
       // Render the GitHub contribution heatmap from the baked-in snapshot.

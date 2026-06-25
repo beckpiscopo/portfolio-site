@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morphic · Beck Piscopo</title>
-    <link href="../dist/output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <link href="../dist/output.css?v=20260625b" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Young+Serif&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
 
   <!-- Mobile sticky top bar (hidden on md+) -->
   <header id="mobile-bar" class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-14 backdrop-blur">
-    <a href="../index.html" class="font-libre text-xl font-bold">Beck Piscopo</a>
+    <a href="../index.html" class="font-display text-xl font-bold">Beck Piscopo</a>
     <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="p-2 text-3xl leading-none">&#9776;</button>
   </header>
 
@@ -33,7 +33,7 @@
   <aside id="sidebar" class="fixed z-50 top-0 left-0 h-screen w-64 px-6 py-8 flex flex-col gap-8
               -translate-x-full md:translate-x-0 transition-transform duration-300">
     <div>
-      <a href="../index.html" class="font-libre text-2xl font-bold block leading-tight">Beck<br>Piscopo</a>
+      <a href="../index.html" class="font-display text-2xl font-bold block leading-tight">Beck<br>Piscopo</a>
     </div>
     <nav class="toc flex flex-col gap-3 text-lg">
       <a href="../index.html#about">// About</a>
@@ -44,31 +44,20 @@
     </nav>
     <div class="flex gap-4 mt-auto items-center">
       <a href="https://github.com/beckpiscopo" target="_blank">
-        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 250 250" fill="#3E1F14">
-          <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#3E1F14"/>
-        </svg>
-        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 250 250" fill="#F2E9E4">
-          <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="#F2E9E4"/>
+        <svg class="w-7 h-7" viewBox="0 0 250 250" aria-hidden="true">
+          <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="currentColor"/>
         </svg>
       </a>
       <a href="https://x.com/beckpiscopo" target="_blank">
-        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 250 250" fill="none">
-          <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#3E1F14"/>
-        </svg>
-        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 250 250" fill="none">
-          <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="#F2E9E4"/>
+        <svg class="w-7 h-7" viewBox="0 0 250 250" aria-hidden="true">
+          <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="currentColor"/>
         </svg>
       </a>
       <a href="https://paragraph.com/@beckpiscopo.eth" target="_blank">
-        <svg class="w-7 h-7 block dark:hidden" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#3E1F14">
-          <path d="M6 0V76.1345H81" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-          <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#3E1F14" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
-          <path d="M6 76.129L59.0302 21.5845" stroke="#3E1F14" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-        </svg>
-        <svg class="w-7 h-7 hidden dark:block" viewBox="0 0 81 82" style="scale:0.6;" fill="none" stroke="#F2E9E4">
-          <path d="M6 0V76.1345H81" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
-          <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="#F2E9E4" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
-          <path d="M6 76.129L59.0302 21.5845" stroke="#F2E9E4" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+        <svg class="w-7 h-7 icon-paragraph" viewBox="0 0 81 82" fill="none" aria-hidden="true">
+          <path d="M6 0V76.1345H81" stroke="currentColor" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
+          <path d="M34.4067 5.30176L6 76.1337L76.0722 46.9673" stroke="currentColor" stroke-width="10.6585" stroke-linejoin="round" fill="none"/>
+          <path d="M6 76.129L59.0302 21.5845" stroke="currentColor" stroke-width="10.6585" stroke-miterlimit="10" fill="none"/>
         </svg>
       </a>
     </div>
@@ -79,8 +68,8 @@
     <main class="max-w-3xl mx-auto px-6 py-16 md:py-24">
       <a class="link" href="../index.html#projects">← Projects</a>
 
-      <h1 class="font-libre text-4xl md:text-5xl font-bold mt-5 mb-3">Morphic</h1>
-      <p class="text-2xl italic opacity-80 mb-8">A multi-agent system that discovers structural patterns recurring across unrelated scientific domains.</p>
+      <h1 class="font-bold mt-5 mb-3">Morphic</h1>
+      <p class="lead italic mb-8">A multi-agent system that discovers structural patterns recurring across unrelated scientific domains.</p>
 
       <!-- Metadata -->
       <dl class="flex flex-wrap gap-x-10 gap-y-3 mb-5 pb-6 border-b border-faint-soft">
@@ -105,34 +94,34 @@
       </div>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-libre text-3xl font-bold mb-5">Why it exists</h2>
-        <p class="text-xl mb-5">Knowledge is siloed by vocabulary. A mycologist and a distributed-systems engineer can be studying the same underlying principle (how a network reorganizes after damage) and never know it, because each describes it in language the other can't parse. The same structural patterns recur across fields, but specialists can't see over the wall.</p>
-        <p class="text-xl">Morphic exists to find those patterns. It reads broadly, extracts the underlying structure, and tests whether it genuinely recurs across domains, organized around <em class="accent">antifragility</em>: systems that require stress to develop capacities they couldn't build any other way. The terminology changes; the principle doesn't.</p>
+        <h2 class="font-bold mb-5">Why it exists</h2>
+        <p class="mb-5">Knowledge is siloed by vocabulary. A mycologist and a distributed-systems engineer can be studying the same underlying principle (how a network reorganizes after damage) and never know it, because each describes it in language the other can't parse. The same structural patterns recur across fields, but specialists can't see over the wall.</p>
+        <p>Morphic exists to find those patterns. It reads broadly, extracts the underlying structure, and tests whether it genuinely recurs across domains, organized around <em class="accent">antifragility</em>: systems that require stress to develop capacities they couldn't build any other way. The terminology changes; the principle doesn't.</p>
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-libre text-3xl font-bold mb-5">How it works</h2>
-        <p class="text-xl mb-5">Morphic is a multi-agent pipeline orchestrated with LangGraph. A Recursive Language Model reads a corpus of 150+ research papers and extracts candidate structural patterns. Each pattern clears a triage gate, then <strong>fans out</strong> to seven autonomous domain-specialist agents (mycology, medicine, distributed computing, microbiology, quantum physics, neuroscience, and bioelectricity), which independently judge whether the pattern manifests in their field.</p>
-        <p class="text-xl mb-5">This is fan-out/fan-in with quality gates, not sequential chaining: only when at least two agents <em class="accent">fire</em> does a pattern converge into a structured four-round dialogue (Present → Translate → Diverge → Synthesize), where each round has a distinct epistemic job, ending in a cross-domain synthesis. To date the system has surfaced 53 candidate principles and validated 37.</p>
+        <h2 class="font-bold mb-5">How it works</h2>
+        <p class="mb-5">Morphic is a multi-agent pipeline orchestrated with LangGraph. A Recursive Language Model reads a corpus of 150+ research papers and extracts candidate structural patterns. Each pattern clears a triage gate, then <strong>fans out</strong> to seven autonomous domain-specialist agents (mycology, medicine, distributed computing, microbiology, quantum physics, neuroscience, and bioelectricity), which independently judge whether the pattern manifests in their field.</p>
+        <p class="mb-5">This is fan-out/fan-in with quality gates, not sequential chaining: only when at least two agents <em class="accent">fire</em> does a pattern converge into a structured four-round dialogue (Present → Translate → Diverge → Synthesize), where each round has a distinct epistemic job, ending in a cross-domain synthesis. To date the system has surfaced 53 candidate principles and validated 37.</p>
 
         <img src="../assets/img/projects/morphic.png" alt="Morphic's pattern explorer and pipeline view" loading="lazy" class="rounded-lg border border-faint w-full my-8">
 
-        <p class="text-xl mb-3">The parts that made it more than an API wrapper:</p>
-        <ul class="flex flex-col gap-4 text-xl mb-6">
+        <p class="mb-3">The parts that made it more than an API wrapper:</p>
+        <ul class="flex flex-col gap-4 mb-6">
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Convergence gates, not forced analogies.</strong> Seven agents evaluate in parallel and only converge when multiple genuinely resonate — which keeps the system from declaring that "everything is connected."</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>It verifies its own claims.</strong> Every citation is checked against Semantic Scholar, arXiv, and OpenAlex (verified / found-unverified / fabricated counts, with a transparent scoring formula), so a "pattern" rests on papers that actually exist and say what's claimed.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Adversarial self-review.</strong> Morphic generates challenges against its own findings (rated critical / major / minor) plus falsifiability tests — so a pattern has to survive scrutiny, not just sound plausible.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Full observability.</strong> Every LLM call is traced through Langfuse with cost, latency, and a decision audit trail.</span></li>
         </ul>
 
-        <h3 id="demo" class="font-libre text-2xl mt-12 mb-4 scroll-mt-20">Demo</h3>
+        <h3 id="demo" class="mt-12 mb-4 scroll-mt-20">Demo</h3>
         <!-- Replace this placeholder with the YouTube/Loom embed:
         <div class="video-embed"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Morphic demo" allowfullscreen></iframe></div> -->
         <div class="video-embed video-placeholder"><span class="opacity-60">▶ Demo video goes here</span></div>
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-libre text-3xl font-bold mb-5">Tech stack</h2>
+        <h2 class="font-bold mb-5">Tech stack</h2>
         <ul class="flex flex-wrap gap-2 text-base">
           <li class="border border-faint rounded px-3 py-1">Gemini 3 Pro / Flash</li>
           <li class="border border-faint rounded px-3 py-1">LangGraph</li>
@@ -151,8 +140,8 @@
       </section>
 
       <section>
-        <h2 class="font-libre text-3xl font-bold mb-5">What I learned</h2>
-        <ul class="flex flex-col gap-4 text-xl">
+        <h2 class="font-bold mb-5">What I learned</h2>
+        <ul class="flex flex-col gap-4">
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Multi-agent coordination is an architecture problem, not a prompting one — fan-out/fan-in with explicit quality gates is what makes the output trustworthy rather than just verbose.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Verification has to be built into the system. Checking citations against real databases and running adversarial self-review is the line between something that sounds smart and something you can trust.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>A strong organizing principle (antifragility) gave the agents a shared target and kept the cross-domain search from collapsing into superficial analogy.</span></li>
@@ -165,47 +154,7 @@
     </main>
   </div>
 
-  <script>
-    const root = document.documentElement;
-    root.classList.add('js');
-    // No hero on case-study pages: dock the sidebar (skip the scroll morph).
-    root.style.setProperty('--p', 1);
-    document.body.classList.add('scrolled');
-
-    // Dark mode: auto by hour + manual toggle
-    const hour = new Date().getHours();
-    if (hour >= 19 || hour < 7) root.classList.add('dark');
-    document.getElementById('dark-toggle')
-      .addEventListener('click', () => root.classList.toggle('dark'));
-
-    // Mobile drawer
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebarEl = document.getElementById('sidebar');
-    if (menuToggle) {
-      menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const open = document.body.classList.toggle('drawer-open');
-        menuToggle.setAttribute('aria-expanded', String(open));
-        menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-      });
-    }
-    document.querySelectorAll('.toc a').forEach(a => {
-      a.addEventListener('click', () => {
-        document.body.classList.remove('drawer-open');
-        menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle && menuToggle.setAttribute('aria-label', 'Open menu');
-      });
-    });
-    document.addEventListener('click', (e) => {
-      if (document.body.classList.contains('drawer-open') &&
-          sidebarEl && !sidebarEl.contains(e.target) &&
-          menuToggle && !menuToggle.contains(e.target)) {
-        document.body.classList.remove('drawer-open');
-        menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle && menuToggle.setAttribute('aria-label', 'Open menu');
-      }
-    });
-  </script>
+  <script src="../assets/js/site.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };

@@ -17,6 +17,13 @@
   --toggle-bg: #F2E9E4;         /* Light half */
   --toggle-half: #3E1F14;    /* Dark half */
   --toggle-border: #3E1F14;  /* Border color */
+
+  /* Fluid type scale (mobile -> desktop via clamp; ~1.25 modular ratio) */
+  --step--1: clamp(0.94rem, 0.90rem + 0.20vw, 1.05rem); /* captions, meta */
+  --step-0:  clamp(1.10rem, 1.02rem + 0.40vw, 1.30rem); /* body copy      */
+  --step-1:  clamp(1.40rem, 1.20rem + 0.70vw, 1.70rem); /* lead / h3      */
+  --step-2:  clamp(1.75rem, 1.45rem + 1.10vw, 2.20rem); /* h2             */
+  --step-3:  clamp(2.20rem, 1.70rem + 2.00vw, 3.20rem); /* h1 / display   */
 }/* Dark mode overrides */.dark {
   --color-background: var(--color-van-dyke);
   --color-text: var(--color-isabelline);
@@ -32,17 +39,16 @@
 }/* Typography */h1, h2, h3 {
   font-family: var(--font-serif-display);
   color: var(--color-text);
-}ol, ul, p, a {
+}ol, ul, p {
   font-family: var(--font-serif-body);
-}p {
-  font-size: 2rem;
+}/* NOTE: heading font-SIZES live in src/input.css inside `@layer base`, NOT here.
+   Tailwind's Preflight (@tailwind base) resets h1–h3 to `font-size: inherit`, and
+   theme.css is @imported BEFORE @tailwind base — so any font-size set here is
+   overridden by Preflight and headings collapse to body size. @layer base wins. */p {
+  font-size: var(--step-0);
+  line-height: 1.6;
   color: var(--color-text);
-}a {
-  text-decoration: underline;
-  padding: 4px;
-}a:hover, a:active {
-  color: var(--color-link-hover-text);
-}/* Nav background */nav {
+}li { font-size: var(--step-0); line-height: 1.6; }/* Nav background */nav {
   background-color: var(--color-background);
 }/* Responsive background */body {
   background-color: var(--color-background);
@@ -65,7 +71,10 @@
   color: var(--color-caramel);
 }/* Make the flower SVG light in dark mode */.dark #svg-container svg {
   color: #fff;
-}/* Ensure nav links use the CSS variable colors */nav a {
+}/* Ensure nav links use the CSS variable colors.
+   font-family is set here because the global `a` was dropped from the
+   serif-body selector; nav links aren't inside a serif parent to inherit it. */nav a {
+  font-family: var(--font-serif-body);
   color: var(--color-nav-link);
   text-decoration: none;
 }nav a:hover,
@@ -642,7 +651,7 @@ video {
 }input:checked + .toggle-bg{
   background: #1C64F2;
   border-color: #1C64F2;
-}*, ::before, ::after{
+}h1 { font-size: var(--step-3); line-height: 1.08; }h2 { font-size: var(--step-2); line-height: 1.15; }h3 { font-size: var(--step-1); line-height: 1.20; }*, ::before, ::after{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -782,14 +791,10 @@ video {
   bottom: 60px;
 }.left-0{
   left: 0px;
-}.left-8{
-  left: 2rem;
 }.right-0{
   right: 0px;
 }.top-0{
   top: 0px;
-}.top-20{
-  top: 5rem;
 }.z-10{
   z-index: 10;
 }.z-20{
@@ -838,8 +843,6 @@ video {
   margin-bottom: 2rem;
 }.ml-1{
   margin-left: 0.25rem;
-}.ml-5{
-  margin-left: 1.25rem;
 }.ml-6{
   margin-left: 1.5rem;
 }.mr-2{
@@ -862,8 +865,6 @@ video {
   margin-top: 1rem;
 }.mt-5{
   margin-top: 1.25rem;
-}.mt-8{
-  margin-top: 2rem;
 }.mt-auto{
   margin-top: auto;
 }.block{
@@ -892,8 +893,6 @@ video {
   height: 0.75rem;
 }.h-4{
   height: 1rem;
-}.h-5{
-  height: 1.25rem;
 }.h-6{
   height: 1.5rem;
 }.h-7{
@@ -914,14 +913,10 @@ video {
   width: 0.75rem;
 }.w-4{
   width: 1rem;
-}.w-5{
-  width: 1.25rem;
 }.w-64{
   width: 16rem;
 }.w-7{
   width: 1.75rem;
-}.w-96{
-  width: 24rem;
 }.w-full{
   width: 100%;
 }.max-w-2xl{
@@ -972,16 +967,8 @@ video {
   resize: both;
 }.scroll-mt-20{
   scroll-margin-top: 5rem;
-}.list-inside{
-  list-style-position: inside;
-}.list-outside{
-  list-style-position: outside;
-}.list-decimal{
-  list-style-type: decimal;
 }.list-disc{
   list-style-type: disc;
-}.list-none{
-  list-style-type: none;
 }.grid-cols-3{
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }.grid-cols-4{
@@ -1043,13 +1030,6 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
-}.divide-y > :not([hidden]) ~ :not([hidden]){
-  --tw-divide-y-reverse: 0;
-  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
-  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
-}.divide-gray-100 > :not([hidden]) ~ :not([hidden]){
-  --tw-divide-opacity: 1;
-  border-color: rgb(243 244 246 / var(--tw-divide-opacity));
 }.overflow-hidden{
   overflow: hidden;
 }.overflow-x-auto{
@@ -1155,20 +1135,13 @@ video {
 }.py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}.py-4{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }.py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
 }.pb-32{
   padding-bottom: 8rem;
-}.pb-4{
-  padding-bottom: 1rem;
 }.pb-6{
   padding-bottom: 1.5rem;
-}.pl-3{
-  padding-left: 0.75rem;
 }.pt-10{
   padding-top: 2.5rem;
 }.pt-2{
@@ -1179,20 +1152,12 @@ video {
   text-align: center;
 }.text-right{
   text-align: right;
-}.font-libre{
-  font-family: "Young Serif", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }.text-2xl{
   font-size: 1.5rem;
   line-height: 2rem;
 }.text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
-}.text-4xl{
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}.text-5xl{
-  font-size: 3rem;
-  line-height: 1;
 }.text-base{
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1290,10 +1255,6 @@ video {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}.transition-all{
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
 }.transition-colors{
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1310,7 +1271,10 @@ video {
   transition-duration: 300ms;
 }.ease-out{
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-}/* Add any additional component-specific or utility styles below. *//* ---- Scroll-assembled sidebar ---- */:root { --p: 0; }/* Active TOC link */.toc a { opacity: 0.6; text-decoration: none; transition: opacity 0.2s ease; }.toc a:hover { opacity: 1; }.toc a.active { opacity: 1; font-weight: 700; }/* Sidebar/top-bar surface matches the page background (auto light/dark) */#sidebar, #mobile-bar { background-color: var(--color-background); }@media (min-width: 768px) {
+}/* Add any additional component-specific or utility styles below. *//* Base heading sizes — MUST be in @layer base so they win over Tailwind
+   Preflight's `h1,h2,h3 { font-size: inherit }` reset. (The fluid --step-*
+   scale vars are defined in theme.css :root.) Tailwind `text-*` utilities
+   still override these when explicitly applied. *//* ---- Display-font helper for non-heading elements (e.g. sidebar name) ---- */.font-display { font-family: var(--font-serif-display); }/* ---- Scroll-assembled sidebar ---- */:root { --p: 0; }/* Active TOC link */.toc a { opacity: 0.6; text-decoration: none; transition: opacity 0.2s ease; }.toc a:hover { opacity: 1; }.toc a.active { opacity: 1; font-weight: 700; }/* Sidebar/top-bar surface matches the page background (auto light/dark) */#sidebar, #mobile-bar { background-color: var(--color-background); }@media (min-width: 768px) {
   /* Hero copy fades and lifts as you scroll */
   .hero-inner {
     opacity: calc(1 - var(--p));
@@ -1365,7 +1329,7 @@ video {
   grid-auto-flow: column;
   grid-auto-columns: var(--cell, 10px);
   gap: var(--cell-gap, 2px);
-}.heatmap-grid i { width: var(--cell, 10px); height: var(--cell, 10px); border-radius: 9999px; display: block; }/* Light-mode level ramp: faint -> caramel -> jasper -> van dyke */.heatmap-grid i.lvl-0 { background: color-mix(in srgb, var(--color-van-dyke) 9%, transparent); }.heatmap-grid i.lvl-1 { background: color-mix(in srgb, var(--color-caramel) 45%, transparent); }.heatmap-grid i.lvl-2 { background: color-mix(in srgb, var(--color-caramel) 75%, transparent); }.heatmap-grid i.lvl-3 { background: var(--color-jasper); }.heatmap-grid i.lvl-4 { background: var(--color-van-dyke); }/* Dark-mode level ramp: faint light -> caramel -> isabelline */.dark .heatmap-grid i.lvl-0 { background: color-mix(in srgb, var(--color-isabelline) 12%, transparent); }.dark .heatmap-grid i.lvl-1 { background: color-mix(in srgb, var(--color-caramel) 50%, transparent); }.dark .heatmap-grid i.lvl-2 { background: color-mix(in srgb, var(--color-caramel) 80%, transparent); }.dark .heatmap-grid i.lvl-3 { background: var(--color-caramel); }.dark .heatmap-grid i.lvl-4 { background: var(--color-isabelline); }/* ---- Editorial accents ---- *//* Inline emphasis */.accent { color: var(--color-jasper); font-style: italic; }.dark .accent { color: var(--color-caramel); }/* Inline body links (distinct from nav links; sane hover that won't wash out) */.link { color: var(--color-jasper); text-decoration: underline; text-underline-offset: 2px; }.link:hover { color: var(--color-van-dyke); background: none; }.dark .link { color: var(--color-caramel); }.dark .link:hover { color: var(--color-isabelline); }/* Writing list links: keep text color on hover (avoid nav-style wash-out) */#writing a:hover { color: inherit; background: none; }/* Caramel hairline under each section heading */main section > h2 { position: relative; padding-bottom: 0.5rem; }main section > h2::after {
+}.heatmap-grid i { width: var(--cell, 10px); height: var(--cell, 10px); border-radius: 9999px; display: block; }/* Light-mode level ramp: faint -> caramel -> jasper -> van dyke */.heatmap-grid i.lvl-0 { background: color-mix(in srgb, var(--color-van-dyke) 9%, transparent); }.heatmap-grid i.lvl-1 { background: color-mix(in srgb, var(--color-caramel) 45%, transparent); }.heatmap-grid i.lvl-2 { background: color-mix(in srgb, var(--color-caramel) 75%, transparent); }.heatmap-grid i.lvl-3 { background: var(--color-jasper); }.heatmap-grid i.lvl-4 { background: var(--color-van-dyke); }/* Dark-mode level ramp: faint light -> caramel -> isabelline */.dark .heatmap-grid i.lvl-0 { background: color-mix(in srgb, var(--color-isabelline) 12%, transparent); }.dark .heatmap-grid i.lvl-1 { background: color-mix(in srgb, var(--color-caramel) 50%, transparent); }.dark .heatmap-grid i.lvl-2 { background: color-mix(in srgb, var(--color-caramel) 80%, transparent); }.dark .heatmap-grid i.lvl-3 { background: var(--color-caramel); }.dark .heatmap-grid i.lvl-4 { background: var(--color-isabelline); }/* ---- Typographic helpers ---- *//* Intro / subtitle paragraphs (replaces hand-picked text-2xl italic) */.lead { font-size: var(--step-1); line-height: 1.4; opacity: 0.85; }/* Small print: captions, metadata labels */.caption { font-size: var(--step--1); opacity: 0.6; }/* ---- Editorial accents ---- *//* Inline emphasis */.accent { color: var(--color-jasper); font-style: italic; }.dark .accent { color: var(--color-caramel); }/* Inline body links (distinct from nav links; sane hover that won't wash out) */.link { color: var(--color-jasper); text-decoration: underline; text-underline-offset: 2px; }.link:hover { color: var(--color-van-dyke); background: none; }.dark .link { color: var(--color-caramel); }.dark .link:hover { color: var(--color-isabelline); }/* Writing list links: keep text color on hover (avoid nav-style wash-out) */#writing a:hover { color: inherit; background: none; }/* Caramel hairline under each section heading */main section > h2 { position: relative; padding-bottom: 0.5rem; }main section > h2::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1418,7 +1382,7 @@ video {
 }/* No animation when the user prefers reduced motion: show the line at rest */@media (prefers-reduced-motion: reduce) {
   .hero-handwrite .hw-text { animation: none; -webkit-clip-path: none; clip-path: none; }
   .hero-handwrite::after { display: none; }
-}/* ---- Faint borders in the current text color (auto light/dark) ---- *//* Tailwind can't put an opacity modifier on currentColor, so do it here. */.border-faint { border-color: color-mix(in srgb, currentColor 20%, transparent); }.border-faint-soft { border-color: color-mix(in srgb, currentColor 14%, transparent); }/* ---- Analysis case study: chart figures ---- */.figure { margin: 2.5rem 0; }.figure-frame {
+}/* ---- Social icon scale utility ---- *//* Replaces the repeated style="scale:0.6;" on the Paragraph SVGs */.icon-paragraph { transform: scale(0.6); }/* ---- Faint borders in the current text color (auto light/dark) ---- *//* Tailwind can't put an opacity modifier on currentColor, so do it here. */.border-faint { border-color: color-mix(in srgb, currentColor 20%, transparent); }.border-faint-soft { border-color: color-mix(in srgb, currentColor 14%, transparent); }/* ---- Analysis case study: chart figures ---- */.figure { margin: 2.5rem 0; }.figure-frame {
   border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
   border-radius: 0.5rem;
   overflow: hidden;
@@ -1468,15 +1432,8 @@ video {
 }.focus\:ring-gray-200:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity));
-}.group[open] .group-open\:rotate-180{
-  --tw-rotate: 180deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }.group:hover .group-hover\:underline{
   text-decoration-line: underline;
-}:is(.dark .dark\:block){
-  display: block;
-}:is(.dark .dark\:hidden){
-  display: none;
 }:is(.dark .dark\:border-blue-500){
   --tw-border-opacity: 1;
   border-color: rgb(63 131 248 / var(--tw-border-opacity));
@@ -1554,22 +1511,5 @@ video {
   }.md\:py-24{
     padding-top: 6rem;
     padding-bottom: 6rem;
-  }.md\:text-5xl{
-    font-size: 3rem;
-    line-height: 1;
-  }
-}@media (min-width: 1024px){.lg\:ml-8{
-    margin-left: 2rem;
-  }.lg\:ml-96{
-    margin-left: 24rem;
-  }.lg\:mr-20{
-    margin-right: 5rem;
-  }.lg\:p-4{
-    padding: 1rem;
-  }.lg\:pl-8{
-    padding-left: 2rem;
-  }.lg\:text-6xl{
-    font-size: 3.75rem;
-    line-height: 1;
   }
 }

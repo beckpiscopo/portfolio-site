@@ -6,6 +6,19 @@
 
 /* Add any additional component-specific or utility styles below. */
 
+/* Base heading sizes — MUST be in @layer base so they win over Tailwind
+   Preflight's `h1,h2,h3 { font-size: inherit }` reset. (The fluid --step-*
+   scale vars are defined in theme.css :root.) Tailwind `text-*` utilities
+   still override these when explicitly applied. */
+@layer base {
+  h1 { font-size: var(--step-3); line-height: 1.08; }
+  h2 { font-size: var(--step-2); line-height: 1.15; }
+  h3 { font-size: var(--step-1); line-height: 1.20; }
+}
+
+/* ---- Display-font helper for non-heading elements (e.g. sidebar name) ---- */
+.font-display { font-family: var(--font-serif-display); }
+
 /* ---- Scroll-assembled sidebar ---- */
 :root { --p: 0; }
 
@@ -110,6 +123,12 @@ html { scroll-behavior: smooth; }
 .dark .heatmap-grid i.lvl-3 { background: var(--color-caramel); }
 .dark .heatmap-grid i.lvl-4 { background: var(--color-isabelline); }
 
+/* ---- Typographic helpers ---- */
+/* Intro / subtitle paragraphs (replaces hand-picked text-2xl italic) */
+.lead { font-size: var(--step-1); line-height: 1.4; opacity: 0.85; }
+/* Small print: captions, metadata labels */
+.caption { font-size: var(--step--1); opacity: 0.6; }
+
 /* ---- Editorial accents ---- */
 /* Inline emphasis */
 .accent { color: var(--color-jasper); font-style: italic; }
@@ -204,6 +223,10 @@ main section > h2::after {
   .hero-handwrite .hw-text { animation: none; clip-path: none; }
   .hero-handwrite::after { display: none; }
 }
+
+/* ---- Social icon scale utility ---- */
+/* Replaces the repeated style="scale:0.6;" on the Paragraph SVGs */
+.icon-paragraph { transform: scale(0.6); }
 
 /* ---- Faint borders in the current text color (auto light/dark) ---- */
 /* Tailwind can't put an opacity modifier on currentColor, so do it here. */
