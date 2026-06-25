@@ -110,8 +110,11 @@ body {
   color: #fff;
 }
 
-/* Ensure nav links use the CSS variable colors */
+/* Ensure nav links use the CSS variable colors.
+   font-family is set here because the global `a` was dropped from the
+   serif-body selector; nav links aren't inside a serif parent to inherit it. */
 nav a {
+  font-family: var(--font-serif-body);
   color: var(--color-nav-link);
   text-decoration: none;
 }
