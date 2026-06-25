@@ -214,6 +214,10 @@ main section > h2::after {
   .hero-handwrite::after { display: none; }
 }
 
+/* ---- Social icon scale utility ---- */
+/* Replaces the repeated style="scale:0.6;" on the Paragraph SVGs */
+.icon-paragraph { transform: scale(0.6); }
+
 /* ---- Faint borders in the current text color (auto light/dark) ---- */
 /* Tailwind can't put an opacity modifier on currentColor, so do it here. */
 .border-faint { border-color: color-mix(in srgb, currentColor 20%, transparent); }

@@ -1373,7 +1373,7 @@ video {
 }/* No animation when the user prefers reduced motion: show the line at rest */@media (prefers-reduced-motion: reduce) {
   .hero-handwrite .hw-text { animation: none; -webkit-clip-path: none; clip-path: none; }
   .hero-handwrite::after { display: none; }
-}/* ---- Faint borders in the current text color (auto light/dark) ---- *//* Tailwind can't put an opacity modifier on currentColor, so do it here. */.border-faint { border-color: color-mix(in srgb, currentColor 20%, transparent); }.border-faint-soft { border-color: color-mix(in srgb, currentColor 14%, transparent); }/* ---- Analysis case study: chart figures ---- */.figure { margin: 2.5rem 0; }.figure-frame {
+}/* ---- Social icon scale utility ---- *//* Replaces the repeated style="scale:0.6;" on the Paragraph SVGs */.icon-paragraph { transform: scale(0.6); }/* ---- Faint borders in the current text color (auto light/dark) ---- *//* Tailwind can't put an opacity modifier on currentColor, so do it here. */.border-faint { border-color: color-mix(in srgb, currentColor 20%, transparent); }.border-faint-soft { border-color: color-mix(in srgb, currentColor 14%, transparent); }/* ---- Analysis case study: chart figures ---- */.figure { margin: 2.5rem 0; }.figure-frame {
   border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
   border-radius: 0.5rem;
   overflow: hidden;
@@ -1425,10 +1425,6 @@ video {
   --tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity));
 }.group:hover .group-hover\:underline{
   text-decoration-line: underline;
-}:is(.dark .dark\:block){
-  display: block;
-}:is(.dark .dark\:hidden){
-  display: none;
 }:is(.dark .dark\:border-blue-500){
   --tw-border-opacity: 1;
   border-color: rgb(63 131 248 / var(--tw-border-opacity));
