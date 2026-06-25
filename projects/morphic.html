@@ -79,8 +79,8 @@
     <main class="max-w-3xl mx-auto px-6 py-16 md:py-24">
       <a class="link" href="../index.html#projects">← Projects</a>
 
-      <h1 class="text-4xl md:text-5xl font-bold mt-5 mb-3">Morphic</h1>
-      <p class="text-2xl italic opacity-80 mb-8">A multi-agent system that discovers structural patterns recurring across unrelated scientific domains.</p>
+      <h1 class="font-bold mt-5 mb-3">Morphic</h1>
+      <p class="lead italic mb-8">A multi-agent system that discovers structural patterns recurring across unrelated scientific domains.</p>
 
       <!-- Metadata -->
       <dl class="flex flex-wrap gap-x-10 gap-y-3 mb-5 pb-6 border-b border-faint-soft">
@@ -105,34 +105,34 @@
       </div>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="text-3xl font-bold mb-5">Why it exists</h2>
-        <p class="text-xl mb-5">Knowledge is siloed by vocabulary. A mycologist and a distributed-systems engineer can be studying the same underlying principle (how a network reorganizes after damage) and never know it, because each describes it in language the other can't parse. The same structural patterns recur across fields, but specialists can't see over the wall.</p>
-        <p class="text-xl">Morphic exists to find those patterns. It reads broadly, extracts the underlying structure, and tests whether it genuinely recurs across domains, organized around <em class="accent">antifragility</em>: systems that require stress to develop capacities they couldn't build any other way. The terminology changes; the principle doesn't.</p>
+        <h2 class="font-bold mb-5">Why it exists</h2>
+        <p class="mb-5">Knowledge is siloed by vocabulary. A mycologist and a distributed-systems engineer can be studying the same underlying principle (how a network reorganizes after damage) and never know it, because each describes it in language the other can't parse. The same structural patterns recur across fields, but specialists can't see over the wall.</p>
+        <p>Morphic exists to find those patterns. It reads broadly, extracts the underlying structure, and tests whether it genuinely recurs across domains, organized around <em class="accent">antifragility</em>: systems that require stress to develop capacities they couldn't build any other way. The terminology changes; the principle doesn't.</p>
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="text-3xl font-bold mb-5">How it works</h2>
-        <p class="text-xl mb-5">Morphic is a multi-agent pipeline orchestrated with LangGraph. A Recursive Language Model reads a corpus of 150+ research papers and extracts candidate structural patterns. Each pattern clears a triage gate, then <strong>fans out</strong> to seven autonomous domain-specialist agents (mycology, medicine, distributed computing, microbiology, quantum physics, neuroscience, and bioelectricity), which independently judge whether the pattern manifests in their field.</p>
-        <p class="text-xl mb-5">This is fan-out/fan-in with quality gates, not sequential chaining: only when at least two agents <em class="accent">fire</em> does a pattern converge into a structured four-round dialogue (Present → Translate → Diverge → Synthesize), where each round has a distinct epistemic job, ending in a cross-domain synthesis. To date the system has surfaced 53 candidate principles and validated 37.</p>
+        <h2 class="font-bold mb-5">How it works</h2>
+        <p class="mb-5">Morphic is a multi-agent pipeline orchestrated with LangGraph. A Recursive Language Model reads a corpus of 150+ research papers and extracts candidate structural patterns. Each pattern clears a triage gate, then <strong>fans out</strong> to seven autonomous domain-specialist agents (mycology, medicine, distributed computing, microbiology, quantum physics, neuroscience, and bioelectricity), which independently judge whether the pattern manifests in their field.</p>
+        <p class="mb-5">This is fan-out/fan-in with quality gates, not sequential chaining: only when at least two agents <em class="accent">fire</em> does a pattern converge into a structured four-round dialogue (Present → Translate → Diverge → Synthesize), where each round has a distinct epistemic job, ending in a cross-domain synthesis. To date the system has surfaced 53 candidate principles and validated 37.</p>
 
         <img src="../assets/img/projects/morphic.png" alt="Morphic's pattern explorer and pipeline view" loading="lazy" class="rounded-lg border border-faint w-full my-8">
 
-        <p class="text-xl mb-3">The parts that made it more than an API wrapper:</p>
-        <ul class="flex flex-col gap-4 text-xl mb-6">
+        <p class="mb-3">The parts that made it more than an API wrapper:</p>
+        <ul class="flex flex-col gap-4 mb-6">
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Convergence gates, not forced analogies.</strong> Seven agents evaluate in parallel and only converge when multiple genuinely resonate — which keeps the system from declaring that "everything is connected."</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>It verifies its own claims.</strong> Every citation is checked against Semantic Scholar, arXiv, and OpenAlex (verified / found-unverified / fabricated counts, with a transparent scoring formula), so a "pattern" rests on papers that actually exist and say what's claimed.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Adversarial self-review.</strong> Morphic generates challenges against its own findings (rated critical / major / minor) plus falsifiability tests — so a pattern has to survive scrutiny, not just sound plausible.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Full observability.</strong> Every LLM call is traced through Langfuse with cost, latency, and a decision audit trail.</span></li>
         </ul>
 
-        <h3 id="demo" class="text-2xl mt-12 mb-4 scroll-mt-20">Demo</h3>
+        <h3 id="demo" class="mt-12 mb-4 scroll-mt-20">Demo</h3>
         <!-- Replace this placeholder with the YouTube/Loom embed:
         <div class="video-embed"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Morphic demo" allowfullscreen></iframe></div> -->
         <div class="video-embed video-placeholder"><span class="opacity-60">▶ Demo video goes here</span></div>
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="text-3xl font-bold mb-5">Tech stack</h2>
+        <h2 class="font-bold mb-5">Tech stack</h2>
         <ul class="flex flex-wrap gap-2 text-base">
           <li class="border border-faint rounded px-3 py-1">Gemini 3 Pro / Flash</li>
           <li class="border border-faint rounded px-3 py-1">LangGraph</li>
@@ -151,8 +151,8 @@
       </section>
 
       <section>
-        <h2 class="text-3xl font-bold mb-5">What I learned</h2>
-        <ul class="flex flex-col gap-4 text-xl">
+        <h2 class="font-bold mb-5">What I learned</h2>
+        <ul class="flex flex-col gap-4">
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Multi-agent coordination is an architecture problem, not a prompting one — fan-out/fan-in with explicit quality gates is what makes the output trustworthy rather than just verbose.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Verification has to be built into the system. Checking citations against real databases and running adversarial self-review is the line between something that sounds smart and something you can trust.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>A strong organizing principle (antifragility) gave the agents a shared target and kept the cross-domain search from collapsing into superficial analogy.</span></li>

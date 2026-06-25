@@ -79,8 +79,8 @@
     <main class="max-w-3xl mx-auto px-6 py-16 md:py-24">
       <a class="link" href="../index.html#projects">← Projects</a>
 
-      <h1 class="text-4xl md:text-5xl font-bold mt-5 mb-3">Noeron</h1>
-      <p class="text-2xl italic opacity-80 mb-8">An AI research companion that bridges science podcasts and the academic literature in real time.</p>
+      <h1 class="font-bold mt-5 mb-3">Noeron</h1>
+      <p class="lead italic mb-8">An AI research companion that bridges science podcasts and the academic literature in real time.</p>
 
       <!-- Metadata -->
       <dl class="flex flex-wrap gap-x-10 gap-y-3 mb-5 pb-6 border-b border-faint-soft">
@@ -104,33 +104,33 @@
       </div>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="text-3xl font-bold mb-5">Why it exists</h2>
-        <p class="text-xl mb-5">Science-podcast listeners constantly hit claims they can't evaluate. When Michael Levin says "bioelectric patterns control morphogenesis" partway through a three-hour Lex Fridman episode, what actually backs that up, and where would you even start reading? Today every curious listener re-runs the same research from scratch: a massive, invisible duplication of effort across thousands of people.</p>
-        <p class="text-xl">Noeron turns that one-time synthesis into shared infrastructure. It sits alongside a podcast and connects what's being said, as it's said, to the academic literature that supports it, so one person's deep reading becomes reusable for everyone who comes after. Think of it as a research assistant who has already read every paper the guest is referencing.</p>
+        <h2 class="font-bold mb-5">Why it exists</h2>
+        <p class="mb-5">Science-podcast listeners constantly hit claims they can't evaluate. When Michael Levin says "bioelectric patterns control morphogenesis" partway through a three-hour Lex Fridman episode, what actually backs that up, and where would you even start reading? Today every curious listener re-runs the same research from scratch: a massive, invisible duplication of effort across thousands of people.</p>
+        <p>Noeron turns that one-time synthesis into shared infrastructure. It sits alongside a podcast and connects what's being said, as it's said, to the academic literature that supports it, so one person's deep reading becomes reusable for everyone who comes after. Think of it as a research assistant who has already read every paper the guest is referencing.</p>
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="text-3xl font-bold mb-5">How it works</h2>
-        <p class="text-xl mb-5">Noeron is a real-time pipeline from audio to evidence. A podcast is transcribed and speaker-diarized with AssemblyAI, then split into overlapping ~60-second windows. Gemini 3 runs two passes over each window: first detecting the scientific claims and tagging them (organism, mechanism), then generating targeted research queries from those claims.</p>
-        <p class="text-xl mb-5">Each query hits a retrieval index built from 150+ bioelectricity papers: parsed from PDF with GROBID, chunked with tiktoken, embedded with Gemini embeddings, and stored in Supabase pgvector. Gemini 3 synthesizes the retrieved passages into a <em class="accent">context card</em>: a scannable summary with citations and a confidence score, surfaced at the exact timestamp the claim was made.</p>
+        <h2 class="font-bold mb-5">How it works</h2>
+        <p class="mb-5">Noeron is a real-time pipeline from audio to evidence. A podcast is transcribed and speaker-diarized with AssemblyAI, then split into overlapping ~60-second windows. Gemini 3 runs two passes over each window: first detecting the scientific claims and tagging them (organism, mechanism), then generating targeted research queries from those claims.</p>
+        <p class="mb-5">Each query hits a retrieval index built from 150+ bioelectricity papers: parsed from PDF with GROBID, chunked with tiktoken, embedded with Gemini embeddings, and stored in Supabase pgvector. Gemini 3 synthesizes the retrieved passages into a <em class="accent">context card</em>: a scannable summary with citations and a confidence score, surfaced at the exact timestamp the claim was made.</p>
 
         <img src="../assets/img/projects/noeron.png" alt="Noeron's live research stream surfacing context cards as a podcast plays" loading="lazy" class="rounded-lg border border-faint w-full my-8">
 
-        <p class="text-xl mb-3">A few decisions did the heavy lifting:</p>
-        <ul class="flex flex-col gap-4 text-xl mb-6">
+        <p class="mb-3">A few decisions did the heavy lifting:</p>
+        <ul class="flex flex-col gap-4 mb-6">
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Two-pass claim detection.</strong> Detecting claims first and retrieving second keeps the model grounded and citation-backed instead of free-associating.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Context caching was the economic unlock.</strong> Caching the 150-paper corpus once and querying it thousands of times cut cost roughly 25× (~$50 → ~$2 per 1,000 queries) and made real-time responses during playback viable at all.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Provenance everywhere.</strong> Every card links back to its source sections with a confidence level, so a summary can always be traced to the paper behind it.</span></li>
         </ul>
 
-        <h3 id="demo" class="text-2xl mt-12 mb-4 scroll-mt-20">Demo</h3>
+        <h3 id="demo" class="mt-12 mb-4 scroll-mt-20">Demo</h3>
         <!-- Replace this placeholder with the YouTube/Loom embed:
         <div class="video-embed"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Noeron demo" allowfullscreen></iframe></div> -->
         <div class="video-embed video-placeholder"><span class="opacity-60">▶ Demo video goes here</span></div>
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="text-3xl font-bold mb-5">Tech stack</h2>
+        <h2 class="font-bold mb-5">Tech stack</h2>
         <ul class="flex flex-wrap gap-2 text-base">
           <li class="border border-faint rounded px-3 py-1">Gemini 3 Pro / Flash</li>
           <li class="border border-faint rounded px-3 py-1">Gemini embeddings</li>
@@ -149,8 +149,8 @@
       </section>
 
       <section>
-        <h2 class="text-3xl font-bold mb-5">What I learned</h2>
-        <ul class="flex flex-col gap-4 text-xl">
+        <h2 class="font-bold mb-5">What I learned</h2>
+        <ul class="flex flex-col gap-4">
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Infrastructure constraints, not model quality, often decide whether an AI product is viable — context caching is the only reason this one works economically.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Grounding is a pipeline problem, not a prompt. Reliable citations came from the two-pass structure and provenance tracking, not from asking the model nicely.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Framing the product as <em class="accent">infrastructure</em> — one synthesis serving many — clarified nearly every design decision that followed.</span></li>
