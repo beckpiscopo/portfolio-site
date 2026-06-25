@@ -19,6 +19,13 @@
   --toggle-bg: #F2E9E4;         /* Light half */
   --toggle-half: #3E1F14;    /* Dark half */
   --toggle-border: #3E1F14;  /* Border color */
+
+  /* Fluid type scale (mobile -> desktop via clamp; ~1.25 modular ratio) */
+  --step--1: clamp(0.94rem, 0.90rem + 0.20vw, 1.05rem); /* captions, meta */
+  --step-0:  clamp(1.10rem, 1.02rem + 0.40vw, 1.30rem); /* body copy      */
+  --step-1:  clamp(1.40rem, 1.20rem + 0.70vw, 1.70rem); /* lead / h3      */
+  --step-2:  clamp(1.75rem, 1.45rem + 1.10vw, 2.20rem); /* h2             */
+  --step-3:  clamp(2.20rem, 1.70rem + 2.00vw, 3.20rem); /* h1 / display   */
 }
 
 /* Dark mode overrides */
@@ -42,24 +49,22 @@ h1, h2, h3 {
   color: var(--color-text);
 }
 
-ol, ul, p, a {
+ol, ul, p {
   font-family: var(--font-serif-body);
 }
 
+/* Base typographic scale — elements size themselves; utilities still override */
+h1 { font-size: var(--step-3); line-height: 1.08; }
+h2 { font-size: var(--step-2); line-height: 1.15; }
+h3 { font-size: var(--step-1); line-height: 1.20; }
 
 p {
-  font-size: 2rem;
+  font-size: var(--step-0);
+  line-height: 1.6;
   color: var(--color-text);
 }
 
-a {
-  text-decoration: underline;
-  padding: 4px;
-}
-
-a:hover, a:active {
-  color: var(--color-link-hover-text);
-}
+li { font-size: var(--step-0); line-height: 1.6; }
 
 /* Nav background */
 nav {

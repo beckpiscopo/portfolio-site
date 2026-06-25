@@ -113,6 +113,12 @@ html { scroll-behavior: smooth; }
 .dark .heatmap-grid i.lvl-3 { background: var(--color-caramel); }
 .dark .heatmap-grid i.lvl-4 { background: var(--color-isabelline); }
 
+/* ---- Typographic helpers ---- */
+/* Intro / subtitle paragraphs (replaces hand-picked text-2xl italic) */
+.lead { font-size: var(--step-1); line-height: 1.4; opacity: 0.85; }
+/* Small print: captions, metadata labels */
+.caption { font-size: var(--step--1); opacity: 0.6; }
+
 /* ---- Editorial accents ---- */
 /* Inline emphasis */
 .accent { color: var(--color-jasper); font-style: italic; }
