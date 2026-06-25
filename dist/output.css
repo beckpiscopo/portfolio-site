@@ -823,6 +823,8 @@ video {
   margin-bottom: 2rem;
 }.mb-1{
   margin-bottom: 0.25rem;
+}.mb-10{
+  margin-bottom: 2.5rem;
 }.mb-12{
   margin-bottom: 3rem;
 }.mb-14{
@@ -967,6 +969,10 @@ video {
   resize: both;
 }.scroll-mt-20{
   scroll-margin-top: 5rem;
+}.list-outside{
+  list-style-position: outside;
+}.list-decimal{
+  list-style-type: decimal;
 }.list-disc{
   list-style-type: disc;
 }.grid-cols-3{
@@ -1142,6 +1148,8 @@ video {
   padding-bottom: 8rem;
 }.pb-6{
   padding-bottom: 1.5rem;
+}.pl-10{
+  padding-left: 2.5rem;
 }.pt-10{
   padding-top: 2.5rem;
 }.pt-2{
@@ -1178,6 +1186,8 @@ video {
   font-weight: 600;
 }.uppercase{
   text-transform: uppercase;
+}.capitalize{
+  text-transform: capitalize;
 }.italic{
   font-style: italic;
 }.leading-6{

@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>St. Pete Housing Analytics · Beck Piscopo</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
-    <link href="../dist/output.css?v=20260625b" rel="stylesheet">
+    <link href="../dist/output.css?v=20260625c" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Young+Serif&display=swap" rel="stylesheet">
 </head>
 
-<!-- DRAFT analysis case study — content drafted from the project README + CLAUDE.md for Beck to rewrite.
-     This is the ANALYTICS layout (chart-forward / data story), distinct from the product layout.
-     Replace each .chart-placeholder with an embedded chart (iframe) or exported image, verify the
-     findings against the real analysis, and add role/timeline/repo. -->
+<!-- Analysis case study (ANALYTICS layout — chart-forward data story).
+     "What the data showed" leads with the flood-repricing arc; charts are static PNGs in
+     assets/img/charts/, regenerated from the real analysis via
+     st_pete_analytics/scripts/export_portfolio_charts.py (numbers match notebooks 07 & 09).
+     TODO: add real repo URL. -->
 <body class="min-h-screen">
   <!-- Sticky light/dark toggle, fixed to the top-right of the viewport -->
   <button id="dark-toggle" aria-label="Toggle dark mode" class="theme-toggle-fixed">
@@ -70,8 +71,8 @@
     <main class="max-w-4xl mx-auto px-6 py-16 md:py-24">
       <a class="link" href="../index.html#projects">← Projects</a>
 
-      <h1 class="font-bold mt-5 mb-3">St. Housing Pete Analytics</h1>
-      <p class="lead italic mb-8 max-w-3xl">Using parcel-level data the consumer tools don't expose to answer one question: which St. Petersburg house is actually a good buy?</p>
+      <h1 class="font-bold mt-5 mb-3">St.Pete Housing Analytics</h1>
+      <p class="lead italic mb-8 max-w-3xl">Data analysis for the St. Petersburg, FL housing market, beyond the consumer tools.</p>
 
       <!-- Metadata -->
       <dl class="flex flex-wrap gap-x-10 gap-y-3 mb-5 pb-6 border-b border-faint-soft">
@@ -89,8 +90,8 @@
         </div>
       </dl>
       <div class="flex flex-wrap gap-5 mb-14 text-lg">
-        <!-- TODO: add real repo URL. Runs locally — no public deploy. -->
-        <a class="link" href="#" target="_blank" rel="noopener">Repo ↗</a>
+     
+        <a class="link" href="https://github.com/beckpiscopo/st_pete_analytics" target="_blank" rel="noopener">Repo ↗</a>
       </div>
 
       <section class="mb-16 md:mb-20 max-w-3xl">
@@ -100,13 +101,13 @@
           When I decided to buy a house, I found the current platforms for doing an analysis were inadequate, specifically for assessing storm surge risk. Additionally, the flood maps are dated, and FEMA will be redrawing them soon. After a lot of thought, I came up with this criteria for my house:
         </p>
 
-        <ol class="mb-5">
-          <li class="mb-5">Block construction</li>
-          <li class="mb-5">Slab foundation</li>
-          <li class="mb-5">FEMA Zone X (non-flood zone)</li>
-          <li class="mb-5">In either Evacuation Zone E or Non-Evac</li>
-          <li class="mb-5">At least 20 feet above sea level, 25-30 is ideal</li>
-          <li class="mb-5">Not a flip</li>
+        <ol class="list-decimal list-outside pl-10 mb-5">
+          <li class="mb-2">Block construction</li>
+          <li class="mb-2">Slab foundation</li>
+          <li class="mb-2">FEMA Zone X (non-flood zone)</li>
+          <li class="mb-2">In either Evacuation Zone E or Non-Evac</li>
+          <li class="mb-2">At least 20 feet above sea level, 25-30 is ideal</li>
+          <li class="mb-2">Not a flip</li>
         </ol>
 
         <p class="mb-5"> Using the current tools to house hunt (Zillow, Redfin, Realtor), I found that I couldn't easily filter my search with this criteria. They don't include elevation or evacuation zone, and it takes a lot of manual digging to figure out which houses have been flipped or how they are constructed. This led me to build a thorough analysis if the St. Pete housing market.
@@ -125,46 +126,37 @@
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-bold mb-8">What the data showed</h2>
+        <h2 class="font-bold mb-5 max-w-3xl">What the data showed</h2>
+        <p class="max-w-3xl mb-10">A personal "where should I buy" question kept pointing at one variable — <em class="accent">flood exposure</em> — until it was worth building a real catastrophe model around it. The through-line: the market hasn't finished pricing flood risk, and elevation is the hedge.</p>
 
-        <!-- Finding 1 -->
-        <h3 class="mb-3 max-w-3xl">Asking price hides the real cost</h3>
-        <p class="max-w-3xl">Listings at the same sticker price diverge sharply once you compute <em class="accent">true monthly cost</em> (PITI plus insurance plus HOA/CDD). Insurance dominates: a ~$1,500/yr premium gap offsets a $50k price difference over a ten-year hold, which reorders "comparable" homes completely.</p>
+        <!-- Finding 1 — the headline -->
+        <h3 class="mb-3 max-w-3xl">The market's flood discount is about 3× too small</h3>
+        <p class="max-w-3xl">Buyers haircut a flood-zone home by ~9.3% — about <strong>$27k</strong> off the median, a one-time, permanent discount. But a single 2024 storm season (Helene + Milton) paid out roughly <strong>$85k per insured home</strong> in flood-heavy block groups: <strong>~3× the entire lifetime discount, in one season.</strong> Federally subsidized flood insurance has absorbed that cost so it never had to show up in the price — and FEMA's Risk Rating 2.0 is now unwinding the subsidy onto premiums, which <em>do</em> capitalize into price. Flood-zone homes carry repricing downside the current discount doesn't reflect.</p>
         <figure class="figure">
-          <!-- Replace placeholder with: <div class="figure-frame"><iframe src="../assets/charts/true-cost.html" title="Asking price vs true monthly cost"></iframe></div>
-               or a static image: <div class="figure-frame"><img src="../assets/img/charts/true-cost.png" alt="..."></div> -->
-          <div class="figure-frame chart-placeholder"><span class="opacity-60">Chart: asking price vs. true monthly cost</span></div>
-          <figcaption class="figcaption">Each point a listing; color by insurance burden. (placeholder)</figcaption>
+          <div class="figure-frame"><img src="../assets/img/charts/flood-repricing.png?v=20260625" alt="Bar chart: the ~$27k one-time market flood discount versus ~$85k realized 2024 NFIP payout per insured home — one season paid out 3.1× the lifetime discount."></div>
+          <figcaption class="figcaption">The permanent price discount vs. one season's realized payout per insured home. The $85k is NFIP-borne, not out-of-pocket — read the ratio as order-of-magnitude evidence that the physical cost of flood risk dwarfs the price signal attached to it.</figcaption>
         </figure>
 
-        <!-- Finding 2 -->
-        <h3 class="mb-3 mt-14 max-w-3xl">Cosmetic flips, priced like renovations</h3>
-        <p class="max-w-3xl">A <em class="accent">flip score</em> (days between purchase and relist, permit activity in that window, and price delta vs. zip comps) surfaces homes bought and re-listed within months at 2–3× replacement cost, with little real work permitted in between.</p>
+        <!-- Finding 2 — the proof -->
+        <h3 class="mb-3 mt-14 max-w-3xl">It's an elevation story — and two independent methods agree</h3>
+        <p class="max-w-3xl">Read straight off the federal claims data, with no model in the loop: a block group's low-lying ground predicts its 2024 NFIP claims better than its average does (rank correlation ρ ≈ −0.77), and the gradient <em>survives</em> normalizing for who bought insurance — a ~7× swing in claim frequency from coast to ridge among homes that all carried a policy. A from-scratch flood catastrophe model, built from elevation and depth-damage physics, then <em class="accent">reproduces the same result</em> (the dry 33713 ridge contributes ≈ $0 of modeled loss). Two roads, same destination.</p>
         <figure class="figure">
-          <div class="figure-frame chart-placeholder"><span class="opacity-60">Chart: relist gap vs. price delta, flips flagged</span></div>
-          <figcaption class="figcaption">Flagged flips highlighted; bubble size = permit value. (placeholder)</figcaption>
+          <div class="figure-frame"><img src="../assets/img/charts/elevation-claims.png?v=20260625" alt="Bar chart: take-up-normalized 2024 flood claims per 100 insured homes by block-group elevation band, falling from 112 below 5 ft to ~15 above 15 ft — a roughly 7× gradient."></div>
+          <figcaption class="figcaption">2024 claims per 100 insured homes by elevation band — normalized for insurance take-up, so it isn't "low areas just buy more coverage." The model-free twin of the catastrophe model's central result.</figcaption>
         </figure>
 
-        <!-- Finding 3 -->
-        <h3 class="mb-3 mt-14 max-w-3xl">Flood &amp; insurability quietly remove a big share of inventory</h3>
-        <p class="max-w-3xl">Applying the hard disqualifiers (FEMA flood zones, hurricane evac zones, roofs over 20 years, Federal Pacific / Zinsco panels, frame construction) eliminates a substantial fraction of listings before any deeper analysis, and the share varies a lot block to block.</p>
+        <!-- Finding 3 — the buyer's verdict -->
+        <h3 class="mb-3 mt-14 max-w-3xl">FEMA's "safe" label is trustworthy here — Zone X is real high ground</h3>
+        <p class="max-w-3xl">The skeptic's worry is that the flood maps are stale and the cheap, low-insurance "Zone X" homes are hiding risk. In St. Pete they aren't: sampling ground elevation for all 59,230 Zone-X parcels puts the median at <strong>29 ft</strong>, with only 0.1% below the surge-plausible 8 ft line. The label corresponds to genuine elevation — so a dry, high-ground Zone-X home isn't just safer, it's on the right side of the repricing flood-zone homes haven't taken yet. (Honest caveat: this holds in St. Pete, not county-wide — a 99%-Zone-X pocket in inland Largo still took ~$26M in rain-driven flooding.)</p>
         <figure class="figure">
-          <div class="figure-frame chart-placeholder"><span class="opacity-60">Map: eligible vs. auto-failed parcels by zone</span></div>
-          <figcaption class="figcaption">MapLibre choropleth of disqualification rate. (placeholder)</figcaption>
-        </figure>
-
-        <!-- Finding 4 -->
-        <h3 class="mb-3 mt-14 max-w-3xl">Where momentum is actually building</h3>
-        <p class="max-w-3xl">A <em class="accent">neighborhood-momentum</em> signal (permit-issuance trend, days-on-market trend, price-cut rate, and ACS income growth) separates blocks that are heating up from those that just look active.</p>
-        <figure class="figure">
-          <div class="figure-frame chart-placeholder"><span class="opacity-60">Chart: momentum components by sub-neighborhood</span></div>
-          <figcaption class="figcaption">Small multiples per signal. (placeholder)</figcaption>
+          <div class="figure-frame"><img src="../assets/img/charts/zone-x-elevation.png?v=20260625" alt="Histogram of ground elevation for all 59,230 St. Pete Zone-X parcels, median 29 ft, with only 0.1% below the 8 ft surge-plausible line."></div>
+          <figcaption class="figcaption">Ground elevation of every St. Pete Zone-X parcel, sampled from the USGS 3DEP DEM. The "minimal-risk" designation lines up with real high ground.</figcaption>
         </figure>
       </section>
 
       <section class="mb-16 md:mb-20 max-w-3xl">
         <h2 class="font-bold mb-5">How I built it</h2>
-        <p class="mb-6">Everything runs locally, with no cloud. Python scripts ingest each source into <strong>DuckDB</strong>, an in-process analytical database; <strong>dbt</strong> models turn the raw tables into the decision metrics above; a read-only <strong>FastAPI</strong> layer serves them; and a <strong>Next.js + MapLibre</strong> map-first UI puts every parcel on the map. DuckDB in-process means no infrastructure and fast iteration, the right call for a single-user decision tool.</p>
+        <p class="mb-6">I built this to run locally to save on cloud costs. Python scripts ingest each source into <strong>DuckDB</strong>, an in-process analytical database; <strong>dbt</strong> models turn the raw tables into the decision metrics above; a read-only <strong>FastAPI</strong> layer serves them; and a <strong>Next.js + MapLibre</strong> map-first UI puts every parcel on the map. DuckDB in-process means no infrastructure and fast iteration, the right call for a single-user decision tool.</p>
         <ul class="flex flex-wrap gap-2 text-base">
           <li class="border border-faint rounded px-3 py-1">DuckDB</li>
           <li class="border border-faint rounded px-3 py-1">dbt</li>
