@@ -25,7 +25,7 @@
 
   <!-- Mobile sticky top bar (hidden on md+) -->
   <header id="mobile-bar" class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-14 backdrop-blur">
-    <a href="../index.html" class="font-libre text-xl font-bold">Beck Piscopo</a>
+    <a href="../index.html" class="font-display text-xl font-bold">Beck Piscopo</a>
     <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="p-2 text-3xl leading-none">&#9776;</button>
   </header>
 
@@ -33,7 +33,7 @@
   <aside id="sidebar" class="fixed z-50 top-0 left-0 h-screen w-64 px-6 py-8 flex flex-col gap-8
               -translate-x-full md:translate-x-0 transition-transform duration-300">
     <div>
-      <a href="../index.html" class="font-libre text-2xl font-bold block leading-tight">Beck<br>Piscopo</a>
+      <a href="../index.html" class="font-display text-2xl font-bold block leading-tight">Beck<br>Piscopo</a>
     </div>
     <nav class="toc flex flex-col gap-3 text-lg">
       <a href="../index.html#about">// About</a>
@@ -79,7 +79,7 @@
     <main class="max-w-3xl mx-auto px-6 py-16 md:py-24">
       <a class="link" href="../index.html#projects">← Projects</a>
 
-      <h1 class="font-libre text-4xl md:text-5xl font-bold mt-5 mb-3">Morphic</h1>
+      <h1 class="text-4xl md:text-5xl font-bold mt-5 mb-3">Morphic</h1>
       <p class="text-2xl italic opacity-80 mb-8">A multi-agent system that discovers structural patterns recurring across unrelated scientific domains.</p>
 
       <!-- Metadata -->
@@ -105,13 +105,13 @@
       </div>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-libre text-3xl font-bold mb-5">Why it exists</h2>
+        <h2 class="text-3xl font-bold mb-5">Why it exists</h2>
         <p class="text-xl mb-5">Knowledge is siloed by vocabulary. A mycologist and a distributed-systems engineer can be studying the same underlying principle (how a network reorganizes after damage) and never know it, because each describes it in language the other can't parse. The same structural patterns recur across fields, but specialists can't see over the wall.</p>
         <p class="text-xl">Morphic exists to find those patterns. It reads broadly, extracts the underlying structure, and tests whether it genuinely recurs across domains, organized around <em class="accent">antifragility</em>: systems that require stress to develop capacities they couldn't build any other way. The terminology changes; the principle doesn't.</p>
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-libre text-3xl font-bold mb-5">How it works</h2>
+        <h2 class="text-3xl font-bold mb-5">How it works</h2>
         <p class="text-xl mb-5">Morphic is a multi-agent pipeline orchestrated with LangGraph. A Recursive Language Model reads a corpus of 150+ research papers and extracts candidate structural patterns. Each pattern clears a triage gate, then <strong>fans out</strong> to seven autonomous domain-specialist agents (mycology, medicine, distributed computing, microbiology, quantum physics, neuroscience, and bioelectricity), which independently judge whether the pattern manifests in their field.</p>
         <p class="text-xl mb-5">This is fan-out/fan-in with quality gates, not sequential chaining: only when at least two agents <em class="accent">fire</em> does a pattern converge into a structured four-round dialogue (Present → Translate → Diverge → Synthesize), where each round has a distinct epistemic job, ending in a cross-domain synthesis. To date the system has surfaced 53 candidate principles and validated 37.</p>
 
@@ -125,14 +125,14 @@
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Full observability.</strong> Every LLM call is traced through Langfuse with cost, latency, and a decision audit trail.</span></li>
         </ul>
 
-        <h3 id="demo" class="font-libre text-2xl mt-12 mb-4 scroll-mt-20">Demo</h3>
+        <h3 id="demo" class="text-2xl mt-12 mb-4 scroll-mt-20">Demo</h3>
         <!-- Replace this placeholder with the YouTube/Loom embed:
         <div class="video-embed"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Morphic demo" allowfullscreen></iframe></div> -->
         <div class="video-embed video-placeholder"><span class="opacity-60">▶ Demo video goes here</span></div>
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-libre text-3xl font-bold mb-5">Tech stack</h2>
+        <h2 class="text-3xl font-bold mb-5">Tech stack</h2>
         <ul class="flex flex-wrap gap-2 text-base">
           <li class="border border-faint rounded px-3 py-1">Gemini 3 Pro / Flash</li>
           <li class="border border-faint rounded px-3 py-1">LangGraph</li>
@@ -151,7 +151,7 @@
       </section>
 
       <section>
-        <h2 class="font-libre text-3xl font-bold mb-5">What I learned</h2>
+        <h2 class="text-3xl font-bold mb-5">What I learned</h2>
         <ul class="flex flex-col gap-4 text-xl">
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Multi-agent coordination is an architecture problem, not a prompting one — fan-out/fan-in with explicit quality gates is what makes the output trustworthy rather than just verbose.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Verification has to be built into the system. Checking citations against real databases and running adversarial self-review is the line between something that sounds smart and something you can trust.</span></li>

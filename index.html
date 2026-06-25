@@ -22,7 +22,7 @@
 
   <!-- Mobile sticky top bar (hidden on md+) -->
   <header id="mobile-bar" class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-14 backdrop-blur">
-    <span class="font-libre text-xl font-bold">Beck Piscopo</span>
+    <span class="font-display text-xl font-bold">Beck Piscopo</span>
     <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="p-2 text-3xl leading-none">&#9776;</button>
   </header>
 
@@ -30,7 +30,7 @@
   <aside id="sidebar" class="fixed z-50 top-0 left-0 h-screen w-64 px-6 py-8 flex flex-col gap-8
               -translate-x-full md:translate-x-0 transition-transform duration-300">
     <div>
-      <span class="font-libre text-2xl font-bold block leading-tight">Beck<br>Piscopo</span>
+      <span class="font-display text-2xl font-bold block leading-tight">Beck<br>Piscopo</span>
     </div>
     <nav class="toc flex flex-col gap-3 text-lg">
       <a data-nav="about"    href="#about">// About</a>
@@ -83,15 +83,15 @@
     <!-- HERO -->
     <section id="hero" class="min-h-screen flex items-center justify-center px-6">
       <div class="hero-inner max-w-2xl">
-        <h3 class="font-libre text-3xl italic">Hello,</h3>
-        <h1 class="font-libre lg:text-6xl text-4xl font-bold my-6">I'm Beck Piscopo.</h1>
+        <h3 class="text-3xl italic">Hello,</h3>
+        <h1 class="lg:text-6xl text-4xl font-bold my-6">I'm Beck Piscopo.</h1>
         <p class="text-3xl italic hero-handwrite"><span class="hw-text">I build <span class="underline" style="color: var(--color-caramel)">research intelligence systems</span></span></p>
       </div>
     </section>
 
     <main class="max-w-3xl mx-auto px-6 pb-32">
       <section id="about" class="py-20 scroll-mt-20">
-        <h2 class="font-libre text-4xl font-bold mb-6">About</h2>
+        <h2 class="text-4xl font-bold mb-6">About</h2>
         <p class="text-2xl leading-relaxed mb-6">As a deeply <em class="accent">curious-yet-practical</em> person, I find great satisfaction in employing my skills to solve problems that actually need solutions. Being able to effectively communicate complex ideas means understanding what the other person needs to know, and being able to speak their language. This is a skill, maybe even an art, that I have intentionally cultivated throughout my life, and I hope you'll find it demonstrated in my portfolio projects and writing.</p>
         <p class="text-2xl mb-4">My portfolio consists of projects that I created because I needed them to exist:</p>
         <ul class="flex flex-col gap-4 text-2xl">
@@ -101,14 +101,14 @@
       </section>
 
       <section id="projects" class="py-20 scroll-mt-20">
-        <h2 class="font-libre text-4xl font-bold mb-6">Projects</h2>
+        <h2 class="text-4xl font-bold mb-6">Projects</h2>
         <div class="grid gap-6 sm:grid-cols-2">
           <a href="projects/noeron.html" class="group block p-0 no-underline rounded-lg border border-faint overflow-hidden transition-colors hover:border-current">
             <div class="project-thumb">
               <img src="assets/img/projects/noeron.png" alt="Noeron screenshot" loading="lazy" style="object-position: left center" onerror="this.style.display='none'">
             </div>
             <div class="p-6">
-              <h3 class="font-libre text-2xl mb-2">Noeron</h3>
+              <h3 class="text-2xl mb-2">Noeron</h3>
               <p class="text-base opacity-80">Built a knowledge layer for podcasts. The platform detects scientific claims made in an episode, then validates those claims by examining the academic literature.</p>
               <span class="accent text-sm mt-3 inline-block">View case study →</span>
             </div>
@@ -118,7 +118,7 @@
               <img src="assets/img/projects/morphic.png" alt="Morphic screenshot" loading="lazy" onerror="this.style.display='none'">
             </div>
             <div class="p-6">
-              <h3 class="font-libre text-2xl mb-2">Morphic</h3>
+              <h3 class="text-2xl mb-2">Morphic</h3>
               <p class="text-base opacity-80">Built a cross-domain research engine that extracts structural patterns from a 150+ paper corpus and routes them to autonomous domain-specialist agents (mycology, medicine, distributed computing) that synthesize insights no single field could reach.</p>
               <span class="accent text-sm mt-3 inline-block">View case study →</span>
             </div>
@@ -128,7 +128,7 @@
               <img src="assets/img/projects/critical-minerals.png" alt="Critical Minerals Intelligence screenshot" loading="lazy" onerror="this.style.display='none'">
             </div>
             <div class="p-6">
-              <h3 class="font-libre text-2xl mb-2">Critical Minerals Intelligence</h3>
+              <h3 class="text-2xl mb-2">Critical Minerals Intelligence</h3>
               <p class="text-base opacity-80">Designed a geopolitical analysis platform with interactive mapping, automated news monitoring, and HHI-based supply chain risk scoring.</p>
             </div>
           </div>
@@ -137,7 +137,7 @@
               <img src="assets/img/projects/st-pete.png" alt="St. Pete Analytics screenshot" loading="lazy" onerror="this.style.display='none'">
             </div>
             <div class="p-6">
-              <h3 class="font-libre text-2xl mb-2">St. Pete Housing Analytics</h3>
+              <h3 class="text-2xl mb-2">St. Pete Housing Analytics</h3>
               <p class="text-base opacity-80">Built a parcel-level housing market analytics platform for St. Petersburg, FL. It ingests county assessor, Census, and FEMA data into DuckDB/dbt to derive true monthly cost, flip detection, and rental-yield metrics unavailable in Zillow or Redfin.</p>
               <span class="accent text-sm mt-3 inline-block">View case study →</span>
             </div>
@@ -146,7 +146,7 @@
       </section>
 
       <section id="activity" class="py-20 scroll-mt-20">
-        <h2 class="font-libre text-4xl font-bold mb-6">Activity</h2>
+        <h2 class="text-4xl font-bold mb-6">Activity</h2>
         <p id="heatmap-caption" class="text-base opacity-80 mb-6">Loading GitHub activity…</p>
         <div class="heatmap-wrap">
           <div id="heatmap" class="heatmap"></div>
@@ -155,7 +155,7 @@
       </section>
 
       <section id="writing" class="py-20 scroll-mt-20">
-        <h2 class="font-libre text-4xl font-bold mb-6">Writing</h2>
+        <h2 class="text-4xl font-bold mb-6">Writing</h2>
         <ul class="flex flex-col gap-5">
           <li>
             <a href="https://beckpiscopo.substack.com/p/the-case-for-quantum-bioelectricity" target="_blank" class="group block">
@@ -179,7 +179,7 @@
       </section>
 
       <section id="contact" class="py-20 scroll-mt-20">
-        <h2 class="font-libre text-4xl font-bold mb-6">Contact</h2>
+        <h2 class="text-4xl font-bold mb-6">Contact</h2>
         <p class="text-xl mb-8">If you'd like to explore how I can help your team, let's connect.</p>
         <div class="flex gap-4 items-center">
           <a href="https://github.com/beckpiscopo" target="_blank">

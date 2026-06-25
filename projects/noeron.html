@@ -25,7 +25,7 @@
 
   <!-- Mobile sticky top bar (hidden on md+) -->
   <header id="mobile-bar" class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-14 backdrop-blur">
-    <a href="../index.html" class="font-libre text-xl font-bold">Beck Piscopo</a>
+    <a href="../index.html" class="font-display text-xl font-bold">Beck Piscopo</a>
     <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="p-2 text-3xl leading-none">&#9776;</button>
   </header>
 
@@ -33,7 +33,7 @@
   <aside id="sidebar" class="fixed z-50 top-0 left-0 h-screen w-64 px-6 py-8 flex flex-col gap-8
               -translate-x-full md:translate-x-0 transition-transform duration-300">
     <div>
-      <a href="../index.html" class="font-libre text-2xl font-bold block leading-tight">Beck<br>Piscopo</a>
+      <a href="../index.html" class="font-display text-2xl font-bold block leading-tight">Beck<br>Piscopo</a>
     </div>
     <nav class="toc flex flex-col gap-3 text-lg">
       <a href="../index.html#about">// About</a>
@@ -79,7 +79,7 @@
     <main class="max-w-3xl mx-auto px-6 py-16 md:py-24">
       <a class="link" href="../index.html#projects">← Projects</a>
 
-      <h1 class="font-libre text-4xl md:text-5xl font-bold mt-5 mb-3">Noeron</h1>
+      <h1 class="text-4xl md:text-5xl font-bold mt-5 mb-3">Noeron</h1>
       <p class="text-2xl italic opacity-80 mb-8">An AI research companion that bridges science podcasts and the academic literature in real time.</p>
 
       <!-- Metadata -->
@@ -104,13 +104,13 @@
       </div>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-libre text-3xl font-bold mb-5">Why it exists</h2>
+        <h2 class="text-3xl font-bold mb-5">Why it exists</h2>
         <p class="text-xl mb-5">Science-podcast listeners constantly hit claims they can't evaluate. When Michael Levin says "bioelectric patterns control morphogenesis" partway through a three-hour Lex Fridman episode, what actually backs that up, and where would you even start reading? Today every curious listener re-runs the same research from scratch: a massive, invisible duplication of effort across thousands of people.</p>
         <p class="text-xl">Noeron turns that one-time synthesis into shared infrastructure. It sits alongside a podcast and connects what's being said, as it's said, to the academic literature that supports it, so one person's deep reading becomes reusable for everyone who comes after. Think of it as a research assistant who has already read every paper the guest is referencing.</p>
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-libre text-3xl font-bold mb-5">How it works</h2>
+        <h2 class="text-3xl font-bold mb-5">How it works</h2>
         <p class="text-xl mb-5">Noeron is a real-time pipeline from audio to evidence. A podcast is transcribed and speaker-diarized with AssemblyAI, then split into overlapping ~60-second windows. Gemini 3 runs two passes over each window: first detecting the scientific claims and tagging them (organism, mechanism), then generating targeted research queries from those claims.</p>
         <p class="text-xl mb-5">Each query hits a retrieval index built from 150+ bioelectricity papers: parsed from PDF with GROBID, chunked with tiktoken, embedded with Gemini embeddings, and stored in Supabase pgvector. Gemini 3 synthesizes the retrieved passages into a <em class="accent">context card</em>: a scannable summary with citations and a confidence score, surfaced at the exact timestamp the claim was made.</p>
 
@@ -123,14 +123,14 @@
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Provenance everywhere.</strong> Every card links back to its source sections with a confidence level, so a summary can always be traced to the paper behind it.</span></li>
         </ul>
 
-        <h3 id="demo" class="font-libre text-2xl mt-12 mb-4 scroll-mt-20">Demo</h3>
+        <h3 id="demo" class="text-2xl mt-12 mb-4 scroll-mt-20">Demo</h3>
         <!-- Replace this placeholder with the YouTube/Loom embed:
         <div class="video-embed"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Noeron demo" allowfullscreen></iframe></div> -->
         <div class="video-embed video-placeholder"><span class="opacity-60">▶ Demo video goes here</span></div>
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-libre text-3xl font-bold mb-5">Tech stack</h2>
+        <h2 class="text-3xl font-bold mb-5">Tech stack</h2>
         <ul class="flex flex-wrap gap-2 text-base">
           <li class="border border-faint rounded px-3 py-1">Gemini 3 Pro / Flash</li>
           <li class="border border-faint rounded px-3 py-1">Gemini embeddings</li>
@@ -149,7 +149,7 @@
       </section>
 
       <section>
-        <h2 class="font-libre text-3xl font-bold mb-5">What I learned</h2>
+        <h2 class="text-3xl font-bold mb-5">What I learned</h2>
         <ul class="flex flex-col gap-4 text-xl">
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Infrastructure constraints, not model quality, often decide whether an AI product is viable — context caching is the only reason this one works economically.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Grounding is a pipeline problem, not a prompt. Reliable citations came from the two-pass structure and provenance tracking, not from asking the model nicely.</span></li>

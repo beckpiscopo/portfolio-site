@@ -6,6 +6,9 @@
 
 /* Add any additional component-specific or utility styles below. */
 
+/* ---- Display-font helper for non-heading elements (e.g. sidebar name) ---- */
+.font-display { font-family: var(--font-serif-display); }
+
 /* ---- Scroll-assembled sidebar ---- */
 :root { --p: 0; }
 

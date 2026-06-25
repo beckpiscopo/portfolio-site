@@ -27,7 +27,7 @@
 
   <!-- Mobile sticky top bar (hidden on md+) -->
   <header id="mobile-bar" class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-14 backdrop-blur">
-    <a href="../index.html" class="font-libre text-xl font-bold">Beck Piscopo</a>
+    <a href="../index.html" class="font-display text-xl font-bold">Beck Piscopo</a>
     <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="p-2 text-3xl leading-none">&#9776;</button>
   </header>
 
@@ -35,7 +35,7 @@
   <aside id="sidebar" class="fixed z-50 top-0 left-0 h-screen w-64 px-6 py-8 flex flex-col gap-8
               -translate-x-full md:translate-x-0 transition-transform duration-300">
     <div>
-      <a href="../index.html" class="font-libre text-2xl font-bold block leading-tight">Beck<br>Piscopo</a>
+      <a href="../index.html" class="font-display text-2xl font-bold block leading-tight">Beck<br>Piscopo</a>
     </div>
     <nav class="toc flex flex-col gap-3 text-lg">
       <a href="../index.html#about">// About</a>
@@ -81,7 +81,7 @@
     <main class="max-w-4xl mx-auto px-6 py-16 md:py-24">
       <a class="link" href="../index.html#projects">← Projects</a>
 
-      <h1 class="font-libre text-4xl md:text-5xl font-bold mt-5 mb-3">St. Housing Pete Analytics</h1>
+      <h1 class="text-4xl md:text-5xl font-bold mt-5 mb-3">St. Housing Pete Analytics</h1>
       <p class="text-2xl italic opacity-80 mb-8 max-w-3xl">Using parcel-level data the consumer tools don't expose to answer one question: which St. Petersburg house is actually a good buy?</p>
 
       <!-- Metadata -->
@@ -105,7 +105,7 @@
       </div>
 
       <section class="mb-16 md:mb-20 max-w-3xl">
-        <h2 class="font-libre text-3xl font-bold mb-5">The question</h2>
+        <h2 class="text-3xl font-bold mb-5">The question</h2>
         <p class="text-xl mb-5">
           There are many factors to consider when buying a house in Florida: Hurricanes, storm surge, sinkholes, mold issues, termites, insurance costs, and even market conditions. 
           When I decided to buy a house, I found the current platforms for doing an analysis were inadequate, specifically for assessing storm surge risk. Additionally, the flood maps are dated, and FEMA will be redrawing them soon. After a lot of thought, I came up with this criteria for my house: 
@@ -127,7 +127,7 @@
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-libre text-3xl font-bold mb-5 max-w-3xl">The data</h2>
+        <h2 class="text-3xl font-bold mb-5 max-w-3xl">The data</h2>
         <div class="max-w-3xl">
           <p class="text-xl mb-5">Seven sources, joined at the parcel and zip level: county parcel records and sales history (PCPAO / FL DOR), building permits, Zillow &amp; Redfin market metrics, Census ACS demographics, and FEMA flood-claim history.</p>
           <p class="text-xl mb-5">The honest hard part wasn't analysis, it was reconciliation: these sources don't share keys, flood zones aren't a native parcel field (I spatial-joined FEMA FIRM maps to parcel lat/lon), and insurance has to be estimated per property. The figures below come from that joined dataset.</p>
@@ -136,10 +136,10 @@
       </section>
 
       <section class="mb-16 md:mb-20">
-        <h2 class="font-libre text-3xl font-bold mb-8">What the data showed</h2>
+        <h2 class="text-3xl font-bold mb-8">What the data showed</h2>
 
         <!-- Finding 1 -->
-        <h3 class="font-libre text-2xl mb-3 max-w-3xl">Asking price hides the real cost</h3>
+        <h3 class="text-2xl mb-3 max-w-3xl">Asking price hides the real cost</h3>
         <p class="text-xl max-w-3xl">Listings at the same sticker price diverge sharply once you compute <em class="accent">true monthly cost</em> (PITI plus insurance plus HOA/CDD). Insurance dominates: a ~$1,500/yr premium gap offsets a $50k price difference over a ten-year hold, which reorders "comparable" homes completely.</p>
         <figure class="figure">
           <!-- Replace placeholder with: <div class="figure-frame"><iframe src="../assets/charts/true-cost.html" title="Asking price vs true monthly cost"></iframe></div>
@@ -149,7 +149,7 @@
         </figure>
 
         <!-- Finding 2 -->
-        <h3 class="font-libre text-2xl mb-3 mt-14 max-w-3xl">Cosmetic flips, priced like renovations</h3>
+        <h3 class="text-2xl mb-3 mt-14 max-w-3xl">Cosmetic flips, priced like renovations</h3>
         <p class="text-xl max-w-3xl">A <em class="accent">flip score</em> (days between purchase and relist, permit activity in that window, and price delta vs. zip comps) surfaces homes bought and re-listed within months at 2–3× replacement cost, with little real work permitted in between.</p>
         <figure class="figure">
           <div class="figure-frame chart-placeholder"><span class="opacity-60">Chart: relist gap vs. price delta, flips flagged</span></div>
@@ -157,7 +157,7 @@
         </figure>
 
         <!-- Finding 3 -->
-        <h3 class="font-libre text-2xl mb-3 mt-14 max-w-3xl">Flood &amp; insurability quietly remove a big share of inventory</h3>
+        <h3 class="text-2xl mb-3 mt-14 max-w-3xl">Flood &amp; insurability quietly remove a big share of inventory</h3>
         <p class="text-xl max-w-3xl">Applying the hard disqualifiers (FEMA flood zones, hurricane evac zones, roofs over 20 years, Federal Pacific / Zinsco panels, frame construction) eliminates a substantial fraction of listings before any deeper analysis, and the share varies a lot block to block.</p>
         <figure class="figure">
           <div class="figure-frame chart-placeholder"><span class="opacity-60">Map: eligible vs. auto-failed parcels by zone</span></div>
@@ -165,7 +165,7 @@
         </figure>
 
         <!-- Finding 4 -->
-        <h3 class="font-libre text-2xl mb-3 mt-14 max-w-3xl">Where momentum is actually building</h3>
+        <h3 class="text-2xl mb-3 mt-14 max-w-3xl">Where momentum is actually building</h3>
         <p class="text-xl max-w-3xl">A <em class="accent">neighborhood-momentum</em> signal (permit-issuance trend, days-on-market trend, price-cut rate, and ACS income growth) separates blocks that are heating up from those that just look active.</p>
         <figure class="figure">
           <div class="figure-frame chart-placeholder"><span class="opacity-60">Chart: momentum components by sub-neighborhood</span></div>
@@ -174,7 +174,7 @@
       </section>
 
       <section class="mb-16 md:mb-20 max-w-3xl">
-        <h2 class="font-libre text-3xl font-bold mb-5">How I built it</h2>
+        <h2 class="text-3xl font-bold mb-5">How I built it</h2>
         <p class="text-xl mb-6">Everything runs locally, with no cloud. Python scripts ingest each source into <strong>DuckDB</strong>, an in-process analytical database; <strong>dbt</strong> models turn the raw tables into the decision metrics above; a read-only <strong>FastAPI</strong> layer serves them; and a <strong>Next.js + MapLibre</strong> map-first UI puts every parcel on the map. DuckDB in-process means no infrastructure and fast iteration, the right call for a single-user decision tool.</p>
         <ul class="flex flex-wrap gap-2 text-base">
           <li class="border border-faint rounded px-3 py-1">DuckDB</li>
@@ -191,7 +191,7 @@
       </section>
 
       <section class="max-w-3xl">
-        <h2 class="font-libre text-3xl font-bold mb-5">What it told me</h2>
+        <h2 class="text-3xl font-bold mb-5">What it told me</h2>
         <ul class="flex flex-col gap-4 text-xl">
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>The hard part of a data product isn't the model — it's joining messy public sources into something trustworthy. Parcel records, flood maps, and insurance quotes don't share keys, and reconciling them was most of the work.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Encoding the <em class="accent">actual decision</em> — hard disqualifiers, true cost, insurance weighting — mattered more than any single metric. The tool was useful because it scored what I cared about, not a generic "estimate."</span></li>
@@ -200,7 +200,7 @@
       </section>
 
       <section id="data-sources" class="mt-16 md:mt-20 pt-10 border-t border-faint-soft scroll-mt-20">
-        <h2 class="font-libre text-3xl font-bold mb-5 max-w-3xl">Data &amp; metrics</h2>
+        <h2 class="text-3xl font-bold mb-5 max-w-3xl">Data &amp; metrics</h2>
         <p class="text-lg opacity-80 mb-6 max-w-3xl">Seven public sources, joined at the parcel and zip level.</p>
         <div class="overflow-x-auto mb-12">
           <table class="data-table">
@@ -219,7 +219,7 @@
           </table>
         </div>
 
-        <h3 class="font-libre text-2xl mb-5 max-w-3xl">Derived metrics</h3>
+        <h3 class="text-2xl mb-5 max-w-3xl">Derived metrics</h3>
         <dl class="max-w-3xl flex flex-col gap-4 text-lg">
           <div><dt class="term mb-1">true_monthly_cost</dt><dd class="opacity-85">PITI + insurance + HOA/CDD. The primary apples-to-apples cost comparison across listings.</dd></div>
           <div><dt class="term mb-1">flip_score</dt><dd class="opacity-85">Days-to-relist + permit activity in that window + price delta vs. zip comp. Flags cosmetic flips priced at 2–3× replacement cost.</dd></div>
@@ -228,7 +228,7 @@
           <div><dt class="term mb-1">neighborhood_momentum</dt><dd class="opacity-85">Permit-rate trend + days-on-market trend + price-cut rate + ACS income growth.</dd></div>
         </dl>
 
-        <h3 class="font-libre text-2xl mt-12 mb-3 max-w-3xl">The full analysis</h3>
+        <h3 class="text-2xl mt-12 mb-3 max-w-3xl">The full analysis</h3>
         <p class="text-lg opacity-80 mb-5 max-w-3xl">Static exports of the marimo notebooks behind the findings above. Read-only snapshots, but the interactive charts still respond.</p>
         <ul class="flex flex-col gap-3 text-lg max-w-3xl">
           <li><a class="link" href="../notebooks/st-pete/overview.html" target="_blank" rel="noopener">Overview ↗</a></li>
