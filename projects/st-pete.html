@@ -106,14 +106,30 @@
 
       <section class="mb-16 md:mb-20 max-w-3xl">
         <h2 class="font-libre text-3xl font-bold mb-5">The question</h2>
-        <p class="text-xl mb-5">I was buying a house in St. Petersburg, and Zillow and Redfin couldn't answer the questions that actually decide a purchase in Florida: what will this place really cost to own once insurance and flood risk are priced in? Is this "renovated" listing a cosmetic flip? Which neighborhoods are quietly gaining momentum?</p>
-        <p class="text-xl">The data to answer all of that exists in public records. It's just scattered across county parcel files, FEMA flood maps, Census tables, and insurance quotes, and nobody joins it. So I built a parcel-level analytics platform for two zip codes (33710 / 33713) to answer the question for myself.</p>
+        <p class="text-xl mb-5">
+          There are many factors to consider when buying a house in Florida: Hurricanes, storm surge, sinkholes, mold issues, termites, insurance costs, and even market conditions. 
+          When I decided to buy a house, I found the current platforms for doing an analysis were inadequate, specifically for assessing storm surge risk. Additionally, the flood maps are dated, and FEMA will be redrawing them soon. After a lot of thought, I came up with this criteria for my house: 
+          
+          <ol> 
+            <li class="text-xl mb-5">Block construction</li>
+            <li class="text-xl mb-5">Slab foundation</li>
+            <li class="text-xl mb-5">FEMA Zone X (non-flood zone)</li>
+            <li class="text-xl mb-5">In either Evacuation Zone E or Non-Evac</li>
+            <li class="text-xl mb-5">At least 20 feet above sea level, 25-30 is ideal</li>
+            <li class="text-xl mb-5" >Not a flip</li> 
+          </ol>
+
+             
+          <p class="text-xl mb-5"> Using the current tools to house hunt (Zillow, Redfin, Realtor), I found that I couldn't easily filter my search with this criteria. They don't include elevation or evacuation zone, and it takes a lot of manual digging to figure out which houses have been flipped or how they are constructed. This led me to build a thorough analysis if the St. Pete housing market. 
+          
+          In the end, I found my house. I had to trade some of my nice-to-haves for the criteria that decreases the chances of my home being damaged. I decided to go with less square footage, for instance.  </p>
+     
       </section>
 
       <section class="mb-16 md:mb-20">
         <h2 class="font-libre text-3xl font-bold mb-5 max-w-3xl">The data</h2>
         <div class="max-w-3xl">
-          <p class="text-xl mb-5">Eight sources, joined at the parcel and zip level: county parcel records and sales history (PCPAO / FL DOR), building permits, Zillow &amp; Redfin market metrics, Census ACS demographics, FEMA flood-claim history, and a crowdsourced insurance table I assembled by hand. It's the most differentiated layer, because real premiums are the single hardest number to get and the most important.</p>
+          <p class="text-xl mb-5">Seven sources, joined at the parcel and zip level: county parcel records and sales history (PCPAO / FL DOR), building permits, Zillow &amp; Redfin market metrics, Census ACS demographics, and FEMA flood-claim history.</p>
           <p class="text-xl mb-5">The honest hard part wasn't analysis, it was reconciliation: these sources don't share keys, flood zones aren't a native parcel field (I spatial-joined FEMA FIRM maps to parcel lat/lon), and insurance has to be estimated per property. The figures below come from that joined dataset.</p>
           <p class="text-lg"><a class="link" href="#data-sources">See every source and derived metric ↓</a></p>
         </div>
@@ -185,7 +201,7 @@
 
       <section id="data-sources" class="mt-16 md:mt-20 pt-10 border-t border-faint-soft scroll-mt-20">
         <h2 class="font-libre text-3xl font-bold mb-5 max-w-3xl">Data &amp; metrics</h2>
-        <p class="text-lg opacity-80 mb-6 max-w-3xl">Eight public and crowdsourced sources, joined at the parcel and zip level.</p>
+        <p class="text-lg opacity-80 mb-6 max-w-3xl">Seven public sources, joined at the parcel and zip level.</p>
         <div class="overflow-x-auto mb-12">
           <table class="data-table">
             <thead>
@@ -197,7 +213,6 @@
               <tr><td>Permits</td><td>1 row / permit</td><td>StPeteStat · PCPAO</td></tr>
               <tr><td>Market metrics</td><td>zip + month</td><td>Zillow Research · Redfin</td></tr>
               <tr><td>Demographics</td><td>zip + year</td><td>Census ACS</td></tr>
-              <tr><td>Insurance (crowdsourced)</td><td>1 row / submission</td><td>Web form</td></tr>
               <tr><td>Flood claims</td><td>zip + year</td><td>FEMA OpenFEMA</td></tr>
               <tr><td>Listings</td><td>1 row / listing</td><td>Zillow · Redfin</td></tr>
             </tbody>
