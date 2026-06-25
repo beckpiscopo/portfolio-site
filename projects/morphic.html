@@ -154,47 +154,7 @@
     </main>
   </div>
 
-  <script>
-    const root = document.documentElement;
-    root.classList.add('js');
-    // No hero on case-study pages: dock the sidebar (skip the scroll morph).
-    root.style.setProperty('--p', 1);
-    document.body.classList.add('scrolled');
-
-    // Dark mode: auto by hour + manual toggle
-    const hour = new Date().getHours();
-    if (hour >= 19 || hour < 7) root.classList.add('dark');
-    document.getElementById('dark-toggle')
-      .addEventListener('click', () => root.classList.toggle('dark'));
-
-    // Mobile drawer
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebarEl = document.getElementById('sidebar');
-    if (menuToggle) {
-      menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const open = document.body.classList.toggle('drawer-open');
-        menuToggle.setAttribute('aria-expanded', String(open));
-        menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-      });
-    }
-    document.querySelectorAll('.toc a').forEach(a => {
-      a.addEventListener('click', () => {
-        document.body.classList.remove('drawer-open');
-        menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle && menuToggle.setAttribute('aria-label', 'Open menu');
-      });
-    });
-    document.addEventListener('click', (e) => {
-      if (document.body.classList.contains('drawer-open') &&
-          sidebarEl && !sidebarEl.contains(e.target) &&
-          menuToggle && !menuToggle.contains(e.target)) {
-        document.body.classList.remove('drawer-open');
-        menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle && menuToggle.setAttribute('aria-label', 'Open menu');
-      }
-    });
-  </script>
+  <script src="../assets/js/site.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
