@@ -120,14 +120,14 @@
         <h2 class="font-bold mb-5 max-w-3xl">The data</h2>
         <div class="max-w-3xl">
           <p class="mb-5">Seven sources, joined at the parcel and zip level: county parcel records and sales history (PCPAO / FL DOR), building permits, Zillow &amp; Redfin market metrics, Census ACS demographics, and FEMA flood-claim history.</p>
-          <p class="mb-5">The honest hard part wasn't analysis, it was reconciliation: these sources don't share keys, flood zones aren't a native parcel field (I spatial-joined FEMA FIRM maps to parcel lat/lon), and insurance has to be estimated per property. The figures below come from that joined dataset.</p>
+          <p class="mb-5">These sources don't share keys, flood zones aren't a native parcel field (I spatial-joined FEMA FIRM maps to parcel lat/lon), and insurance has to be estimated per property. The figures below come from that joined dataset.</p>
           <p class="text-lg"><a class="link" href="#data-sources">See every source and derived metric ↓</a></p>
         </div>
       </section>
 
       <section class="mb-16 md:mb-20">
         <h2 class="font-bold mb-5 max-w-3xl">What the data showed</h2>
-        <p class="max-w-3xl mb-10">A personal "where should I buy" question kept pointing at one variable — <em class="accent">flood exposure</em> — until it was worth building a real catastrophe model around it. The through-line: the market hasn't finished pricing flood risk, and elevation is the hedge.</p>
+        <p class="max-w-3xl mb-10">I wanted to go deeper on <em class="accent">flood exposure</em> than "is in Flood Zone X?" While digging, I decided to use this as an opportunity to learn how to build a catastrophe model around it. The TLDR: the market hasn't finished pricing flood risk, and elevation is the hedge.</p>
 
         <!-- Finding 1 — the headline -->
         <h3 class="mb-3 max-w-3xl">The market's flood discount is about 3× too small</h3>
@@ -138,7 +138,7 @@
         </figure>
 
         <!-- Finding 2 — the proof -->
-        <h3 class="mb-3 mt-14 max-w-3xl">It's an elevation story — and two independent methods agree</h3>
+        <h3 class="mb-3 mt-14 max-w-3xl">It's an elevation story, and two independent methods agree</h3>
         <p class="max-w-3xl">Read straight off the federal claims data, with no model in the loop: a block group's low-lying ground predicts its 2024 NFIP claims better than its average does (rank correlation ρ ≈ −0.77), and the gradient <em>survives</em> normalizing for who bought insurance — a ~7× swing in claim frequency from coast to ridge among homes that all carried a policy. A from-scratch flood catastrophe model, built from elevation and depth-damage physics, then <em class="accent">reproduces the same result</em> (the dry 33713 ridge contributes ≈ $0 of modeled loss). Two roads, same destination.</p>
         <figure class="figure">
           <div class="figure-frame"><img src="../assets/img/charts/elevation-claims.png?v=20260625" alt="Bar chart: take-up-normalized 2024 flood claims per 100 insured homes by block-group elevation band, falling from 112 below 5 ft to ~15 above 15 ft — a roughly 7× gradient."></div>
@@ -146,7 +146,7 @@
         </figure>
 
         <!-- Finding 3 — the buyer's verdict -->
-        <h3 class="mb-3 mt-14 max-w-3xl">FEMA's "safe" label is trustworthy here — Zone X is real high ground</h3>
+        <h3 class="mb-3 mt-14 max-w-3xl">FEMA's "safe" label is trustworthy here: Zone X is real high ground</h3>
         <p class="max-w-3xl">The skeptic's worry is that the flood maps are stale and the cheap, low-insurance "Zone X" homes are hiding risk. In St. Pete they aren't: sampling ground elevation for all 59,230 Zone-X parcels puts the median at <strong>29 ft</strong>, with only 0.1% below the surge-plausible 8 ft line. The label corresponds to genuine elevation — so a dry, high-ground Zone-X home isn't just safer, it's on the right side of the repricing flood-zone homes haven't taken yet. (Honest caveat: this holds in St. Pete, not county-wide — a 99%-Zone-X pocket in inland Largo still took ~$26M in rain-driven flooding.)</p>
         <figure class="figure">
           <div class="figure-frame"><img src="../assets/img/charts/zone-x-elevation.png?v=20260625" alt="Histogram of ground elevation for all 59,230 St. Pete Zone-X parcels, median 29 ft, with only 0.1% below the 8 ft surge-plausible line."></div>
@@ -174,7 +174,7 @@
       <section class="max-w-3xl">
         <h2 class="font-bold mb-5">What it told me</h2>
         <ul class="flex flex-col gap-4">
-          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>The hard part of a data product isn't the model — it's joining messy public sources into something trustworthy. Parcel records, flood maps, and insurance quotes don't share keys, and reconciling them was most of the work.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>The most challenging part was joining messy public sources into something trustworthy. Parcel records, flood maps, and insurance quotes don't share keys, and reconciling them was most of the work.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Encoding the <em class="accent">actual decision</em> — hard disqualifiers, true cost, insurance weighting — mattered more than any single metric. The tool was useful because it scored what I cared about, not a generic "estimate."</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>DuckDB + dbt running locally is a genuinely great analytics stack: no infrastructure, fast iteration, and real transformation discipline without a warehouse bill.</span></li>
         </ul>
