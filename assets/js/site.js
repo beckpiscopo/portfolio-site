@@ -48,4 +48,42 @@
       closeDrawer();
     }
   });
+
+  // Click-to-zoom lightbox for content images (charts, screenshots).
+  // Images wrapped in a link (e.g. home-page project thumbnails) are skipped
+  // so they keep navigating instead of zooming.
+  const zoomImgs = Array.from(document.querySelectorAll('main img'))
+    .filter((img) => !img.closest('a'));
+  if (zoomImgs.length) {
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-modal', 'true');
+    const lightboxImg = document.createElement('img');
+    lightboxImg.alt = '';
+    lightbox.appendChild(lightboxImg);
+    document.body.appendChild(lightbox);
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden'; // freeze background scroll
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    zoomImgs.forEach((img) => {
+      img.classList.add('zoomable');
+      img.addEventListener('click', () => openLightbox(img.currentSrc || img.src, img.alt));
+    });
+    // Click anywhere on the backdrop closes; clicking the image itself does not.
+    lightbox.addEventListener('click', closeLightbox);
+    lightboxImg.addEventListener('click', (e) => e.stopPropagation());
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+  }
 })();

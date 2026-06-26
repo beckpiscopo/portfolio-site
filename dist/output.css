@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Young+Serif&display=swap');/* src/theme.css *//* CSS Variables for colors and fonts */:root {
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,700;1,400&family=Young+Serif&display=swap');/* src/theme.css *//* CSS Variables for colors and fonts */:root {
   --color-background: var(--color-isabelline);
   --color-text: var(--color-van-dyke);
   --color-link-hover-bg: var(--color-caramel);
@@ -7,7 +7,7 @@
   --color-nav-link: var(--color-van-dyke);
 
   --font-serif-display: 'Young Serif', serif;
-  --font-serif-body: 'Cormorant Garamond', serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
 
   --color-van-dyke: #3E1F14;
   --color-caramel: #BE7C4D;
@@ -40,7 +40,7 @@
   font-family: var(--font-serif-display);
   color: var(--color-text);
 }ol, ul, p {
-  font-family: var(--font-serif-body);
+  font-family: var(--font-body);
 }/* NOTE: heading font-SIZES live in src/input.css inside `@layer base`, NOT here.
    Tailwind's Preflight (@tailwind base) resets h1–h3 to `font-size: inherit`, and
    theme.css is @imported BEFORE @tailwind base — so any font-size set here is
@@ -74,7 +74,7 @@
 }/* Ensure nav links use the CSS variable colors.
    font-family is set here because the global `a` was dropped from the
    serif-body selector; nav links aren't inside a serif parent to inherit it. */nav a {
-  font-family: var(--font-serif-body);
+  font-family: var(--font-body);
   color: var(--color-nav-link);
   text-decoration: none;
 }nav a:hover,
@@ -1320,7 +1320,7 @@ video {
   -o-object-position: center;
      object-position: center; /* per-image focal point set inline where needed */
   display: block;
-}/* ---- GitHub contribution heatmap ---- */.heatmap-wrap { overflow-x: auto; padding-bottom: 6px; }.heatmap { display: inline-block; min-width: -moz-max-content; min-width: max-content; font-family: var(--font-serif-body, serif); }.heatmap-months {
+}/* ---- GitHub contribution heatmap ---- */.heatmap-wrap { overflow-x: auto; padding-bottom: 6px; }.heatmap { display: inline-block; min-width: -moz-max-content; min-width: max-content; font-family: var(--font-body, sans-serif); }.heatmap-months {
   position: relative;
   height: 1.1em;
   margin-left: 30px;
@@ -1367,6 +1367,9 @@ video {
   position: relative;
   display: inline-block;
   max-width: 100%;
+  /* Elegant italic serif for the tagline. Body font is now Hanken, so this is set
+     explicitly to keep the original Cormorant look (loaded on index only). */
+  font-family: 'Cormorant Garamond', serif;
 }.hero-handwrite .hw-text {
   display: inline-block;
   -webkit-clip-path: inset(0 100% 0 0);
@@ -1397,12 +1400,37 @@ video {
   border-radius: 0.5rem;
   overflow: hidden;
   background: color-mix(in srgb, var(--color-caramel) 7%, transparent);
-}.figure-frame iframe { width: 100%; height: 460px; border: 0; display: block; }.figure-frame img { width: 100%; display: block; }.chart-placeholder { display: flex; align-items: center; justify-content: center; min-height: 320px; text-align: center; padding: 1rem; }.figcaption { font-size: 0.85rem; opacity: 0.6; margin-top: 0.6rem; }/* ---- Data appendix: sources table + metric terms ---- */.data-table { width: 100%; border-collapse: collapse; font-family: var(--font-serif-body, serif); }.data-table th, .data-table td {
+}.figure-frame iframe { width: 100%; height: 460px; border: 0; display: block; }.figure-frame img { width: 100%; display: block; }.chart-placeholder { display: flex; align-items: center; justify-content: center; min-height: 320px; text-align: center; padding: 1rem; }.figcaption { font-size: 0.85rem; opacity: 0.6; margin-top: 0.6rem; }/* ---- Data appendix: sources table + metric terms ---- */.data-table { width: 100%; border-collapse: collapse; font-family: var(--font-body, sans-serif); }.data-table th, .data-table td {
   text-align: left;
   padding: 0.55rem 0.75rem;
   border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent);
   vertical-align: top;
-}.data-table th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.55; }.data-table td:first-child { font-weight: 600; }.term { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; color: var(--color-jasper); }.dark .term { color: var(--color-caramel); }.hover\:border-current:hover{
+}.data-table th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.55; }.data-table td:first-child { font-weight: 600; }.term { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; color: var(--color-jasper); }.dark .term { color: var(--color-caramel); }/* ---- Click-to-zoom image lightbox (wired up in assets/js/site.js) ---- *//* Only content images (not linked thumbnails) get the zoom cursor. */.zoomable { cursor: zoom-in; }.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 70; /* above sidebar (z-50/60), toggle (z-60), mobile bar (z-40) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: color-mix(in srgb, var(--color-van-dyke) 90%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  cursor: zoom-out; /* clicking the backdrop closes */
+}.lightbox.open { opacity: 1; pointer-events: auto; }.lightbox img {
+  max-width: 95vw;
+  max-height: 95vh;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55);
+  transform: scale(0.97);
+  transition: transform 0.2s ease;
+  cursor: default; /* clicking the image itself does not close */
+}.lightbox.open img { transform: scale(1); }@media (prefers-reduced-motion: reduce) {
+  .lightbox, .lightbox img { transition: none; }
+}.hover\:border-current:hover{
   border-color: currentColor;
 }.hover\:border-gray-300:hover{
   --tw-border-opacity: 1;

@@ -9,7 +9,7 @@
   --color-nav-link: var(--color-van-dyke);
 
   --font-serif-display: 'Young Serif', serif;
-  --font-serif-body: 'Cormorant Garamond', serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
 
   --color-van-dyke: #3E1F14;
   --color-caramel: #BE7C4D;
@@ -50,7 +50,7 @@ h1, h2, h3 {
 }
 
 ol, ul, p {
-  font-family: var(--font-serif-body);
+  font-family: var(--font-body);
 }
 
 /* NOTE: heading font-SIZES live in src/input.css inside `@layer base`, NOT here.
@@ -114,7 +114,7 @@ body {
    font-family is set here because the global `a` was dropped from the
    serif-body selector; nav links aren't inside a serif parent to inherit it. */
 nav a {
-  font-family: var(--font-serif-body);
+  font-family: var(--font-body);
   color: var(--color-nav-link);
   text-decoration: none;
 }

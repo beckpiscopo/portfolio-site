@@ -55,10 +55,11 @@ Tableau accepts hex directly (Edit Colors → custom). Suggested derivations fro
 | Use | Font | Notes |
 |-----|------|-------|
 | Display / headings (h1–h3) | **Young Serif** | Chunky slab-ish serif. Headings, big numbers, the name lockup. |
-| Body / UI / nav / links | **Cormorant Garamond** | Light, elegant serif. Paragraphs, lists, nav, captions. Weights used: 300/400, italic 300. |
+| Body / UI / nav / lists / tables | **Hanken Grotesk** | Warm humanist sans. Chosen for readability at body sizes. Weights: 400/500/700, italic 400. |
+| Hero tagline only | **Cormorant Garamond** *(italic)* | Elegant italic serif, kept as a single accent on the home hero ("I build…"). Loaded on index only. |
 | Mono (data terms) | `ui-monospace, SFMono-Regular, Menlo` | Inline code-style terms only. |
 
-Both Google Fonts. The site is **all-serif** — there is no sans-serif in the brand. For Tableau, Young Serif likely isn't installed on the Tableau server; fall back to a serif (Georgia) for titles, keep body in a serif too, and reserve the distinctive look for exported/static pieces where you control fonts.
+All Google Fonts. The pairing is a **serif display + humanist sans body** (Young Serif headings over Hanken Grotesk body), with one deliberate serif accent on the hero. For Tableau, neither web font is on the Tableau server; fall back to a sturdy sans (e.g. system default / Arial) for body and a serif (Georgia) for titles, and reserve the exact look for exported/static pieces where you control fonts.
 
 ### Fluid type scale (`clamp(min, preferred, max)`)
 
@@ -88,4 +89,4 @@ Roughly a 1.25 (major-third) modular ratio. Line-heights: headings tight (1.08�
 
 ## One-line summary
 
-Warm earthy four-color palette (terracotta **#BE5A38** for emphasis, caramel **#BE7C4D**, deep brown **#3E1F14**, cream **#F2E9E4**), all-serif type (Young Serif display + Cormorant Garamond body), cream/brown backgrounds instead of white/black, italic-jasper for emphasis over bold.
+Warm earthy four-color palette (terracotta **#BE5A38** for emphasis, caramel **#BE7C4D**, deep brown **#3E1F14**, cream **#F2E9E4**), serif display + sans body (Young Serif headings, Hanken Grotesk body, Cormorant Garamond italic only on the hero), cream/brown backgrounds instead of white/black, italic-jasper for emphasis over bold.
