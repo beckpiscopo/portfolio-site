@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,700;1,400&family=Young+Serif&display=swap" rel="stylesheet">
 </head>
 
-<!-- DRAFT case study — content drafted from the project README for Beck to rewrite.
+<!-- DRAFT case study: content drafted from the project README for Beck to rewrite.
      Verify: role, timeline, repo/live links, and the demo video embed. -->
 <body class="min-h-screen">
   <!-- Sticky light/dark toggle, fixed to the top-right of the viewport -->
@@ -94,8 +94,11 @@
 
       <section class="mb-16 md:mb-20">
         <h2 class="font-bold mb-5">Why it exists</h2>
-        <p class="mb-5">Science-podcast listeners constantly hit claims they can't evaluate. When Michael Levin says "bioelectric patterns control morphogenesis" partway through a three-hour Lex Fridman episode, what actually backs that up, and where would you even start reading? Today every curious listener re-runs the same research from scratch: a massive, invisible duplication of effort across thousands of people.</p>
-        <p>Noeron turns that one-time synthesis into shared infrastructure. It sits alongside a podcast and connects what's being said, as it's said, to the academic literature that supports it, so one person's deep reading becomes reusable for everyone who comes after. Think of it as a research assistant who has already read every paper the guest is referencing.</p>
+        <p class="mb-5">I listen to a lot of podcasts and often wonder whether or not a guest is accurately portraying the scientific literature on a given topic. I also want to read the literature myself for a better understanding.
+         This project gave me the opportunity to see if I could level up my podcast consumption experience. I didn't go as far as being able to identify inaccuracy, but I did build a tool that surfaces the research being referenced in conversation.
+        As the podcast episode plays, Gemini identifies when a guest makes a claim, then validates that claim. To keep it simple for this project, 
+        I chose to focus on one of favorite scientists, Michael Levin, but this could be done for other scientists as well! </p>
+
       </section>
 
       <section class="mb-16 md:mb-20">
@@ -113,9 +116,11 @@
         </ul>
 
         <h3 id="demo" class="mt-12 mb-4 scroll-mt-20">Demo</h3>
-        <!-- Replace this placeholder with the YouTube/Loom embed:
-        <div class="video-embed"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Noeron demo" allowfullscreen></iframe></div> -->
-        <div class="video-embed video-placeholder"><span class="opacity-60">▶ Demo video goes here</span></div>
+        <div class="video-embed">
+          <iframe src="https://www.youtube-nocookie.com/embed/dcer0xzkSHc" title="Noeron demo"
+                  loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+        </div>
       </section>
 
       <section class="mb-16 md:mb-20">
@@ -140,9 +145,9 @@
       <section>
         <h2 class="font-bold mb-5">What I learned</h2>
         <ul class="flex flex-col gap-4">
-          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Infrastructure constraints, not model quality, often decide whether an AI product is viable — context caching is the only reason this one works economically.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Infrastructure constraints, not model quality, often decide whether an AI product is viable: context caching is the only reason this one works economically.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Grounding is a pipeline problem, not a prompt. Reliable citations came from the two-pass structure and provenance tracking, not from asking the model nicely.</span></li>
-          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Framing the product as <em class="accent">infrastructure</em> — one synthesis serving many — clarified nearly every design decision that followed.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Framing the product as <em class="accent">infrastructure</em> (one synthesis serving many) clarified nearly every design decision that followed.</span></li>
         </ul>
       </section>
 
