@@ -75,11 +75,13 @@ discipline is treated as a first-class differentiator, not a footnote.
 
 - **Reuse (exist):** `flood-repricing.png`, `elevation-claims.png`,
   `zone-x-elevation.png`, `pluvial-hidden-homes.png`.
-- **New (one):** a cat-model validation chart for slide 9 — the rung-C
-  modeled-vs-realized NFIP loss scatter by block group (the validation-ladder
-  visual). Added to `st_pete_analytics/scripts/export_portfolio_charts.py`
-  (reusing the notebook-08 query so numbers match), output
-  `assets/img/charts/catmodel-validation.png`.
+- **Slide 9 (cat-model): no new chart** — revised at planning. Reproducing the
+  rung-C scatter means re-running the full cat-model pipeline in the export script
+  (heavy, drift-prone), so slide 9 is instead an **in-slide diagram** of the
+  four-module chain (Exposure→Hazard→Vulnerability→Financial) rendered in
+  HTML/CSS, plus headline stats ($2.6B modeled, validation ladder, 2.14×→1.58×
+  reconciled to NFIP take-up). No asset generation; deck reuses only the four
+  existing PNGs.
 - All charts are rendered on the isabelline background by the existing `save()`
   helper, so they sit cleanly on deck slides.
 
@@ -103,8 +105,8 @@ discipline is treated as a first-class differentiator, not a footnote.
 1. `deck/st-pete/index.html` exists, loads reveal.js via CDN, themed to the
    portfolio palette, and presents the ~15-slide arc above in the three acts,
    with Act 2 titled "Phase II: expanding the analysis to other forms of flooding."
-2. All five charts display (four reused + `catmodel-validation.png` generated and
-   committed); every number on a slide traces to already-shipped analysis.
+2. The four reused chart PNGs display (Findings 1–4); slide 9 is an in-slide
+   diagram (no new chart); every number on a slide traces to already-shipped analysis.
 3. Speaker notes are present on the content slides; `?print-pdf` exports cleanly.
 4. The deck and the case study link to each other.
 5. No new analysis, no backend, no build-step change beyond the CDN include.
