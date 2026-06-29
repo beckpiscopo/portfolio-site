@@ -91,7 +91,7 @@
       </dl>
       <div class="flex flex-wrap gap-5 mb-14 text-lg">
      
-        <a class="link" href="https://github.com/beckpiscopo/st_pete_analytics" target="_blank" rel="noopener">Repo ↗</a>
+        <a class="link" href="https://github.com/beckpiscopo/st-pete-housing-analytics" target="_blank" rel="noopener">Repo ↗</a>
       </div>
 
       <section class="mb-16 md:mb-20 max-w-3xl">
@@ -119,7 +119,7 @@
       <section class="mb-16 md:mb-20">
         <h2 class="font-bold mb-5 max-w-3xl">The data</h2>
         <div class="max-w-3xl">
-          <p class="mb-5">Seven sources, joined at the parcel and zip level: county parcel records and sales history (PCPAO / FL DOR), building permits, Zillow &amp; Redfin market metrics, Census ACS demographics, and FEMA flood-claim history.</p>
+          <p class="mb-5">Ten sources, joined at the parcel, zip, and sewershed level: county parcel records and sales history (PCPAO / FL DOR), building permits, Zillow &amp; Redfin market metrics, Census ACS demographics, FEMA flood-claim history, the city's stormwater &amp; sanitary-sewer networks (St. Pete GeoHub), and USGS 3DEP ground elevation.</p>
           <p class="mb-5">These sources don't share keys, flood zones aren't a native parcel field (I spatial-joined FEMA FIRM maps to parcel lat/lon), and insurance has to be estimated per property. The figures below come from that joined dataset.</p>
           <p class="text-lg"><a class="link" href="#data-sources">See every source and derived metric ↓</a></p>
         </div>
@@ -147,16 +147,24 @@
 
         <!-- Finding 3 — the buyer's verdict -->
         <h3 class="mb-3 mt-14 max-w-3xl">FEMA's "safe" label is trustworthy here: Zone X is real high ground</h3>
-        <p class="max-w-3xl">The skeptic's worry is that the flood maps are stale and the cheap, low-insurance "Zone X" homes are hiding risk. In St. Pete they aren't: sampling ground elevation for all 59,230 Zone-X parcels puts the median at <strong>29 ft</strong>, with only 0.1% below the surge-plausible 8 ft line. The label corresponds to genuine elevation — so a dry, high-ground Zone-X home isn't just safer, it's on the right side of the repricing flood-zone homes haven't taken yet. (Honest caveat: this holds in St. Pete, not county-wide — a 99%-Zone-X pocket in inland Largo still took ~$26M in rain-driven flooding.)</p>
+        <p class="max-w-3xl">The skeptic's worry is that the flood maps are stale and the cheap, low-insurance "Zone X" homes are hiding risk. In St. Pete they aren't: sampling ground elevation for all 59,230 Zone-X parcels puts the median at <strong>29 ft</strong>, with only 0.1% below the surge-plausible 8 ft line. The label corresponds to genuine elevation — so a dry, high-ground Zone-X home isn't just safer, it's on the right side of the repricing flood-zone homes haven't taken yet. (Honest caveat: this holds in St. Pete, not county-wide — a 99%-Zone-X pocket in inland Largo still took ~$26M in rain-driven flooding.) Zone X is trustworthy about <em>surge</em> — but it says nothing about rainfall and drainage, which is its own layer (next).</p>
         <figure class="figure">
           <div class="figure-frame"><img src="../assets/img/charts/zone-x-elevation.png?v=20260625" alt="Histogram of ground elevation for all 59,230 St. Pete Zone-X parcels, median 29 ft, with only 0.1% below the 8 ft surge-plausible line."></div>
           <figcaption class="figcaption">Ground elevation of every St. Pete Zone-X parcel, sampled from the USGS 3DEP DEM. The "minimal-risk" designation lines up with real high ground.</figcaption>
+        </figure>
+
+        <!-- Finding 4 — the deepening: a hazard surge + FEMA both miss -->
+        <h3 class="mb-3 mt-14 max-w-3xl">The hazard the flood map <em>and</em> my own surge model both miss: rainfall</h3>
+        <p class="max-w-3xl">Surge isn't the only way water reaches a house. I ingested St. Pete's actual storm-drain network (~22k inlets, ~4k outfalls) and scored every parcel on <em class="accent">pluvial</em> risk — low ground that's poorly served by drainage, where heavy rain ponds with nowhere to go. It flags <strong>1,130 homes that FEMA calls Zone X <em>and</em> my surge model leaves bone-dry</strong>, yet sit low and under-drained — the inland-Largo caveat above, now mapped citywide. It's the local-infrastructure layer Zillow and even First Street structurally can't see. <em>Honest caveat:</em> a relative screen, not a validated probability — there's no public record of where it actually floods, so this points at suspects, not verdicts.</p>
+        <figure class="figure">
+          <div class="figure-frame"><img src="../assets/img/charts/pluvial-hidden-homes.png?v=20260629" alt="Map of St. Pete parcels with 1,130 homes highlighted that are FEMA Zone X, dry in the surge model, yet top-quartile rain-drainage risk."></div>
+          <figcaption class="figcaption">The 1,130 "hidden" homes: FEMA Zone X, dry in the cat-model, but top-quartile pluvial (rain-drainage) risk. Built from the city's storm-drain network — the layer the flood maps don't encode.</figcaption>
         </figure>
       </section>
 
       <section class="mb-16 md:mb-20 max-w-3xl">
         <h2 class="font-bold mb-5">How I built it</h2>
-        <p class="mb-6">I built this to run locally to save on cloud costs. Python scripts ingest each source into <strong>DuckDB</strong>, an in-process analytical database; <strong>dbt</strong> models turn the raw tables into the decision metrics above; a read-only <strong>FastAPI</strong> layer serves them; and a <strong>Next.js + MapLibre</strong> map-first UI puts every parcel on the map. DuckDB in-process means no infrastructure and fast iteration, the right call for a single-user decision tool.</p>
+        <p class="mb-6">I built this to run locally to save on cloud costs. Python scripts ingest each source into <strong>DuckDB</strong>, an in-process analytical database; <strong>dbt</strong> models turn the raw tables into the decision metrics above; a read-only <strong>FastAPI</strong> layer serves them; and a <strong>Next.js + MapLibre</strong> map-first UI puts every parcel on the map. DuckDB in-process means no infrastructure and fast iteration, the right call for a single-user decision tool. The latest extension ingests the city's stormwater and sanitary-sewer networks (St. Pete GeoHub) and adds two more vulnerability layers — pluvial drainage risk and an I&amp;I sewer-overflow index — beyond the original surge model.</p>
         <ul class="flex flex-wrap gap-2 text-base">
           <li class="border border-faint rounded px-3 py-1">DuckDB</li>
           <li class="border border-faint rounded px-3 py-1">dbt</li>
@@ -177,12 +185,13 @@
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>What started out as pure exploration to answer a question became an opportunity to advance my skill in agentic analytics. Before LLMs, I was a data analyst, so my insights were hard-won and my code was hand-written. I've been building with AI for a few years, but that hasn't crossed over to my analytics work. I wanted to find the space between doing everything myself and having an LLM do everything for me. This project helped me get closer to that goal. </span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>DuckDB + dbt running locally is a genuinely great analytics stack: no infrastructure, fast iteration, and real transformation discipline without a warehouse bill.</span></li>
           <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Marimo notebooks are extremely useful for agentic analytics! Discovering this tool made a big difference in my workflow.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Verify the data before trusting it. This round I found outfall elevations were stored in centimeters (not feet), coverage-tested a national sewer-overflow dataset and discovered it carries zero Florida records, and ran a scientific-code linter over the analysis — each one changed a conclusion or saved a wrong one.</span></li>
         </ul>
       </section>
 
       <section id="data-sources" class="mt-16 md:mt-20 pt-10 border-t border-faint-soft scroll-mt-20">
         <h2 class="font-bold mb-5 max-w-3xl">Data &amp; metrics</h2>
-        <p class="text-lg opacity-80 mb-6 max-w-3xl">Seven public sources, joined at the parcel and zip level.</p>
+        <p class="text-lg opacity-80 mb-6 max-w-3xl">Ten public sources, joined at the parcel, zip, and sewershed level.</p>
         <div class="overflow-x-auto mb-12">
           <table class="data-table">
             <thead>
@@ -196,6 +205,9 @@
               <tr><td>Demographics</td><td>zip + year</td><td>Census ACS</td></tr>
               <tr><td>Flood claims</td><td>zip + year</td><td>FEMA OpenFEMA</td></tr>
               <tr><td>Listings</td><td>1 row / listing</td><td>Zillow · Redfin</td></tr>
+              <tr><td>Stormwater network</td><td>1 row / asset</td><td>St. Pete GeoHub</td></tr>
+              <tr><td>Wastewater network</td><td>1 row / asset</td><td>St. Pete GeoHub</td></tr>
+              <tr><td>Ground elevation</td><td>per parcel</td><td>USGS 3DEP DEM</td></tr>
             </tbody>
           </table>
         </div>
@@ -222,6 +234,9 @@
           <li><a class="link" href="../notebooks/st-pete/07_elevation_claims.html" target="_blank" rel="noopener">07 · Elevation vs. realized 2024 claims ↗</a></li>
           <li><a class="link" href="../notebooks/st-pete/08_catmodel_validation.html" target="_blank" rel="noopener">08 · Flood cat-model validation ↗</a></li>
           <li><a class="link" href="../notebooks/st-pete/09_flood_repricing.html" target="_blank" rel="noopener">09 · Is flood risk priced right? ↗</a></li>
+          <li><a class="link" href="../notebooks/st-pete/10_stormwater_network.html" target="_blank" rel="noopener">10 · Stormwater &amp; sewer network (foundation) ↗</a></li>
+          <li><a class="link" href="../notebooks/st-pete/11_pluvial_risk.html" target="_blank" rel="noopener">11 · Pluvial (rain-drainage) risk ↗</a></li>
+          <li><a class="link" href="../notebooks/st-pete/12_sewer_overflow.html" target="_blank" rel="noopener">12 · Sewer-overflow vulnerability ↗</a></li>
         </ul>
       </section>
 
