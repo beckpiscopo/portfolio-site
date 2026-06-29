@@ -147,8 +147,8 @@
         </figure>
 
         <!-- Finding 3 — the buyer's verdict -->
-        <h3 class="mb-3 mt-14 max-w-3xl">FEMA's "safe" label is trustworthy here: Zone X is real high ground</h3>
-        <p class="max-w-3xl">The skeptic's worry is that the flood maps are stale and the cheap, low-insurance "Zone X" homes are hiding risk. In St. Pete they aren't: sampling ground elevation for all 59,230 Zone-X parcels puts the median at <strong>29 ft</strong>, with only 0.1% below the surge-plausible 8 ft line. The label corresponds to genuine elevation — so a dry, high-ground Zone-X home isn't just safer, it's on the right side of the repricing flood-zone homes haven't taken yet. (Honest caveat: this holds in St. Pete, not county-wide — a 99%-Zone-X pocket in inland Largo still took ~$26M in rain-driven flooding.) Zone X is trustworthy about <em>surge</em> — but it says nothing about rainfall and drainage, which is its own layer (next).</p>
+        <h3 class="mb-3 mt-14 max-w-3xl">FEMA's "safe" label is trustworthy <em>for surge</em>: Zone X is real high ground</h3>
+        <p class="max-w-3xl">The skeptic's worry is that the flood maps are stale and the cheap, low-insurance "Zone X" homes are hiding risk. In St. Pete they aren't: sampling ground elevation for all 59,230 Zone-X parcels puts the median at <strong>29 ft</strong>, with only 0.1% below the surge-plausible 8 ft line. The label corresponds to genuine elevation — so a dry, high-ground Zone-X home isn't just safer, it's on the right side of the repricing flood-zone homes haven't taken yet. (Honest caveat: this holds in St. Pete, not county-wide — a 99%-Zone-X pocket in inland Largo still took ~$26M in rain-driven flooding.) Zone X is trustworthy about <em>surge</em> — but it says nothing about rainfall, drainage, or the sewer network, each its own layer (next).</p>
         <figure class="figure">
           <div class="figure-frame"><img src="../assets/img/charts/zone-x-elevation.png?v=20260625" alt="Histogram of ground elevation for all 59,230 St. Pete Zone-X parcels, median 29 ft, with only 0.1% below the 8 ft surge-plausible line."></div>
           <figcaption class="figcaption">Ground elevation of every St. Pete Zone-X parcel, sampled from the USGS 3DEP DEM. The "minimal-risk" designation lines up with real high ground.</figcaption>
@@ -161,6 +161,12 @@
           <div class="figure-frame"><img src="../assets/img/charts/pluvial-hidden-homes.png?v=20260629" alt="Map of St. Pete parcels with 1,130 homes highlighted that are FEMA Zone X, dry in the surge model, yet top-quartile rain-drainage risk."></div>
           <figcaption class="figcaption">The 1,130 "hidden" homes: FEMA Zone X, dry in the cat-model, but top-quartile pluvial (rain-drainage) risk. Built from the city's storm-drain network — the layer the flood maps don't encode.</figcaption>
         </figure>
+
+        <!-- Finding 5 — a third hidden layer: the sewer network itself -->
+        <h3 class="mb-3 mt-14 max-w-3xl">A third water hazard the map can't see: the sewer itself backing up</h3>
+        <p class="max-w-3xl">Rain ponding on the surface is one failure mode; the sanitary sewer overflowing in wet weather is another. Using the city's sewer-network condition data, I scored all <strong>151 sewersheds</strong> for <em class="accent">inflow &amp; infiltration (I&amp;I)</em> risk: unlined clay pipe, inflow-prone manholes, and deep manholes, the plumbing drivers of wet-weather overflows, independent of topography. It's a genuinely <em>distinct</em> layer, not a restatement of the rain-drainage score: the correlation between the two is essentially zero (ρ ≈ −0.03). The payoff is the overlap. <strong>12 of the 151 sewersheds fall in the worst quartile of both</strong>, the "double-jeopardy" areas where heavy rain ponds on the surface <em>and</em> the sewer is most prone to back up. <em>Honest caveat:</em> a relative percentile screen, not an overflow probability. The condition data has gaps (pipe-lining status is known for only ~22% of the network) and there's no public overflow-event record to validate against (the national EPA dataset carries zero Florida records), so it ranks suspects, not confirmed failures.</p>
+        <!-- Optional figure: export the double-jeopardy scatter or sewershed choropleth from
+             notebooks/st-pete/12_sewer_overflow.html to assets/img/charts/ and add a <figure> here. -->
       </section>
 
       <section class="mb-16 md:mb-20 max-w-3xl">
