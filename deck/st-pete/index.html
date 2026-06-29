@@ -58,7 +58,54 @@
       <aside class="notes">Frame the gap in consumer tools. Insurance is the transmission mechanism for flood risk. The maps are also stale and about to be redrawn.</aside>
     </section>
 
-    <!-- ACT 1 -->
+    <!-- ===================== ACT 1 — THE THESIS ===================== -->
+    <section>
+      <h2>My criteria</h2>
+      <ol>
+        <li>Block construction</li>
+        <li>Slab foundation</li>
+        <li>FEMA Zone X (non-flood zone)</li>
+        <li>Evac Zone E or non-evac</li>
+        <li>≥ 20 ft above sea level (25–30 ideal)</li>
+        <li>Not a flip</li>
+      </ol>
+      <aside class="notes">These are the hard disqualifiers — each one lowers the odds of a damaged, uninsurable, or overpriced home.</aside>
+    </section>
+
+    <section>
+      <h2>The data</h2>
+      <p><strong>Ten</strong> keyless public sources, joined at parcel / zip / sewershed grain:</p>
+      <p>PCPAO parcels &amp; sales · permits · Zillow + Redfin metrics · Census ACS · FEMA NFIP claims · St-Pete stormwater &amp; sewer networks · USGS 3DEP elevation.</p>
+      <p class="lead">Flood zones aren't a native parcel field — I spatial-joined FEMA FIRM maps to parcel lat/lon. Insurance is estimated per property.</p>
+      <aside class="notes">Emphasize the real work: the sources don't share keys, and the most decision-relevant fields had to be derived.</aside>
+    </section>
+
+    <section>
+      <h3>Finding 1 — the market's flood discount is ~3× too small</h3>
+      <img src="../../assets/img/charts/flood-repricing.png" alt="One-time ~$27k market flood discount vs ~$85k realized 2024 NFIP payout per insured home.">
+      <p>Buyers haircut a flood-zone home by ~9% (~<span class="stat">$27k</span>, one-time). One 2024 storm season paid ~<span class="stat">$85k</span> per insured home — <strong>~3× the lifetime discount, in one season.</strong></p>
+      <aside class="notes">Subsidized flood insurance absorbed the cost so it never hit price. Risk Rating 2.0 is now unwinding that onto premiums, which DO capitalize into price.</aside>
+    </section>
+
+    <section>
+      <h3>Finding 2 — it's an elevation story, two methods agree</h3>
+      <img src="../../assets/img/charts/elevation-claims.png" alt="Take-up-normalized 2024 claims per 100 insured homes by elevation band — ~7× gradient coast to ridge.">
+      <p>Model-free: low ground predicts 2024 claims (<span class="stat">ρ ≈ −0.77</span>) and the gradient <strong>survives</strong> normalizing for who bought insurance. A from-scratch cat-model reproduces it independently.</p>
+      <aside class="notes">Two roads, same destination — the model-free claims gradient and the physics-based cat-model agree the dry ridge contributes ≈ $0.</aside>
+    </section>
+
+    <section>
+      <h3>Finding 3 — FEMA Zone X is real high ground here</h3>
+      <img src="../../assets/img/charts/zone-x-elevation.png" alt="Histogram of ground elevation for all St-Pete Zone-X parcels, median 29 ft, 0.1% below 8 ft.">
+      <p>The skeptic's worry is stale maps hiding risk in cheap Zone-X homes. Not here: median Zone-X elevation is <span class="stat">29 ft</span>, only 0.1% below the surge-plausible 8 ft line. <em>(Caveat: holds in St-Pete, not county-wide.)</em></p>
+      <aside class="notes">The "minimal-risk" label corresponds to genuine elevation — so a dry Zone-X home is on the right side of the repricing.</aside>
+    </section>
+
+    <section data-background-color="#3E1F14">
+      <h2 style="color:#F2E9E4">The thesis</h2>
+      <p style="color:#F2E9E4">Elevation is the hedge. Flood-zone homes carry <span style="color:#E0A03C">repricing downside</span> the current discount doesn't reflect — and the physical cost of flood risk dwarfs the price signal attached to it.</p>
+      <aside class="notes">This is the spine of Act 1. Pause here before Phase II.</aside>
+    </section>
 
     <!-- ACT 2 -->
 
