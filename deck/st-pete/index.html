@@ -107,7 +107,58 @@
       <aside class="notes">This is the spine of Act 1. Pause here before Phase II.</aside>
     </section>
 
-    <!-- ACT 2 -->
+    <!-- ===================== ACT 2 — PHASE II ===================== -->
+    <section data-background-color="#3E1F14">
+      <p class="meta" style="color:#BE7C4D">Phase II</p>
+      <h2 style="color:#F2E9E4">Expanding the analysis to other forms of flooding</h2>
+      <p class="lead" style="color:#F2E9E4">"Is this house safe from water?" turned out to mean more than storm surge — so the analysis grew into rainfall and the sewer system.</p>
+      <aside class="notes">The transition: same question, wider lens. Surge, then pluvial (rain), then the sewer network itself.</aside>
+    </section>
+
+    <section>
+      <h3>A from-scratch flood catastrophe model</h3>
+      <div class="pipeline">
+        <div class="mod"><b>Exposure</b><span>what's at risk (RCV, elevation)</span></div>
+        <div class="arrow">→</div>
+        <div class="mod"><b>Hazard</b><span>how deep the water</span></div>
+        <div class="arrow">→</div>
+        <div class="mod"><b>Vulnerability</b><span>% damage at depth</span></div>
+        <div class="arrow">→</div>
+        <div class="mod"><b>Financial</b><span>$ loss, NFIP terms</span></div>
+      </div>
+      <p>A deterministic four-module loss model over all St-Pete single-family parcels — ~<span class="stat">$2.6B</span> modeled 2024 NFIP loss, with an independent validation ladder. Modeled-vs-realized reconciles <strong>2.14× → 1.58×</strong> once you adjust for who actually held a policy.</p>
+      <aside class="notes">The point: not a black box — a real actuarial chain, validated against independent NFIP claims, honest that the residual is model error (planar hazard, FFH).</aside>
+    </section>
+
+    <section>
+      <h3>Finding 4 — the homes the flood map <em>and</em> my surge model both miss</h3>
+      <img src="../../assets/img/charts/pluvial-hidden-homes.png" alt="Map of St-Pete with 1,130 homes highlighted: FEMA Zone X, cat-model-dry, yet top-quartile rain-drainage risk.">
+      <p>Scoring every parcel on <em class="accent">pluvial</em> (rain-drainage) risk flags <span class="stat">1,130</span> homes that FEMA calls Zone X <em>and</em> my surge model leaves dry — yet sit low and under-drained. The local storm-drain layer Zillow and even First Street can't see.</p>
+      <aside class="notes">This deepens Finding 3: Zone X is right about surge, but says nothing about rainfall. Honest: a relative screen, no event ground truth — suspects, not verdicts.</aside>
+    </section>
+
+    <section>
+      <h2>It became a platform</h2>
+      <p>I ingested the city's stormwater &amp; sanitary-sewer networks (St-Pete GeoHub) and built three vulnerability layers beyond surge:</p>
+      <ul>
+        <li><strong>Pluvial</strong> — rain ponding where drainage is under-served</li>
+        <li><strong>Compound</strong> — surge submerges outfalls so rain can't drain</li>
+        <li><strong>Sewer-overflow</strong> — inflow &amp; infiltration (clay pipe, unsealed manholes)</li>
+      </ul>
+      <aside class="notes">Four distinct water hazards, one parcel-level platform. Each is its own analysis with its own honest framing.</aside>
+    </section>
+
+    <section data-background-color="#3E1F14">
+      <h2 style="color:#F2E9E4">Verify before you trust</h2>
+      <ul style="color:#F2E9E4">
+        <li>Caught that outfall elevations were stored in <span style="color:#E0A03C">centimeters</span>, not feet</li>
+        <li>Coverage-tested a national sewer-overflow dataset → <span style="color:#E0A03C">zero Florida records</span></li>
+        <li>Framed every index as <span style="color:#E0A03C">relative, not validated</span>; stated correlations honestly</li>
+        <li>Linted the analysis code with a scientific-code linter</li>
+      </ul>
+      <p class="lead" style="color:#F2E9E4">Each check changed a conclusion or saved a wrong one.</p>
+      <aside class="notes">This is the differentiator for technical reviewers — rigor and intellectual honesty, not just charts.</aside>
+    </section>
 
     <!-- ACT 3 -->
 
