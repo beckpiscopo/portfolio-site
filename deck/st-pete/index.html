@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>St-Pete Property-Risk Analysis · Beck Piscopo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,700;1,400&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <style>
+    :root {
+      --bg: #F2E9E4; --ink: #3E1F14; --jasper: #BE5A38; --caramel: #BE7C4D;
+    }
+    .reveal { font-family: "Hanken Grotesk", system-ui, sans-serif; color: var(--ink); font-size: 30px; }
+    .reveal-viewport { background: var(--bg); }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: "Young Serif", Georgia, serif; color: var(--ink); text-transform: none; font-weight: 400; letter-spacing: -0.01em; }
+    .reveal h1 { font-size: 2.0em; line-height: 1.05; }
+    .reveal h2 { font-size: 1.5em; }
+    .reveal h3 { font-size: 1.15em; }
+    .reveal a { color: var(--jasper); text-underline-offset: 2px; }
+    .reveal strong { color: var(--jasper); }
+    .reveal em.accent { color: var(--jasper); font-style: normal; }
+    .reveal section img { background: var(--bg); border: 0; box-shadow: none; max-height: 60vh; }
+    .reveal .lead { font-style: italic; opacity: .85; }
+    .reveal .meta { font-size: .6em; opacity: .55; text-transform: uppercase; letter-spacing: .08em; }
+    .reveal ul, .reveal ol { width: 100%; }
+    /* cat-model pipeline diagram (slide 9) */
+    .pipeline { display: flex; gap: .5em; align-items: stretch; justify-content: center; margin: .4em 0; }
+    .pipeline .mod { border: 2px solid var(--ink); border-radius: 8px; padding: .5em .7em; flex: 1; }
+    .pipeline .mod b { display: block; font-family: "Young Serif", serif; }
+    .pipeline .mod span { font-size: .62em; opacity: .7; }
+    .pipeline .arrow { align-self: center; color: var(--jasper); font-size: 1.4em; }
+    .stat { color: var(--jasper); font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="reveal"><div class="slides">
+
+    <!-- ===================== ACT 0 — HOOK ===================== -->
+    <section data-auto-animate>
+      <p class="meta">Beck Piscopo · property-risk analytics</p>
+      <h1>Pricing the flood risk<br>the maps miss</h1>
+      <p class="lead">A St-Petersburg, FL property-risk analysis — built because the consumer tools couldn't answer the question.</p>
+      <aside class="notes">One-line hook: the market and the flood maps misprice flood risk; I built the analysis to see it, then it grew into a multi-hazard platform.</aside>
+    </section>
+
+    <section>
+      <h2>The question</h2>
+      <p>Buying a house in Florida, <strong>flood risk is the dominant financial variable</strong> — insurance swings dwarf price differences. But Zillow, Redfin, and Realtor can't filter for what actually matters:</p>
+      <ul>
+        <li>ground elevation &amp; evacuation zone</li>
+        <li>whether it's a cosmetic flip</li>
+        <li>construction type &amp; true all-in monthly cost</li>
+      </ul>
+      <p class="lead">So I built my own analysis of the St-Pete market.</p>
+      <aside class="notes">Frame the gap in consumer tools. Insurance is the transmission mechanism for flood risk. The maps are also stale and about to be redrawn.</aside>
+    </section>
+
+    <!-- ACT 1 -->
+
+    <!-- ACT 2 -->
+
+    <!-- ACT 3 -->
+
+  </div></div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({ hash: true, slideNumber: "c/t", plugins: [ RevealNotes ] });
+  </script>
+</body>
+</html>
