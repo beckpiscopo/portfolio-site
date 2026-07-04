@@ -1,0 +1,194 @@
+<!doctype html>
+<html class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tampa Bay Labor-Market Analysis · Beck Piscopo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <link href="../dist/output.css?v=20260625g" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,700;1,400&family=Young+Serif&display=swap" rel="stylesheet">
+</head>
+
+<body class="min-h-screen">
+  <!-- Sticky light/dark toggle, fixed to the top-right of the viewport -->
+  <button id="dark-toggle" aria-label="Toggle dark mode" class="theme-toggle-fixed">
+    <svg id="theme-toggle-icon" width="24" height="24" viewBox="0 0 28 28" fill="none" stroke="var(--toggle-border, #3E1F14)" stroke-width="2">
+      <circle cx="14" cy="14" r="12" fill="var(--toggle-bg, #F2E9E4)" />
+      <path d="M14 2a12 12 0 0 1 0 24z" fill="var(--toggle-half, #3E1F14)" stroke="none"/>
+    </svg>
+  </button>
+
+  <!-- Mobile sticky top bar (hidden on md+) -->
+  <header id="mobile-bar" class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 h-14 backdrop-blur">
+    <a href="/" class="font-display text-xl font-bold">Beck Piscopo</a>
+    <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="p-2 text-3xl leading-none">&#9776;</button>
+  </header>
+
+  <!-- Sidebar: static rail on md+, slide-out drawer on mobile (links back to home) -->
+  <aside id="sidebar" class="fixed z-50 top-0 left-0 h-screen w-64 px-6 py-8 flex flex-col gap-8
+              -translate-x-full md:translate-x-0 transition-transform duration-300">
+    <div>
+      <a href="/" class="font-display text-2xl font-bold block leading-tight">Beck<br>Piscopo</a>
+    </div>
+    <nav class="toc flex flex-col gap-3 text-lg">
+      <a href="/#about">// About</a>
+      <a href="/#projects">// Projects</a>
+      <a href="/#writing">// Writing</a>
+      <a href="../assets/pdf/v2_light_resume_2025.pdf" target="_blank" rel="noopener">// Resume</a>
+      <a href="/#contact">// Contact</a>
+    </nav>
+    <div class="flex gap-4 mt-auto items-center">
+      <a href="https://github.com/beckpiscopo" target="_blank">
+        <svg class="w-7 h-7" viewBox="0 0 250 250" aria-hidden="true">
+          <path d="M199.79,126.86c0,33.33-21.44,61.55-51.18,71.54-3.72.75-5.08-1.62-5.08-3.62,0-2.5.12-10.61.12-20.72,0-7.12-2.35-11.61-5.08-13.98,16.73-1.87,34.2-8.24,34.2-37.2,0-8.24-2.85-14.98-7.68-20.22.74-1.87,3.35-9.61-.74-19.98,0,0-6.32-2-20.57,7.74-5.95-1.62-12.39-2.5-18.71-2.5-6.32,0-12.61.85-18.71,2.5-14.25-9.74-20.57-7.74-20.57-7.74-4.09,10.36-1.49,18.1-.74,19.98-4.71,5.24-7.68,11.98-7.68,20.22,0,28.96,17.47,35.46,34.08,37.2-2.11,1.87-4.09,5.24-4.71,10.11-4.34,2-15.12,5.24-21.81-6.24,0,0-3.97-7.24-11.53-7.74,0,0-7.31,0-.5,4.62,0,0,4.96,2.25,8.3,10.99,0,0,4.34,13.48,25.16,8.99,0,6.24.12,12.24.12,13.98,0,2-1.36,4.37-5.08,3.62-29.74-9.99-51.18-38.2-51.18-71.54,0-41.7,33.46-75.41,74.85-75.41s74.85,33.71,74.73,75.41Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="https://x.com/beckpiscopo" target="_blank">
+        <svg class="w-7 h-7" viewBox="0 0 250 250" aria-hidden="true">
+          <path d="M186.36,61.72h-11.82l-42.36,45.76-34.22-45.76h-40.23l52.2,69.8-52.53,56.75h11.82l45.99-49.69,37.16,49.69h40.23l-55.14-73.73,48.9-52.82h0ZM156.73,179.57l-81.62-109.13h18.48l81.62,109.13h-18.48Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="https://beckpiscopo.substack.com/" target="_blank">
+        <svg class="w-7 h-7" viewBox="-6 -6 36 36" fill="currentColor" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main content; wider column for charts (analysis layout). Prose stays narrow via .max-w-3xl wrappers. -->
+  <div class="md:ml-64">
+    <main class="max-w-4xl mx-auto px-6 py-16 md:py-24">
+      <a class="link" href="/#projects">← Projects</a>
+
+      <h1 class="font-bold mt-5 mb-3">Tampa Bay Labor-Market Analysis</h1>
+      <p class="lead italic mb-8 max-w-3xl">What the Tampa Bay economy runs on, and why where people work isn't where they live</p>
+
+      <dl class="flex flex-wrap gap-x-10 gap-y-3 mb-5 pb-6 border-b border-faint-soft">
+        <div>
+          <dt class="text-sm uppercase tracking-wide opacity-50">Role</dt>
+          <dd class="text-lg">Solo (data pipeline, analysis, write-up)</dd>
+        </div>
+        <div>
+          <dt class="text-sm uppercase tracking-wide opacity-50">Timeline</dt>
+          <dd class="text-lg">Personal project · 2026</dd>
+        </div>
+        <div>
+          <dt class="text-sm uppercase tracking-wide opacity-50">Stack</dt>
+          <dd class="text-lg">BLS OEWS · Census ACS · DuckDB · dbt · marimo</dd>
+        </div>
+      </dl>
+      <div class="flex flex-wrap gap-5 mb-14 text-lg">
+        <a class="link" href="https://github.com/beckpiscopo/st-pete-housing-analytics" target="_blank" rel="noopener">Repo ↗</a>
+      </div>
+
+      <section class="mb-16 md:mb-20 max-w-3xl">
+        <h2 class="font-bold mb-5">The question</h2>
+        <p class="mb-5">St. Pete keeps getting called an up-and-coming tech hub, and the number I kept hearing was that local tech jobs are growing "3× the national rate." I wanted to know two things: what the Tampa Bay economy is actually built on, and whether that tech-hub story holds up in the wage and employment data. So I pulled the government's own occupation and labor-force numbers and looked.</p>
+      </section>
+
+      <section class="mb-16 md:mb-20">
+        <h2 class="font-bold mb-5 max-w-3xl">The data</h2>
+        <div class="max-w-3xl">
+          <p class="mb-5">Two federal sources. BLS OEWS gives employment and wages for every occupation in the Tampa metro against the national numbers (2025). Census ACS gives labor-force status, education, and earnings down to St. Petersburg city, plus what residents do for work (2023 5-year).</p>
+          <p class="mb-5">The one distinction the whole page rests on: OEWS counts jobs located in the metro (where the work is), and ACS counts people who live here (where the workers are). Those are different populations, so I keep them on separate charts and never subtract one from the other.</p>
+          <p class="text-lg"><a class="link" href="#data-sources">See the sources and notebooks ↓</a></p>
+        </div>
+      </section>
+
+      <section class="mb-16 md:mb-20">
+        <h2 class="font-bold mb-5 max-w-3xl">What the data showed</h2>
+
+        <h3 class="mb-3 max-w-3xl">It isn't a tech town</h3>
+        <p class="max-w-3xl">The metro runs on 1,447,120 jobs. The biggest occupation groups are office and administrative support (185,560), sales (147,430), food service (138,090), business and finance (118,550), and management (113,290). Computer and mathematical work is 50,900 jobs, which puts it 12th of the 22 occupation groups, about the same size as production. It is a real part of the economy. It is not the center of it.</p>
+        <figure class="figure">
+          <div class="figure-frame"><img src="../assets/img/charts/labor-occupation-mix.png" alt="Horizontal bar chart of Tampa metro employment by occupation group; office/admin, sales, and food service lead; computer and mathematical is 12th of 22."></div>
+          <figcaption class="figcaption">Employment by occupation group, Tampa metro (BLS OEWS 2025). Computer and math work is highlighted — mid-pack, not a leader.</figcaption>
+        </figure>
+
+        <h3 class="mb-3 mt-14 max-w-3xl">What it runs on is finance, legal, and service</h3>
+        <p class="max-w-3xl">A location quotient measures how concentrated an occupation is here compared with the country. The metro's highest are legal (1.43×), business and finance (1.21×), and sales (1.18×). Tech comes in at 1.04×, which is national parity, and the BLS-published location quotient says the same 1.04. Local tech pay is $108,860, about 91% of the national tech wage. That is where the "3× the national rate" line runs out: on how concentrated tech is, and on what it pays, tech is an ordinary group here.</p>
+        <figure class="figure">
+          <div class="figure-frame"><img src="../assets/img/charts/labor-specialization-lq.png" alt="Location quotient by occupation group for the Tampa metro; legal 1.43, business and finance 1.21, sales 1.18 lead; computer and math sits at 1.04, near the 1.0 national-average line."></div>
+          <figcaption class="figcaption">Location quotient vs. the U.S. (BLS OEWS 2025). Above 1.0 means more concentrated here than nationally. Tech sits right at the line.</figcaption>
+        </figure>
+
+        <h3 class="mb-3 mt-14 max-w-3xl">The pay runs from about $33k to $118k</h3>
+        <p class="max-w-3xl">Sorted by median wage, the occupation groups run from a median near $33,000 at the low end to about $118,000 at the top, and the spread inside each group is wide — the bar shows the 10th to the 90th percentile. It is a service-and-office economy with a well-paid professional layer on top, and a long tail of lower-wage work under it.</p>
+        <figure class="figure">
+          <div class="figure-frame"><img src="../assets/img/charts/labor-wage-spread.png" alt="Range plot of annual wages by occupation group, 10th to 90th percentile with the median marked, sorted by median from about $33k to $118k."></div>
+          <figcaption class="figcaption">Annual wage by group, 10th–90th percentile with the median marked (BLS OEWS 2025).</figcaption>
+        </figure>
+
+        <h3 class="mb-3 mt-14 max-w-3xl">Where people work isn't where they live</h3>
+        <p class="max-w-3xl">Put the two datasets side by side and a gap opens up. In the metro, 42% of residents work in management, business, science, and arts jobs, but only 37% of the jobs located here are in that category. The metro hosts more service jobs (20%) than its residents fill (17%). St. Petersburg city itself skews higher: 41% of adults hold a bachelor's degree or more, against 34% metro-wide, and the city's median household income is $73,118. The read is a well-credentialed resident base plus commuting across the metro line, not an error in either dataset. It is the kind of thing you only see by holding the residence and workplace numbers next to each other.</p>
+        <figure class="figure">
+          <div class="figure-frame"><img src="../assets/img/charts/labor-residence-vs-workplace.png" alt="Paired horizontal bars comparing residence-based (ACS) and workplace-based (OEWS) occupation shares for the Tampa metro across five broad categories; residents hold more management/professional jobs than the metro hosts."></div>
+          <figcaption class="figcaption">Residence (ACS) vs. workplace (OEWS) occupation mix, Tampa metro. Residents skew more professional than the local job base.</figcaption>
+        </figure>
+      </section>
+
+      <section class="mb-16 md:mb-20 max-w-3xl">
+        <h2 class="font-bold mb-5">How I built it</h2>
+        <p class="mb-6">Every source went through the same pipeline. A Python script pulls it from the BLS or Census API into <strong>DuckDB</strong>; <strong>dbt</strong> models and tests turn the raw tables into the metrics above; a <strong>marimo</strong> notebook reconciles every number against the source; and a short written dossier records where a bug could hide. I ran the same steps on five sources now — the labor work was the fourth and fifth. It's the same repo as my St. Pete property-risk project, a different research thread. Building it once for flood data and running it again on labor data with no change to the method is the part I care about.</p>
+        <ul class="flex flex-wrap gap-2 text-base">
+          <li class="border border-faint rounded px-3 py-1">BLS OEWS</li>
+          <li class="border border-faint rounded px-3 py-1">Census ACS</li>
+          <li class="border border-faint rounded px-3 py-1">DuckDB</li>
+          <li class="border border-faint rounded px-3 py-1">dbt</li>
+          <li class="border border-faint rounded px-3 py-1">Python · pandas</li>
+          <li class="border border-faint rounded px-3 py-1">marimo</li>
+          <li class="border border-faint rounded px-3 py-1">matplotlib</li>
+        </ul>
+      </section>
+
+      <section class="max-w-3xl">
+        <h2 class="font-bold mb-5">What I learned</h2>
+        <ul class="flex flex-col gap-4">
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>OEWS is a point-in-time survey, not a time series. BLS says so directly, and the API only serves the current year. A "growing 3× the national rate" claim can't be sourced from it cleanly, which is worth knowing before you repeat it.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Residence and workplace are different questions. A metro wage and a resident's earnings measure different people, and the gap between them is a real finding once you stop treating them as the same number.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>The pipeline I built for flood risk carried over to labor data with no changes. That was the test of whether it was a method or a one-off.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Checking the booster claim against the actual occupation data was the whole point, and it didn't hold. Tech is a mid-sized, average-paid group here, not a 3× standout.</span></li>
+        </ul>
+      </section>
+
+      <section id="data-sources" class="mt-16 md:mt-20 pt-10 border-t border-faint-soft scroll-mt-20">
+        <h2 class="font-bold mb-5 max-w-3xl">Data &amp; notebooks</h2>
+        <p class="text-lg opacity-80 mb-6 max-w-3xl">Two federal sources, each run through the pipeline above.</p>
+        <div class="overflow-x-auto mb-12">
+          <table class="data-table">
+            <thead>
+              <tr><th>Source</th><th>Grain</th><th>Provider</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Occupation employment &amp; wages</td><td>metro × occupation</td><td>BLS OEWS</td></tr>
+              <tr><td>Labor force, education, earnings</td><td>city / county / metro</td><td>Census ACS 5-year</td></tr>
+              <tr><td>Occupation by residence</td><td>geo × occupation</td><td>Census ACS 5-year</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-4 mb-3 max-w-3xl">The notebooks</h3>
+        <p class="text-lg opacity-80 mb-5 max-w-3xl">Static exports of the marimo notebooks behind the charts. Read-only snapshots; the interactive charts still respond.</p>
+        <ul class="flex flex-col gap-3 text-lg max-w-3xl">
+          <li><a class="link" href="../notebooks/tampa-labor/labor_force_profile.html" target="_blank" rel="noopener">Labor-force portrait — the full dashboard ↗</a></li>
+          <li><a class="link" href="../notebooks/tampa-labor/oews_pipeline.html" target="_blank" rel="noopener">OEWS pipeline reconciliation ↗</a></li>
+          <li><a class="link" href="../notebooks/tampa-labor/acs_labor_pipeline.html" target="_blank" rel="noopener">ACS pipeline reconciliation ↗</a></li>
+        </ul>
+      </section>
+
+      <footer class="mt-16 pt-8 border-t border-faint-soft max-w-3xl">
+        <a class="link text-lg" href="/#projects">← Back to all projects</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="../assets/js/site.js?v=20260625g"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
