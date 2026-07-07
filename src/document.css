@@ -372,9 +372,21 @@ body, .meta-top, .plate { transition: background-color .35s ease, color .35s eas
 .pageno { color: var(--accent); margin-left: 1.4rem; }
 
 /* ---------- scroll reveal ---------- */
-.reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.visible { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+html.reveal-init .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+html.reveal-init .reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html.reveal-init .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* ---------- thumb placeholder (missing figure) ---------- */
+.plate .thumb-placeholder {
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 23px, var(--hairline-soft) 24px),
+    repeating-linear-gradient(90deg, transparent, transparent 23px, var(--hairline-soft) 24px),
+    color-mix(in srgb, var(--color-caramel) 8%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-van-dyke) 40%, transparent);
+}
 
 /* ---------- atmospheric abstract plate ---------- */
 #abstract {
