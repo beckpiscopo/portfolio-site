@@ -35,4 +35,5 @@ Thumbs.db
 
 # macOS or Linux specific
 *.sublime-workspace
-*.sublime-project.superpowers/
+*.sublime-project
+.superpowers/
