@@ -30,11 +30,7 @@ Palette (extends existing DESIGN.md):
 - Van Dyke `#3E1F14` — ink (light mode) / background (dark mode)
 - Isabelline cream `#F2E9E4` — background (light) / ink (dark)
 - Caramel `#BE7C4D` — warm structural tint: h2 underline rule, tints; also the dark-mode accent variant for jasper-family inks
-- **Accent ink — OPEN DECISION.** Jasper `#BE5A38` is "too Anthropic." Candidates auditioned (each with a light-mode and dark-mode variant):
-  - Drafting Ink `#3A5BA5` / `#93A9E0`
-  - Petrol `#2E6A66` / `#82B8B1`
-  - Moss `#5F6B38` / `#ABB57E`
-  - (baseline for comparison: Jasper `#BE5A38` / `#BE7C4D`)
+- **Accent ink: Jasper `#BE5A38` (light) / `#BE7C4D` (dark) — retained for now.** Beck flagged it as close to Anthropic's clay and auditioned Drafting Ink `#3A5BA5`/`#93A9E0`, Petrol `#2E6A66`/`#82B8B1`, and Moss `#5F6B38`/`#ABB57E`, but decided to keep Jasper for this release. The `--accent-l/--accent-d` variable system must be implemented regardless so a future swap is a two-line change.
 - Deep plate browns (theme-invariant dark surfaces): Abstract plate `#24110A` (deepens to `#1B0C05` in dark mode), footer `#3E1F14` (deepens to `#1C0D06` in dark mode)
 - Hairlines: current-ink at low opacity — `.28` standard, `.16` soft (cream-based equivalents on dark surfaces)
 
@@ -82,7 +78,7 @@ Theme-invariant dark section (`#24110A`), styled after the "Market Infrastructur
 
 - **Rib band**: fine vertical hairlines, 9px apart, in a fixed 150px band across the top, fading downward, with a soft hairline base. Brightness varies smoothly along the width (layered sines — some ribs catch more light). Static, no animation.
 - **Warm wash**: faint caramel radial gradient (CSS, `~.10` alpha) mid-plate.
-- **Heavy film grain**: generated 240px noise tile (alpha ~46/255, may go slightly higher — user said current is "maybe a little too subtle"), `mix-blend-mode: overlay`, opacity .9.
+- **Heavy film grain**: generated 240px noise tile, alpha ~58/255, `mix-blend-mode: overlay`, opacity .9 (bumped from 46 after Beck asked for more; final value confirmed in mockup v16).
 - **Content starts below the band** (`padding-top: 13.5rem`).
 - Content: big serif thesis (`…problems that *actually need solutions*…`) left; right column: intro line + the three "built because I needed it to exist" origin stories as an `i. / ii. / iii.` hairline-ruled list with accent links.
 - Implementation: scoped CSS variable flip inside `#abstract` (ink→cream, accent→dark variant) so all child styles adapt automatically.
