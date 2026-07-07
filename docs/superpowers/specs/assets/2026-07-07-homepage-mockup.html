@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homepage v16 — final (jasper, heavier grain)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:ital,wght@0,300..700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vandyke: #3E1F14;
+    --caramel: #BE7C4D;
+    --cream: #F2E9E4;
+    --accent-l: #BE5A38;  --accent-rgb-l: 190,90,56;
+    --accent-d: #BE7C4D;  --accent-rgb-d: 190,124,77;
+    --accent: var(--accent-l);
+    --accent-rgb: var(--accent-rgb-l);
+    --jasper: var(--accent);   /* legacy alias — emphasis routes through accent */
+    --hairline: rgba(62, 31, 20, .28);
+    --hairline-soft: rgba(62, 31, 20, .16);
+    --display-font: "Young Serif", serif;
+    --display-weight: 400;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream); color: var(--vandyke);
+    font-family: "Hanken Grotesk", sans-serif;
+  }
+  .mono {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+    color: color-mix(in srgb, var(--vandyke) 68%, transparent);
+  }
+  a { color: inherit; }
+
+  /* ================= HERO SHEET ================= */
+  .sheet { min-height: calc(100vh - 3.4rem); display: flex; flex-direction: column; }
+
+  .meta-top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 2.5rem;
+    border-bottom: 1px solid var(--hairline);
+    position: sticky; top: 0; background: var(--cream); z-index: 20;
+  }
+  .meta-top .nav { display: flex; gap: 1.6rem; }
+  .meta-top .nav a { text-decoration: none; transition: color .15s; }
+  .meta-top .nav a:hover { color: var(--jasper); }
+  .meta-top .lockup {
+    font-family: var(--display-font); font-weight: var(--display-weight);
+    font-size: 1.05rem; color: var(--vandyke);
+    letter-spacing: 0; text-transform: none;
+    text-decoration: none;
+  }
+
+  .main { flex: 1; display: grid; grid-template-columns: 1.05fr 1fr; min-height: 0; }
+  @media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
+
+  .headline-cell {
+    padding: 4.5rem 3rem 3rem 2.5rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  h1 {
+    font-family: var(--display-font); font-weight: var(--display-weight);
+    font-size: clamp(2.2rem, 3.6vw, 3.4rem);
+    line-height: 1.14; letter-spacing: -0.012em;
+    text-wrap: balance; max-width: 15em;
+  }
+  h1 .em { font-style: italic; color: var(--jasper); }
+  .subline {
+    font-family: var(--display-font); font-style: italic; font-weight: 380;
+    font-size: 1.06rem; line-height: 1.6;
+    color: color-mix(in srgb, var(--vandyke) 62%, transparent);
+    margin-top: 1.6rem; max-width: 30em;
+  }
+  .cta {
+    margin-top: 2.4rem;
+    display: inline-flex; align-items: center; gap: .6rem;
+    align-self: flex-start;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--vandyke); text-decoration: none;
+    border: 1px solid var(--hairline);
+    padding: .8rem 1.2rem;
+    transition: background .18s, color .18s;
+  }
+  .cta:hover { background: var(--vandyke); color: var(--cream); }
+
+  .figure-cell {
+    border-left: 1px solid var(--hairline);
+    display: flex; flex-direction: column; min-height: 460px;
+  }
+  @media (max-width: 900px) { .figure-cell { border-left: none; border-top: 1px solid var(--hairline); } }
+  .figure-canvas-wrap { flex: 1; position: relative; min-height: 0; cursor: crosshair; }
+  .figure-canvas-wrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .figure-caption {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 2rem;
+    padding: .9rem 1.5rem;
+    border-top: 1px solid var(--hairline-soft);
+  }
+  .figure-caption .legend { white-space: nowrap; text-align: right; }
+  .figure-caption .legend .tri { color: var(--jasper); }
+
+  /* ================= SECTION SCAFFOLD ================= */
+  section { border-top: 1px solid var(--hairline-soft); }
+  .sec-body { padding: 4.5rem 2.5rem 5rem; max-width: 1280px; margin: 0 auto; }
+  .eyebrow-label { display: block; margin-bottom: 1rem; color: var(--jasper); }
+  h2 {
+    font-family: var(--display-font); font-weight: var(--display-weight);
+    font-size: 2.1rem; margin-bottom: 2.4rem;
+  }
+  h2::after {
+    content: ""; display: block; width: 2.5rem; height: 2px;
+    background: var(--caramel); margin-top: .9rem;
+  }
+
+  /* ================= ABSTRACT ================= */
+  .abstract { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  @media (max-width: 900px) { .abstract { grid-template-columns: 1fr; } }
+  .abstract .lead {
+    font-family: var(--display-font); font-weight: var(--display-weight);
+    font-size: 1.45rem; line-height: 1.5;
+  }
+  .abstract .lead .em { font-style: italic; color: var(--jasper); }
+  .abstract .detail p { font-size: 1.02rem; line-height: 1.7; color: color-mix(in srgb, var(--vandyke) 85%, transparent); }
+  .origins { margin-top: 1.8rem; border-top: 1px solid var(--hairline-soft); }
+  .origins li {
+    list-style: none; display: flex; gap: 1.2rem;
+    padding: 1rem 0; border-bottom: 1px solid var(--hairline-soft);
+    font-size: .98rem; line-height: 1.55;
+    color: color-mix(in srgb, var(--vandyke) 85%, transparent);
+  }
+  .origins li .no { font-family: "IBM Plex Mono", monospace; font-size: .7rem; padding-top: .3rem; color: var(--jasper); white-space: nowrap; }
+  .origins a { color: var(--jasper); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ================= PLATES ================= */
+  .plates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  @media (max-width: 900px) { .plates-grid { grid-template-columns: 1fr; } }
+  .plate {
+    border: 1px solid var(--hairline);
+    display: flex; flex-direction: column;
+    background: color-mix(in srgb, var(--cream) 60%, white 8%);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .plate:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(62,31,20,.10); }
+  .plate.featured { grid-column: 1 / -1; flex-direction: row; }
+  @media (max-width: 900px) { .plate.featured { flex-direction: column; } }
+  .plate .thumb {
+    position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--hairline-soft);
+    background: color-mix(in srgb, var(--caramel) 8%, transparent);
+  }
+  .plate.featured .thumb { flex: 1.15; border-bottom: none; border-right: 1px solid var(--hairline-soft); min-height: 340px; }
+  @media (max-width: 900px) { .plate.featured .thumb { border-right: none; border-bottom: 1px solid var(--hairline-soft); } }
+  .plate:not(.featured) .thumb { height: 220px; }
+  .plate .thumb img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: top center;
+    filter: sepia(.08) saturate(.95);
+  }
+  .plate .body { padding: 1.5rem 1.6rem 1.7rem; flex: 1; display: flex; flex-direction: column; }
+  .plate .fig-no { display: block; margin-bottom: .9rem; }
+  .plate h3 { font-family: var(--display-font); font-weight: var(--display-weight); font-size: 1.35rem; margin-bottom: .6rem; }
+  .plate p { font-size: .97rem; line-height: 1.6; color: color-mix(in srgb, var(--vandyke) 82%, transparent); }
+  .plate .stack { margin-top: auto; padding-top: 1.2rem; }
+  .plate .go {
+    margin-top: .9rem; text-decoration: none;
+    font-family: "IBM Plex Mono", monospace; font-size: .7rem;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--jasper);
+  }
+  .plate .go:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ================= OBSERVATION LOG ================= */
+  .obs-frame { border: 1px solid var(--hairline); }
+  .obs-canvas-wrap { padding: 2rem 2rem 1rem; overflow-x: auto; }
+  #contrib { display: block; margin: 0 auto; }
+  .obs-caption {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: .9rem 1.5rem; border-top: 1px solid var(--hairline-soft);
+  }
+  .obs-caption a { color: var(--jasper); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ================= REFERENCES ================= */
+  .refs { max-width: 900px; }
+  .refs li {
+    list-style: none; display: flex; gap: 1.4rem;
+    padding: 1.4rem 0; border-bottom: 1px solid var(--hairline-soft);
+  }
+  .refs li:first-child { border-top: 1px solid var(--hairline-soft); }
+  .refs .no { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--jasper); padding-top: .35rem; white-space: nowrap; }
+  .refs .title {
+    font-family: var(--display-font); font-weight: var(--display-weight);
+    font-size: 1.2rem; text-decoration: none;
+  }
+  .refs .title:hover { color: var(--jasper); }
+  .refs .sub { font-style: italic; font-size: .98rem; color: color-mix(in srgb, var(--vandyke) 62%, transparent); margin-top: .25rem; }
+  .refs .year { margin-left: auto; font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: color-mix(in srgb, var(--vandyke) 55%, transparent); padding-top: .35rem; }
+
+  /* ================= FOOTER / FINAL PLATE ================= */
+  .footer {
+    background: #3E1F14; color: #F2E9E4;
+    border-top: 1px solid var(--hairline);
+    display: flex; flex-direction: column;
+    min-height: 88vh;
+  }
+  .footer .mono { color: rgba(242,233,228,.62); }
+  .footer-hairline { border-color: rgba(242,233,228,.22); }
+  .footer-main {
+    flex: 1; display: grid; grid-template-columns: 1.05fr 1fr;
+    max-width: 1280px; width: 100%; margin: 0 auto;
+  }
+  @media (max-width: 900px) { .footer-main { grid-template-columns: 1fr; } }
+  .footer-cta {
+    padding: 5.5rem 3rem 4rem 2.5rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .footer-cta .eyebrow-label { color: #BE7C4D; }
+  .footer-cta .big {
+    font-family: var(--display-font); font-weight: var(--display-weight);
+    font-size: clamp(2rem, 3.4vw, 3.1rem); line-height: 1.22;
+    max-width: 14em; text-wrap: balance;
+  }
+  .footer-cta .big .em { font-style: italic; color: #BE7C4D; }
+  .footer-cta .cta {
+    color: #F2E9E4; border-color: rgba(242,233,228,.35);
+  }
+  .footer-cta .cta:hover { background: #F2E9E4; color: #3E1F14; }
+  .footer-channels { display: flex; gap: 1.8rem; margin-top: 2.6rem; flex-wrap: wrap; }
+  .footer-channels a { text-decoration: none; transition: color .15s; }
+  .footer-channels a:hover { color: #BE7C4D; }
+  .footer-fig {
+    position: relative; min-height: 420px;
+    border-left: 1px solid rgba(242,233,228,.18);
+    display: flex; flex-direction: column;
+  }
+  @media (max-width: 900px) { .footer-fig { border-left: none; border-top: 1px solid rgba(242,233,228,.18); } }
+  .footer-fig .orbit-wrap { flex: 1; position: relative; min-height: 0; }
+  .footer-fig canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .footer-fig .figure-caption { border-top: 1px solid rgba(242,233,228,.16); }
+  .colophon {
+    display: grid; grid-template-columns: 1fr 2fr 1fr;
+    border-top: 1px solid rgba(242,233,228,.22);
+  }
+  .colophon > div { padding: 1.1rem 2.5rem; }
+  .colophon > div + div { border-left: 1px solid rgba(242,233,228,.14); }
+  .colophon .k { display: block; margin-bottom: .2rem; opacity: .5; }
+  .colophon .v { color: #F2E9E4; }
+  .colophon > div:last-child { text-align: right; }
+
+  /* ---------- night observation theme ---------- */
+  html { background: var(--cream); }
+  html[data-theme="dark"] {
+    --vandyke: #F2E9E4;          /* ink swap */
+    --cream: #33180D;            /* bg swap (van-dyke-adjacent, slightly deep) */
+    --accent: var(--accent-d);   /* light variant of accent takes over on dark */
+    --accent-rgb: var(--accent-rgb-d);
+    --hairline: rgba(242, 233, 228, .3);
+    --hairline-soft: rgba(242, 233, 228, .16);
+  }
+  html[data-theme="dark"] .plate { background: rgba(242,233,228,.035); }
+  html[data-theme="dark"] .plate:hover { box-shadow: 0 14px 34px rgba(0,0,0,.35); }
+  html[data-theme="dark"] .footer { background: #1C0D06; }
+  html[data-theme="dark"] .mono { color: rgba(242,233,228,.6); }
+  html[data-theme="dark"] .footer .mono { color: rgba(242,233,228,.62); }
+  body, .meta-top, .plate { transition: background-color .35s ease, color .35s ease, border-color .35s ease; }
+
+  .theme-toggle {
+    background: none; border: 1px solid var(--hairline-soft);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--vandyke); cursor: pointer;
+    padding: .35rem .6rem; margin-left: 1.4rem;
+    transition: border-color .15s, color .15s;
+  }
+  .theme-toggle:hover { border-color: var(--jasper); color: var(--jasper); }
+
+  .pageno { color: var(--jasper); margin-left: 1.4rem; }
+
+  /* ---------- scroll reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  /* ---------- atmospheric abstract plate ---------- */
+  #abstract {
+    --vandyke: #F2E9E4;                      /* scoped ink flip: always night in here */
+    --accent: var(--accent-d);
+    --accent-rgb: var(--accent-rgb-d);
+    --hairline: rgba(242, 233, 228, .3);
+    --hairline-soft: rgba(242, 233, 228, .18);
+    background: #24110A;
+    color: #F2E9E4;
+    position: relative;
+    overflow: hidden;
+  }
+  #abstract .sec-body { position: relative; z-index: 2; padding-top: 13.5rem; }
+  #abstract {
+    background-image: radial-gradient(ellipse 90% 70% at 55% 45%, rgba(190,124,77,.10), transparent 70%);
+  }
+  #abstract .atmo, #abstract .grain {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  #abstract .atmo { z-index: 0; }
+  #abstract .grain { z-index: 1; opacity: .9; mix-blend-mode: overlay; }
+  html[data-theme="dark"] #abstract { background: #1B0C05; }
+
+  /* ---------- accent switcher ---------- */
+  .switcher {
+    position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 50;
+    background: color-mix(in srgb, var(--cream) 92%, white);
+    border: 1px solid var(--hairline);
+    padding: .9rem 1rem; width: 230px; font-size: .85rem;
+  }
+  .switcher .label { margin-bottom: .6rem; display: block; }
+  .switcher button {
+    display: block; width: 100%; text-align: left;
+    background: transparent; border: 1px solid var(--hairline-soft);
+    color: var(--vandyke); padding: .5rem .7rem; margin-bottom: .45rem; cursor: pointer;
+    font-family: "Hanken Grotesk", sans-serif; font-size: .88rem;
+    transition: border-color .15s, background .15s;
+  }
+  .switcher button:hover { border-color: var(--accent); }
+  .switcher button.active { background: color-mix(in srgb, var(--caramel) 18%, transparent); border-color: var(--accent); }
+  .switcher button:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+  <div class="meta-top">
+    <a class="lockup" href="#">Beck Piscopo</a>
+    <span class="mono">St. Petersburg, FL</span>
+    <span class="nav mono">
+      <a href="#abstract">About</a>
+      <a href="#work">Work</a>
+      <a href="#writing">Writing</a>
+      <a href="#">Resume</a>
+      <a href="#contact">Contact</a>
+      <span class="pageno" id="pageno">01 / 05</span>
+    </span>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle night mode">◐ Night</button>
+  </div>
+<div class="sheet">
+
+  <div class="main">
+    <div class="headline-cell">
+      <h1>I build <span class="em">research intelligence systems</span> — instruments for discovering what matters.</h1>
+      <p class="subline">Scattered information becomes connected context. Connected context becomes judgment.</p>
+      <a class="cta" href="#work">View Field Notes <span>→</span></a>
+    </div>
+
+    <div class="figure-cell">
+      <div class="figure-canvas-wrap"><canvas id="net" aria-hidden="true"></canvas></div>
+      <div class="figure-caption">
+        <span class="mono">Fig. 1 — Structure emerges through relation. Marker tracks densest structure.</span>
+        <span class="mono legend"><span class="tri">▲</span>&nbsp;What matters<br>cursor — gather · click — add observation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ABSTRACT ============ -->
+<section id="abstract" class="reveal" data-sec="01">
+  <canvas class="atmo" id="atmo" aria-hidden="true"></canvas>
+  <div class="grain" id="grain" aria-hidden="true"></div>
+  <div class="sec-body">
+    <span class="eyebrow-label mono">01 — Curious, yet practical</span>
+    <h2>Abstract</h2>
+    <div class="abstract">
+      <p class="lead">I find great satisfaction in employing my skills to solve problems that <span class="em">actually need solutions</span> — and in communicating complex ideas in the other person's language.</p>
+      <div class="detail">
+        <p>My portfolio consists of projects that I created because I needed them to exist:</p>
+        <ul class="origins">
+          <li><span class="no">i.</span><span>I built <a href="#">Noeron</a> because I wanted to remove the friction between consuming scientific podcasts and validating the claims being made.</span></li>
+          <li><span class="no">ii.</span><span>While shopping for a new house, I found the existing platforms didn't provide the data I needed, so I conducted my own <a href="#">St. Pete property-risk analysis</a>.</span></li>
+          <li><span class="no">iii.</span><span>I ran the same open-data pipeline on the region's jobs numbers to see what the economy is built on — a <a href="#">Tampa Bay labor-market analysis</a>.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLATES / SELECTED WORK ============ -->
+<section id="work" class="reveal" data-sec="02">
+  <div class="sec-body">
+    <span class="eyebrow-label mono">02 — Plates I–V</span>
+    <h2>Selected Work</h2>
+    <div class="plates-grid">
+
+      <div class="plate featured reveal">
+        <div class="thumb"><img src="https://beckpiscopo.xyz/assets/img/projects/st-pete.png" alt=""></div>
+        <div class="body">
+          <span class="mono fig-no">Plate I · Fig. 2 — Parcel-level catastrophe model</span>
+          <h3>St. Pete Property-Risk Analysis</h3>
+          <p>A parcel-level property-risk analysis of St. Petersburg, FL — a from-scratch flood catastrophe model plus surge, rainfall, and sewer-overflow vulnerability layers, built on county assessor, Census, FEMA, and city infrastructure data. Sees what Zillow and Redfin can't.</p>
+          <span class="stack mono">DuckDB · dbt · FastAPI · MapLibre</span>
+          <a class="go" href="#">View case study →</a>
+        </div>
+      </div>
+
+      <div class="plate reveal">
+        <div class="thumb"><img src="https://beckpiscopo.xyz/assets/img/projects/noeron.png" alt=""></div>
+        <div class="body">
+          <span class="mono fig-no">Plate II · Fig. 3 — Knowledge layer for podcasts</span>
+          <h3>Noeron</h3>
+          <p>Detects scientific claims made in a podcast episode, then validates those claims against the academic literature.</p>
+          <span class="stack mono">Gemini 3 · Python · Next.js · Supabase</span>
+          <a class="go" href="#">View case study →</a>
+        </div>
+      </div>
+
+      <div class="plate reveal">
+        <div class="thumb"><img src="https://beckpiscopo.xyz/assets/img/projects/tampa-labor.png" alt=""></div>
+        <div class="body">
+          <span class="mono fig-no">Plate III · Fig. 4 — What the metro runs on</span>
+          <h3>Tampa Bay Labor-Market Analysis</h3>
+          <p>What the Tampa Bay economy actually runs on, from BLS and Census data — and why where people work isn't where they live.</p>
+          <span class="stack mono">BLS OEWS · Census ACS · DuckDB · marimo</span>
+          <a class="go" href="#">View case study →</a>
+        </div>
+      </div>
+
+      <div class="plate reveal">
+        <div class="thumb"><img src="https://beckpiscopo.xyz/assets/img/projects/morphic.png" alt=""></div>
+        <div class="body">
+          <span class="mono fig-no">Plate IV · Fig. 5 — Cross-domain research engine</span>
+          <h3>Morphic</h3>
+          <p>Extracts structural patterns from a 150+ paper corpus and routes them to autonomous domain-specialist agents that synthesize insights no single field could reach.</p>
+          <span class="stack mono">Multi-agent · Pattern extraction</span>
+          <a class="go" href="#">View case study →</a>
+        </div>
+      </div>
+
+      <div class="plate reveal">
+        <div class="thumb"><img src="https://beckpiscopo.xyz/assets/img/projects/critical-minerals.png" alt=""></div>
+        <div class="body">
+          <span class="mono fig-no">Plate V · Fig. 6 — Geopolitical supply-chain risk</span>
+          <h3>Critical Minerals Intelligence</h3>
+          <p>A geopolitical analysis platform with interactive mapping, automated news monitoring, and HHI-based supply-chain risk scoring.</p>
+          <span class="stack mono">Mapping · News monitoring · HHI</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ OBSERVATION LOG ============ -->
+<section id="activity" class="reveal" data-sec="03">
+  <div class="sec-body">
+    <span class="eyebrow-label mono">03 — Jan – Jun 2026</span>
+    <h2>Observation Log</h2>
+    <div class="obs-frame">
+      <div class="obs-canvas-wrap"><canvas id="contrib" width="980" height="180" aria-label="GitHub contributions"></canvas></div>
+      <div class="obs-caption">
+        <span class="mono">Fig. 7 — 1,180 contributions in the last 6 months.</span>
+        <span class="mono"><a href="#">View on GitHub ↗</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REFERENCES ============ -->
+<section id="writing" class="reveal" data-sec="04">
+  <div class="sec-body">
+    <span class="eyebrow-label mono">04 — Selected writing</span>
+    <h2>References</h2>
+    <ul class="refs">
+      <li>
+        <span class="no">[1]</span>
+        <span>
+          <a class="title" href="#">The Case for Quantum Bioelectricity</a>
+          <div class="sub">How Decentralized Science Can Propel Emerging Fields</div>
+        </span>
+        <span class="year">2026</span>
+      </li>
+      <li>
+        <span class="no">[2]</span>
+        <span>
+          <a class="title" href="#">The DeSci Solution</a>
+          <div class="sub">Moving Beyond the Limitations of Traditional Science</div>
+        </span>
+        <span class="year">2026</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FOOTER / FINAL PLATE ============ -->
+<footer class="footer reveal" id="contact" data-sec="05">
+  <div class="footer-main">
+    <div class="footer-cta">
+      <span class="eyebrow-label mono">05 — Correspondence</span>
+      <p class="big">If you'd like to explore how I can help <span class="em">your team</span>, let's connect.</p>
+      <a class="cta" href="mailto:beckpiscopo@gmail.com" style="margin-top:2.6rem">Start a conversation <span>→</span></a>
+      <div class="footer-channels mono">
+        <a href="#">GitHub ↗</a>
+        <a href="#">X / Twitter ↗</a>
+        <a href="#">Substack ↗</a>
+      </div>
+    </div>
+    <div class="footer-fig">
+      <div class="orbit-wrap"><canvas id="orbit" aria-hidden="true"></canvas></div>
+      <div class="figure-caption">
+        <span class="mono">Fig. 8 — Open orbit. New bodies welcome.</span>
+        <span class="mono legend" style="color:#BE7C4D">◆&nbsp;You, perhaps</span>
+      </div>
+    </div>
+  </div>
+  <div class="colophon">
+    <div class="mono"><span class="k">Doc Ref</span><span class="v">BP-2026</span></div>
+    <div class="mono"><span class="k">Current Work</span><span class="v">Noeron · Morphic · Decision Intelligence</span></div>
+    <div class="mono"><span class="k">Field Notes</span><span class="v">E-0001</span></div>
+  </div>
+</footer>
+
+<div class="switcher">
+  <span class="label mono">Accent ink</span>
+  <button data-choice="jasper" class="active" onclick="setAccent(this,'jasper')">
+    <span style="color:#BE5A38">●</span> Jasper (current)
+  </button>
+  <button data-choice="ink-blue" onclick="setAccent(this,'ink')">
+    <span style="color:#3A5BA5">●</span> Drafting Ink
+  </button>
+  <button data-choice="petrol" onclick="setAccent(this,'petrol')">
+    <span style="color:#2E6A66">●</span> Petrol
+  </button>
+  <button data-choice="moss" onclick="setAccent(this,'moss')">
+    <span style="color:#5F6B38">●</span> Moss
+  </button>
+</div>
+
+<script>
+/* ---------- accent switching ---------- */
+const accents = {
+  jasper: { l: '#BE5A38', lr: '190,90,56',   d: '#BE7C4D', dr: '190,124,77'  },
+  ink:    { l: '#3A5BA5', lr: '58,91,165',   d: '#93A9E0', dr: '147,169,224' },
+  petrol: { l: '#2E6A66', lr: '46,106,102',  d: '#82B8B1', dr: '130,184,177' },
+  moss:   { l: '#5F6B38', lr: '95,107,56',   d: '#ABB57E', dr: '171,181,126' },
+};
+function setAccent(btn, key) {
+  const a = accents[key];
+  const r = document.documentElement.style;
+  r.setProperty('--accent-l', a.l); r.setProperty('--accent-rgb-l', a.lr);
+  r.setProperty('--accent-d', a.d); r.setProperty('--accent-rgb-d', a.dr);
+  document.querySelectorAll('.switcher button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  try { if (typeof toggleSelect === 'function') toggleSelect(btn); } catch (e) {}
+}
+
+/* ---------- theme state ---------- */
+const rootEl = document.documentElement;
+function isDark() { return rootEl.dataset.theme === 'dark'; }
+function accRGB() { return getComputedStyle(rootEl).getPropertyValue('--accent-rgb').trim(); }
+function accHex() { return getComputedStyle(rootEl).getPropertyValue('--accent').trim(); }
+
+/* ---------- Fig. 1 — interactive graph, 800 nodes, spatial hash ---------- */
+const canvas = document.getElementById('net');
+const wrap = canvas.parentElement;
+const ctx = canvas.getContext('2d');
+const DPR = Math.min(window.devicePixelRatio || 1, 2);
+let W, H, nodes = [];
+
+const BASE_N = 400;
+const MAX_N = 480;
+const LINK = 88;
+const GATHER_R = 190;
+const PAD = 14;
+const REPEL = 14;
+
+const mouse = { x: -9999, y: -9999, active: false };
+wrap.addEventListener('pointermove', e => {
+  const r = canvas.getBoundingClientRect();
+  mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.active = true;
+});
+wrap.addEventListener('pointerleave', () => { mouse.active = false; mouse.x = -9999; mouse.y = -9999; });
+wrap.addEventListener('pointerdown', e => {
+  const r = canvas.getBoundingClientRect();
+  const x = e.clientX - r.left, y = e.clientY - r.top;
+  for (let k = 0; k < 6; k++) {
+    if (nodes.length >= MAX_N) nodes.shift();
+    const a = Math.random() * Math.PI * 2, rr = Math.random() * 18;
+    nodes.push(makeNode(x + Math.cos(a) * rr, y + Math.sin(a) * rr, true));
+  }
+});
+
+function makeNode(x, y, fresh) {
+  return { x, y, hx: x, hy: y, vx: 0, vy: 0, r: 1.4 + Math.random() * 1.6, born: fresh ? performance.now() : 0 };
+}
+
+function gauss() {
+  /* Box-Muller */
+  let u = 0, v = 0;
+  while (u === 0) u = Math.random();
+  while (v === 0) v = Math.random();
+  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
+function resize() {
+  W = canvas.clientWidth; H = canvas.clientHeight;
+  canvas.width = W * DPR; canvas.height = H * DPR;
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  if (!nodes.length) {
+    /* asymmetric clusters: a few tight, heavy knots + loose satellites + scatter */
+    const K = 6;
+    const clusters = [];
+    let weightSum = 0;
+    for (let k = 0; k < K; k++) {
+      const weight = Math.pow(Math.random(), 1.8) + 0.15;   /* skewed: few dominate */
+      weightSum += weight;
+      clusters.push({
+        x: PAD + 40 + Math.random() * (W - PAD * 2 - 80),
+        y: PAD + 40 + Math.random() * (H - PAD * 2 - 80),
+        spread: 22 + Math.pow(Math.random(), 2) * 85,        /* some tight, some diffuse */
+        weight,
+      });
+    }
+    const SCATTER = 0.22;                                    /* fraction of loose background */
+    for (let i = 0; i < BASE_N; i++) {
+      if (Math.random() < SCATTER) {
+        nodes.push(makeNode(PAD + Math.random() * (W - PAD * 2), PAD + Math.random() * (H - PAD * 2), false));
+        continue;
+      }
+      /* pick a cluster by weight */
+      let r = Math.random() * weightSum, c = clusters[0];
+      for (const cl of clusters) { r -= cl.weight; if (r <= 0) { c = cl; break; } }
+      const x = Math.max(PAD, Math.min(W - PAD, c.x + gauss() * c.spread));
+      const y = Math.max(PAD, Math.min(H - PAD, c.y + gauss() * c.spread));
+      nodes.push(makeNode(x, y, false));
+    }
+  }
+}
+
+/* spatial hash grid — rebuilt each frame */
+function buildGrid(cell) {
+  const grid = new Map();
+  for (let i = 0; i < nodes.length; i++) {
+    const key = ((nodes[i].x / cell) | 0) + ':' + ((nodes[i].y / cell) | 0);
+    let b = grid.get(key);
+    if (!b) { b = []; grid.set(key, b); }
+    b.push(i);
+  }
+  return grid;
+}
+function* neighbors(grid, cell, x, y) {
+  const gx = (x / cell) | 0, gy = (y / cell) | 0;
+  for (let ox = -1; ox <= 1; ox++) {
+    for (let oy = -1; oy <= 1; oy++) {
+      const b = grid.get((gx + ox) + ':' + (gy + oy));
+      if (b) yield* b;
+    }
+  }
+}
+
+function frame(now) {
+  ctx.clearRect(0, 0, W, H);
+  const dark = isDark();
+
+  const grid = buildGrid(LINK);
+
+  /* physics */
+  for (const n of nodes) {
+    n.vx += (n.hx - n.x) * 0.0016;
+    n.vy += (n.hy - n.y) * 0.0016;
+    n.hx += Math.sin(now * 0.00012 + n.hy * 0.13) * 0.04;
+    n.hy += Math.cos(now * 0.00010 + n.hx * 0.11) * 0.04;
+    n.hx = Math.max(PAD, Math.min(W - PAD, n.hx));
+    n.hy = Math.max(PAD, Math.min(H - PAD, n.hy));
+    if (mouse.active) {
+      const dx = mouse.x - n.x, dy = mouse.y - n.y;
+      const d = Math.hypot(dx, dy);
+      if (d < GATHER_R && d > 1) {
+        const f = (1 - d / GATHER_R) * 0.055;
+        n.vx += (dx / d) * f * d * 0.05;
+        n.vy += (dy / d) * f * d * 0.05;
+      }
+    }
+  }
+  /* short-range repulsion via grid */
+  for (let i = 0; i < nodes.length; i++) {
+    const n = nodes[i];
+    for (const j of neighbors(grid, LINK, n.x, n.y)) {
+      if (j <= i) continue;
+      const m = nodes[j];
+      const dx = n.x - m.x, dy = n.y - m.y;
+      const d2 = dx * dx + dy * dy;
+      if (d2 < REPEL * REPEL && d2 > 0.01) {
+        const d = Math.sqrt(d2);
+        const f = (1 - d / REPEL) * 0.05;
+        const fx = (dx / d) * f, fy = (dy / d) * f;
+        n.vx += fx; n.vy += fy;
+        m.vx -= fx; m.vy -= fy;
+      }
+    }
+  }
+  for (const n of nodes) {
+    n.vx *= 0.9; n.vy *= 0.9;
+    n.x += n.vx; n.y += n.vy;
+  }
+
+  /* edges + degree via grid — per-node edge budget keeps dense knots airy & fast */
+  const EDGE_BUDGET = 9;
+  const deg = new Array(nodes.length).fill(0);
+  ctx.lineWidth = 0.55;
+  for (let i = 0; i < nodes.length; i++) {
+    const a = nodes[i];
+    if (deg[i] >= EDGE_BUDGET) continue;
+    for (const j of neighbors(grid, LINK, a.x, a.y)) {
+      if (j <= i) continue;
+      if (deg[i] >= EDGE_BUDGET) break;
+      if (deg[j] >= EDGE_BUDGET) continue;
+      const b = nodes[j];
+      const d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < LINK) {
+        deg[i]++; deg[j]++;
+        const alpha = (1 - d / LINK) * (dark ? 0.18 : 0.22);
+        ctx.strokeStyle = dark ? `rgba(242,233,228,${alpha.toFixed(3)})` : `rgba(62,31,20,${alpha.toFixed(3)})`;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      }
+    }
+  }
+
+  /* hub = densest node */
+  let hub = 0;
+  for (let i = 1; i < nodes.length; i++) if (deg[i] > deg[hub]) hub = i;
+  const h = nodes[hub];
+
+  /* accent edges radiating from hub */
+  ctx.lineWidth = 0.9;
+  for (const j of neighbors(grid, LINK, h.x, h.y)) {
+    if (j === hub) continue;
+    const b = nodes[j];
+    const d = Math.hypot(h.x - b.x, h.y - b.y);
+    if (d < LINK) {
+      ctx.strokeStyle = `rgba(${accRGB()},${(1 - d / LINK) * (dark ? 0.95 : 0.85)})`;
+      ctx.beginPath(); ctx.moveTo(h.x, h.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+  }
+
+  /* nodes */
+  for (let i = 0; i < nodes.length; i++) {
+    const n = nodes[i];
+    let r = i === hub ? n.r + 1.8 : n.r;
+    if (n.born) {
+      const age = (now - n.born) / 600;
+      if (age < 1) r *= 0.3 + age * 0.7;
+    }
+    ctx.fillStyle = i === hub
+      ? accHex()
+      : (dark ? 'rgba(242,233,228,0.8)' : 'rgba(62,31,20,0.75)');
+    ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, Math.PI * 2); ctx.fill();
+  }
+
+  /* crosshair through the hub */
+  ctx.strokeStyle = `rgba(${accRGB()},${dark ? 0.4 : 0.35})`;
+  ctx.lineWidth = 0.7;
+  ctx.setLineDash([3, 4]);
+  ctx.beginPath(); ctx.moveTo(0, h.y); ctx.lineTo(W, h.y); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(h.x, 0); ctx.lineTo(h.x, H); ctx.stroke();
+  ctx.setLineDash([]);
+
+  /* marker */
+  ctx.fillStyle = accHex();
+  ctx.beginPath();
+  ctx.moveTo(h.x, h.y - 12); ctx.lineTo(h.x - 5, h.y - 20); ctx.lineTo(h.x + 5, h.y - 20);
+  ctx.closePath(); ctx.fill();
+
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) requestAnimationFrame(frame);
+}
+
+resize();
+window.addEventListener('resize', resize);
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) { frame(performance.now()); }
+else { requestAnimationFrame(frame); }
+
+/* ---------- Fig. 7 — contribution dots (theme-aware) ---------- */
+function drawContrib() {
+  const c = document.getElementById('contrib');
+  const cx = c.getContext('2d');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const cw = 980, ch = 180;
+  c.width = cw * dpr; c.height = ch * dpr;
+  c.style.width = cw + 'px'; c.style.height = ch + 'px';
+  cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const weeks = 26, days = 7, cell = 30, r = 9;
+  const x0 = 60, y0 = 26;
+  const ramp = isDark()
+    ? ['#4A2818', '#7A4526', '#BE7C4D', '#DCAF85', '#F2E9E4']
+    : ['#E5D8D0', '#D9BFA6', '#BE7C4D', '#BE5A38', '#3E1F14'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+
+  cx.font = '10px "IBM Plex Mono", monospace';
+  cx.fillStyle = isDark() ? 'rgba(242,233,228,.55)' : 'rgba(62,31,20,.55)';
+  months.forEach((m, i) => cx.fillText(m, x0 + i * (weeks / 6) * cell, 12));
+  ['Mon', 'Wed', 'Fri'].forEach((d, i) => cx.fillText(d, 10, y0 + (1 + i * 2) * cell + 4));
+
+  let seed = 42;
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let w = 0; w < weeks; w++) {
+    for (let d = 0; d < days; d++) {
+      const intensity = Math.pow(rand(), 1.6);
+      const lvl = Math.min(4, Math.floor(intensity * 5 + (w < 10 ? 0.9 : 0)));
+      cx.fillStyle = ramp[lvl];
+      cx.beginPath();
+      cx.arc(x0 + w * cell + cell / 2, y0 + d * cell / 1.35 + 8, r / 1.6, 0, Math.PI * 2);
+      cx.fill();
+    }
+  }
+}
+drawContrib();
+
+/* ---------- theme toggle ---------- */
+(function () {
+  const btn = document.getElementById('themeToggle');
+  const stored = localStorage.getItem('bp-theme');
+  if (stored === 'dark') { rootEl.dataset.theme = 'dark'; btn.textContent = '◑ Day'; }
+  btn.addEventListener('click', () => {
+    const dark = rootEl.dataset.theme === 'dark';
+    if (dark) { delete rootEl.dataset.theme; btn.textContent = '◐ Night'; }
+    else { rootEl.dataset.theme = 'dark'; btn.textContent = '◑ Day'; }
+    localStorage.setItem('bp-theme', dark ? 'light' : 'dark');
+    drawContrib();
+  });
+})();
+
+/* ---------- scroll reveal + pagination ---------- */
+(function () {
+  const revealObs = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  const pageno = document.getElementById('pageno');
+  const secObs = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      if (e.isIntersecting) pageno.textContent = e.target.dataset.sec + ' / 05';
+    }
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('[data-sec]').forEach(el => secObs.observe(el));
+})();
+
+/* ---------- abstract atmosphere: rib band + grain (calm, static) ---------- */
+(function () {
+  const c = document.getElementById('atmo');
+  const a = c.getContext('2d');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  const RIB_SPACING = 9;
+  const RIB_H = 150;
+
+  /* smooth deterministic variation along x — some ribs catch more light */
+  function lumAt(x, w) {
+    const u = x / w;
+    return 0.10
+      + 0.10 * (0.5 + 0.5 * Math.sin(u * 19.7 + 1.3))
+      + 0.14 * (0.5 + 0.5 * Math.sin(u * 5.3 + 4.1))
+      + 0.06 * (0.5 + 0.5 * Math.sin(u * 47.0 + 0.7));
+  }
+
+  function draw() {
+    const w = c.clientWidth, h = c.clientHeight;
+    c.width = w * dpr; c.height = h * dpr;
+    a.setTransform(dpr, 0, 0, dpr, 0, 0);
+    a.clearRect(0, 0, w, h);
+
+    for (let x = 0; x <= w; x += RIB_SPACING) {
+      const lum = Math.min(lumAt(x, w), 0.42);
+      const g = a.createLinearGradient(0, 0, 0, RIB_H);
+      g.addColorStop(0, `rgba(242,233,228,${lum.toFixed(3)})`);
+      g.addColorStop(0.8, `rgba(242,233,228,${(lum * 0.2).toFixed(3)})`);
+      g.addColorStop(1, 'rgba(242,233,228,0)');
+      a.strokeStyle = g;
+      a.lineWidth = 0.8;
+      a.beginPath(); a.moveTo(x + 0.5, 0); a.lineTo(x + 0.5, RIB_H); a.stroke();
+    }
+    /* hairline base of the band */
+    a.strokeStyle = 'rgba(242,233,228,0.10)';
+    a.lineWidth = 1;
+    a.beginPath(); a.moveTo(0, RIB_H + 0.5); a.lineTo(w, RIB_H + 0.5); a.stroke();
+  }
+  draw();
+  window.addEventListener('resize', draw);
+
+  (function grain() {
+    const g = document.createElement('canvas');
+    g.width = g.height = 240;
+    const gc = g.getContext('2d');
+    const img = gc.createImageData(240, 240);
+    for (let i = 0; i < img.data.length; i += 4) {
+      const v = 110 + Math.random() * 70 | 0;
+      img.data[i] = img.data[i+1] = img.data[i+2] = v;
+      img.data[i+3] = 58;
+    }
+    gc.putImageData(img, 0, 0);
+    document.getElementById('grain').style.backgroundImage = `url(${g.toDataURL()})`;
+  })();
+})();
+
+/* ---------- Fig. 8 — orbital sphere ---------- */
+(function () {
+  const c = document.getElementById('orbit');
+  const wrapEl = c.parentElement;
+  const octx = c.getContext('2d');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let w, h;
+
+  const m = { x: 0.5, y: 0.5 };
+  wrapEl.addEventListener('pointermove', e => {
+    const r = c.getBoundingClientRect();
+    m.x = (e.clientX - r.left) / r.width;
+    m.y = (e.clientY - r.top) / r.height;
+  });
+
+  function rs() {
+    w = c.clientWidth; h = c.clientHeight;
+    c.width = w * dpr; c.height = h * dpr;
+    octx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  rs();
+  window.addEventListener('resize', rs);
+
+  const MERIDIANS = 15;
+  function draw(now) {
+    octx.clearRect(0, 0, w, h);
+    const cx = w / 2, cy = h / 2;
+    const R = Math.min(w, h) * 0.36;
+    const t = now * 0.00006;
+
+    /* gentle tilt toward cursor */
+    const tilt = (m.x - 0.5) * 0.35;
+
+    octx.save();
+    octx.translate(cx, cy);
+    octx.rotate(tilt);
+    octx.translate(-cx, -cy);
+
+    /* dotted meridians of a slowly precessing sphere */
+    for (let i = 0; i < MERIDIANS; i++) {
+      const lon = (i / MERIDIANS) * Math.PI + t * Math.PI * 2;
+      const rx = Math.abs(Math.cos(lon)) * R;
+      const front = Math.sin(lon) > 0;
+      const warm = i % 3 === 0;
+      const alpha = front ? 0.55 : 0.22;
+      octx.strokeStyle = warm
+        ? `rgba(190,90,56,${alpha})`
+        : `rgba(190,124,77,${alpha})`;
+      octx.lineWidth = 1;
+      octx.setLineDash([2, 5]);
+      octx.beginPath();
+      octx.ellipse(cx, cy, Math.max(rx, 0.5), R, 0, 0, Math.PI * 2);
+      octx.stroke();
+    }
+    octx.setLineDash([]);
+
+    /* equator */
+    octx.strokeStyle = 'rgba(242,233,228,0.3)';
+    octx.setLineDash([2, 5]);
+    octx.beginPath();
+    octx.ellipse(cx, cy, R, R * 0.22, 0, 0, Math.PI * 2);
+    octx.stroke();
+    octx.setLineDash([]);
+
+    /* the visitor: a cream diamond in open orbit */
+    const oa = now * 0.00035;
+    const ox = cx + Math.cos(oa) * R * 1.28;
+    const oy = cy + Math.sin(oa) * R * 0.35;
+    const behind = Math.sin(oa) < 0;
+    octx.globalAlpha = behind ? 0.45 : 1;
+    octx.fillStyle = '#F2E9E4';
+    octx.save();
+    octx.translate(ox, oy);
+    octx.rotate(Math.PI / 4);
+    octx.fillRect(-3.5, -3.5, 7, 7);
+    octx.restore();
+    octx.globalAlpha = 1;
+
+    /* its dotted orbit path */
+    octx.strokeStyle = 'rgba(242,233,228,0.18)';
+    octx.setLineDash([2, 6]);
+    octx.beginPath();
+    octx.ellipse(cx, cy, R * 1.28, R * 0.35, 0, 0, Math.PI * 2);
+    octx.stroke();
+    octx.setLineDash([]);
+
+    octx.restore();
+
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) requestAnimationFrame(draw);
+  }
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { draw(performance.now()); }
+  else { requestAnimationFrame(draw); }
+})();
+</script>
+</body>
+</html>

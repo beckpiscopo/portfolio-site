@@ -35,13 +35,40 @@
   --color-link-hover-bg: var(--color-caramel);
   --color-link-hover-text: var(--color-van-dyke);
   --color-nav-link: var(--color-caramel);
-  
+
 
   --toggle-bg: #3E1F14;      /* Dark half */
   --toggle-half: #F2E9E4;    /* Light half */
   --toggle-border: #F2E9E4;  /* Border color */
 
 }
+
+/* ---- Research-document tokens (2026-07 homepage refresh) ---- */
+:root {
+  /* Accent ink: jasper today; swap = change these four lines */
+  --accent-l: #BE5A38;  --accent-rgb-l: 190, 90, 56;
+  --accent-d: #BE7C4D;  --accent-rgb-d: 190, 124, 77;
+  --accent: var(--accent-l);
+  --accent-rgb: var(--accent-rgb-l);
+
+  --hairline: rgba(62, 31, 20, .28);
+  --hairline-soft: rgba(62, 31, 20, .16);
+
+  --plate-abstract: #24110A;   /* theme-invariant dark plates */
+  --plate-footer: #3E1F14;
+
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.dark {
+  --accent: var(--accent-d);
+  --accent-rgb: var(--accent-rgb-d);
+  --hairline: rgba(242, 233, 228, .3);
+  --hairline-soft: rgba(242, 233, 228, .16);
+  --plate-abstract: #1B0C05;
+  --plate-footer: #1C0D06;
+}
+/* Route the legacy jasper var through the accent so old styles follow the swap */
+:root { --color-jasper: var(--accent); }
 
 /* Typography */
 h1, h2, h3 {
