@@ -283,6 +283,7 @@ section { border-top: 1px solid var(--hairline-soft); }
 /* ================= FOOTER / FINAL PLATE ================= */
 .footer {
   background: var(--plate-footer);
+  --color-text: #F2E9E4;
   color: var(--color-isabelline);
   border-top: 1px solid var(--hairline);
   display: flex;
