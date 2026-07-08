@@ -423,8 +423,22 @@ html.reveal-init .reveal.visible { opacity: 1; transform: none; }
 
 /* ---------- responsive additions ---------- */
 @media (max-width: 720px) {
-  .meta-top { flex-wrap: wrap; gap: .5rem .9rem; padding: .9rem 1.25rem; }
+  /* Header: non-sticky (wraps to ~3 rows at 390px; should not stay stuck) */
+  .meta-top { position: static; flex-wrap: wrap; gap: .5rem .9rem; padding: .9rem 1.25rem; }
   .meta-top > .mono:nth-child(2) { display: none; } /* hide St. Petersburg on small */
+  /* Nav: tighten gap and font-size so it fits within 390px */
+  .meta-top .nav { gap: .9rem; }
+  .meta-top .nav a { font-size: .62rem; }
+  /* Page number: desktop nicety, hide on small screens */
+  .pageno { display: none; }
+  /* Figure caption: let legend wrap so nowrap text can't force viewport inflation */
+  .figure-caption { flex-wrap: wrap; }
+  .figure-caption .legend { white-space: normal; text-align: left; }
+  /* Colophon: stack 3-column grid to 1 column */
+  .colophon { grid-template-columns: 1fr; }
+  .colophon > div + div { border-left: none; border-top: 1px solid rgba(242,233,228,.14); }
+  .colophon > div:last-child { text-align: left; }
+  /* Body padding */
   .headline-cell { padding: 3rem 1.5rem 2.5rem; }
   .sec-body { padding-left: 1.25rem; padding-right: 1.25rem; }
 }

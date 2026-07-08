@@ -191,3 +191,132 @@ Capture method: set `localStorage['bp-theme']` via `addInitScript`, `networkidle
 ## Concerns
 
 None. All checks pass. The only 404 is the expected Vercel insights script (absent in local dev, handled gracefully by the script tag).
+
+---
+
+# Defect Fix — 2026-07-08 (Task 9 Continuation)
+
+**Commit:** `4e65d8f` — `fix(home): footer paragraph ink invisible in light mode`
+
+---
+
+## Issue: Footer paragraphs invisible in LIGHT mode
+
+**Root cause:** `theme.css` has `p { color: var(--color-text) }` which directly targets all paragraphs, overriding inherited color. The `.footer` (a theme-invariant dark plate) does not override `--color-text` locally. In LIGHT mode, `--color-text` resolves to a light color on a dark background (invisible), while in DARK mode the same variable produces the correct appearance by chance.
+
+**The fix (scoped override):** In `src/document.css`, inside the `.footer {` rule block (line 284), added:
+```css
+--color-text: #F2E9E4;
+```
+
+This scopes the variable override so footer paragraphs (`.footer-cta .big`) render in isabelline regardless of theme mode — matching the footer's invariant dark-plate design.
+
+**Pattern:** This approach mirrors the existing `#abstract { --color-text: #F2E9E4 }` override already in the stylesheet.
+
+---
+
+## Verification (Playwright, port 8910)
+
+| Mode | Element | Computed Color | Expected | Status |
+|------|---------|---|---|---|
+| LIGHT | `.footer-cta .big` | `rgb(242, 233, 228)` | `rgb(242, 233, 228)` | PASS |
+| DARK | `.footer-cta .big` | `rgb(242, 233, 228)` | `rgb(242, 233, 228)` | PASS |
+
+---
+
+## Files changed
+
+- **`src/document.css`** — Added `--color-text: #F2E9E4;` to `.footer` rule (line 285)
+- **`dist/output.css`** — Rebuilt via `npm run build-css`
+- **Cache-busters** — Bumped `?v=20260708b` → `?v=20260708c` on:
+  - `index.html`
+  - `projects/noeron.html`
+  - `projects/morphic.html`
+  - `projects/st-pete.html`
+  - `projects/tampa-labor.html`
+
+---
+
+## Concerns
+
+None. Footer ink renders correctly in both light and dark modes.
+
+---
+
+# Mobile Viewport Inflation Fix — 2026-07-08
+
+**Commit:** _(see below)_ — `fix(home): mobile viewport inflation; static header and stacked colophon on small screens`
+
+---
+
+## Diagnosed Problem
+
+At 390px device width the homepage layout viewport inflated to ~492px (Playwright isMobile measurement: `innerWidth=492`, `scrollWidth=492`). No single element wider than the layout viewport — the viewport itself grew due to min-content width pressure from non-wrapping content.
+
+## Root Causes Found (all confirmed by before/after measurement)
+
+| Cause | Details |
+|-------|---------|
+| `.figure-caption .legend { white-space: nowrap }` | Long legend text "▲ WHAT MATTERS / cursor — gather · click — add observation" forced the caption's flex row min-content width past 390px. Primary offender. |
+| `.meta-top .nav { gap: 1.6rem }` + `.pageno { margin-left: 1.4rem }` | Five nav links at 1.6rem gaps plus pageno margin accumulated to overflow 390px minus header padding. |
+| `.colophon { grid-template-columns: 1fr 2fr 1fr }` | Three-column grid with long CURRENT WORK cell would force width on narrower screens. |
+| `.meta-top { position: sticky }` | At 390px the header wraps to ~3 rows (~135px); sticking it is a UX problem. |
+
+## Fixes Applied (`src/document.css`, `@media (max-width: 720px)` block)
+
+```css
+/* Header: non-sticky on small screens */
+.meta-top { position: static; }
+
+/* Nav: tighten gap/font-size */
+.meta-top .nav { gap: .9rem; }
+.meta-top .nav a { font-size: .62rem; }
+
+/* Page number: hide on small screens (desktop nicety) */
+.pageno { display: none; }
+
+/* Figure caption: allow wrapping */
+.figure-caption { flex-wrap: wrap; }
+.figure-caption .legend { white-space: normal; text-align: left; }
+
+/* Colophon: stack to 1 column */
+.colophon { grid-template-columns: 1fr; }
+.colophon > div + div { border-left: none; border-top: 1px solid rgba(242,233,228,.14); }
+.colophon > div:last-child { text-align: left; }
+```
+
+## Before / After Measurements (Playwright isMobile, 390×844)
+
+| Page | Before innerWidth | Before scrollWidth | After innerWidth | After scrollWidth | Status |
+|------|------------------|--------------------|-----------------|-------------------|--------|
+| homepage (top) | 492 | 492 | 390 | 390 | PASS |
+| homepage (bottom / footer) | 492 | 492 | 390 | 390 | PASS |
+| noeron | 390 | 390 | 390 | 390 | PASS (unchanged) |
+| morphic | 390 | 390 | 390 | 390 | PASS (unchanged) |
+| st-pete | 390 | 390 | 390 | 390 | PASS (unchanged) |
+| tampa-labor | 390 | 390 | 390 | 390 | PASS (unchanged) |
+
+## Desktop Regression Check (1440×900)
+
+| Property | Expected | Actual | Status |
+|----------|----------|--------|--------|
+| `.meta-top` position | sticky | sticky | PASS |
+| `.pageno` display | block (visible) | block | PASS |
+| `.legend` white-space | nowrap | nowrap | PASS |
+| `.colophon` grid-template-columns | 3-column | 360px 720px 360px | PASS |
+
+## Files Changed
+
+- **`src/document.css`** — Expanded `@media (max-width: 720px)` block with 9 new rules
+- **`dist/output.css`** — Rebuilt via `npm run build-css`
+- **Cache-busters** — Bumped `?v=20260708c` → `?v=20260708d` on:
+  - `index.html`
+  - `projects/noeron.html`
+  - `projects/morphic.html`
+  - `projects/st-pete.html`
+  - `projects/tampa-labor.html`
+- **`docs/superpowers/specs/assets/2026-07-08-homepage-mobile.png`** — New 390×844 hero screenshot (2× devicePixelRatio)
+
+## Concerns
+
+None. All 6 pages pass at 390px isMobile. Desktop layout unchanged.
