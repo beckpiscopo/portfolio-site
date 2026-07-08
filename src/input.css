@@ -183,51 +183,6 @@ main section > h2::after {
   .theme-toggle-fixed { top: 0.85rem; right: 3.5rem; }
 }
 
-/* ---- Hero "handwritten" reveal ---- */
-/* Sweeps the line in left-to-right behind a moving pen tip; font is unchanged. */
-.hero-handwrite {
-  position: relative;
-  display: inline-block;
-  max-width: 100%;
-  /* Elegant italic serif for the tagline. Body font is now Hanken, so this is set
-     explicitly to keep the original Cormorant look (loaded on index only). */
-  font-family: 'Cormorant Garamond', serif;
-}
-.hero-handwrite .hw-text {
-  display: inline-block;
-  clip-path: inset(0 100% 0 0);
-  animation: hw-reveal 3.8s cubic-bezier(0.77, 0, 0.18, 1) 0.35s forwards;
-}
-/* The travelling pen tip */
-.hero-handwrite::after {
-  content: "";
-  position: absolute;
-  top: 0.12em;
-  bottom: 0.18em;
-  left: 0;
-  width: 2px;
-  background: var(--color-jasper);
-  opacity: 0;
-  animation: hw-pen 3.8s cubic-bezier(0.77, 0, 0.18, 1) 0.35s forwards;
-}
-.dark .hero-handwrite::after { background: var(--color-caramel); }
-
-@keyframes hw-reveal {
-  from { clip-path: inset(0 100% 0 0); }
-  to   { clip-path: inset(0 0 0 0); }
-}
-@keyframes hw-pen {
-  0%   { left: 0;    opacity: 1; }
-  92%  { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
-}
-
-/* No animation when the user prefers reduced motion: show the line at rest */
-@media (prefers-reduced-motion: reduce) {
-  .hero-handwrite .hw-text { animation: none; clip-path: none; }
-  .hero-handwrite::after { display: none; }
-}
-
 /* ---- Social icon scale utility ---- */
 /* Replaces the repeated style="scale:0.6;" on the Paragraph SVGs */
 .icon-paragraph { transform: scale(0.6); }

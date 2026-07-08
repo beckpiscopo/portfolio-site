@@ -1078,13 +1078,8 @@ video {
   position: absolute;
 }.relative{
   position: relative;
-}.sticky{
-  position: sticky;
 }.inset-0{
   inset: 0px;
-}.inset-x-0{
-  left: 0px;
-  right: 0px;
 }.bottom-0{
   bottom: 0px;
 }.bottom-\[60px\]{
@@ -1160,8 +1155,6 @@ video {
   margin-top: 1rem;
 }.mt-5{
   margin-top: 1.25rem;
-}.mt-auto{
-  margin-top: auto;
 }.block{
   display: block;
 }.inline-block{
@@ -1180,22 +1173,16 @@ video {
   display: grid;
 }.hidden{
   display: none;
-}.h-14{
-  height: 3.5rem;
 }.h-3{
   height: 0.75rem;
 }.h-4{
   height: 1rem;
 }.h-6{
   height: 1.5rem;
-}.h-7{
-  height: 1.75rem;
 }.h-9{
   height: 2.25rem;
 }.h-full{
   height: 100%;
-}.h-screen{
-  height: 100vh;
 }.min-h-screen{
   min-height: 100vh;
 }.w-1\/2{
@@ -1206,8 +1193,6 @@ video {
   width: 1rem;
 }.w-64{
   width: 16rem;
-}.w-7{
-  width: 1.75rem;
 }.w-full{
   width: 100%;
 }.max-w-3xl{
@@ -1393,9 +1378,6 @@ video {
 }.px-3{
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-}.px-4{
-  padding-left: 1rem;
-  padding-right: 1rem;
 }.px-5{
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -1417,9 +1399,6 @@ video {
 }.py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}.py-8{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }.pb-6{
   padding-bottom: 1.5rem;
 }.pl-10{
@@ -1432,12 +1411,6 @@ video {
   padding-top: 2rem;
 }.text-center{
   text-align: center;
-}.text-2xl{
-  font-size: 1.5rem;
-  line-height: 2rem;
-}.text-3xl{
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }.text-base{
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1447,9 +1420,6 @@ video {
 }.text-sm{
   font-size: 0.875rem;
   line-height: 1.25rem;
-}.text-xl{
-  font-size: 1.25rem;
-  line-height: 1.75rem;
 }.font-bold{
   font-weight: 700;
 }.font-medium{
@@ -1466,10 +1436,6 @@ video {
   line-height: 1.5rem;
 }.leading-9{
   line-height: 2.25rem;
-}.leading-none{
-  line-height: 1;
-}.leading-tight{
-  line-height: 1.25;
 }.tracking-wide{
   letter-spacing: 0.025em;
 }.text-blue-600{
@@ -1521,10 +1487,6 @@ video {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }.filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}.backdrop-blur{
-  --tw-backdrop-blur: blur(8px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }.transition{
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
@@ -1539,8 +1501,6 @@ video {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}.duration-300{
-  transition-duration: 300ms;
 }.ease-out{
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }/* Add any additional component-specific or utility styles below. *//* Base heading sizes — MUST be in @layer base so they win over Tailwind
@@ -1625,38 +1585,6 @@ video {
   cursor: pointer;
 }/* On mobile the hamburger lives at the top-right, so sit just to its left. */@media (max-width: 767px) {
   .theme-toggle-fixed { top: 0.85rem; right: 3.5rem; }
-}/* ---- Hero "handwritten" reveal ---- *//* Sweeps the line in left-to-right behind a moving pen tip; font is unchanged. */.hero-handwrite {
-  position: relative;
-  display: inline-block;
-  max-width: 100%;
-  /* Elegant italic serif for the tagline. Body font is now Hanken, so this is set
-     explicitly to keep the original Cormorant look (loaded on index only). */
-  font-family: 'Cormorant Garamond', serif;
-}.hero-handwrite .hw-text {
-  display: inline-block;
-  -webkit-clip-path: inset(0 100% 0 0);
-          clip-path: inset(0 100% 0 0);
-  animation: hw-reveal 3.8s cubic-bezier(0.77, 0, 0.18, 1) 0.35s forwards;
-}/* The travelling pen tip */.hero-handwrite::after {
-  content: "";
-  position: absolute;
-  top: 0.12em;
-  bottom: 0.18em;
-  left: 0;
-  width: 2px;
-  background: var(--color-jasper);
-  opacity: 0;
-  animation: hw-pen 3.8s cubic-bezier(0.77, 0, 0.18, 1) 0.35s forwards;
-}.dark .hero-handwrite::after { background: var(--color-caramel); }@keyframes hw-reveal {
-  from { -webkit-clip-path: inset(0 100% 0 0); clip-path: inset(0 100% 0 0); }
-  to   { -webkit-clip-path: inset(0 0 0 0); clip-path: inset(0 0 0 0); }
-}@keyframes hw-pen {
-  0%   { left: 0;    opacity: 1; }
-  92%  { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
-}/* No animation when the user prefers reduced motion: show the line at rest */@media (prefers-reduced-motion: reduce) {
-  .hero-handwrite .hw-text { animation: none; -webkit-clip-path: none; clip-path: none; }
-  .hero-handwrite::after { display: none; }
 }/* ---- Social icon scale utility ---- *//* Replaces the repeated style="scale:0.6;" on the Paragraph SVGs */.icon-paragraph { transform: scale(0.6); }/* ---- Faint borders in the current text color (auto light/dark) ---- *//* Tailwind can't put an opacity modifier on currentColor, so do it here. */.border-faint { border-color: color-mix(in srgb, currentColor 20%, transparent); }.border-faint-soft { border-color: color-mix(in srgb, currentColor 14%, transparent); }/* ---- Analysis case study: chart figures ---- */.figure { margin: 2.5rem 0; }.figure-frame {
   border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
   border-radius: 0.5rem;
@@ -1788,15 +1716,8 @@ video {
     margin-bottom: 5rem;
   }.md\:ml-2{
     margin-left: 0.5rem;
-  }.md\:ml-64{
-    margin-left: 16rem;
   }.md\:mt-20{
     margin-top: 5rem;
-  }.md\:hidden{
-    display: none;
-  }.md\:translate-x-0{
-    --tw-translate-x: 0px;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }.md\:space-x-3 > :not([hidden]) ~ :not([hidden]){
     --tw-space-x-reverse: 0;
     margin-right: calc(0.75rem * var(--tw-space-x-reverse));

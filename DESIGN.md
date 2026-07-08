@@ -28,6 +28,19 @@ Four-color warm/earthy palette. These four are the whole brand — everything el
 
 **Rule of thumb:** in light mode, *jasper* carries emphasis; in dark mode, *caramel* takes over (jasper gets muddy on the dark brown).
 
+### Accent-variable system (2026-07 homepage refresh)
+
+All emphasis colors route through `--accent` / `--accent-l` / `--accent-d` (defined in `src/theme.css`). Jasper is the current ink (`--accent-l: #BE5A38`; dark: `--accent-d: #BE7C4D`). The legacy `--color-jasper` variable is aliased to `--accent` so old styles follow any future ink swap automatically.
+
+### Plate browns
+
+Dark-background "plate" sections use two theme-invariant tokens (they do not flip in light mode — both stay night-dark):
+
+| Token | Light value | Dark value | Used for |
+|-------|------------|-----------|---------|
+| `--plate-abstract` | `#24110A` | `#1B0C05` | Abstract section dark plate |
+| `--plate-footer` | `#3E1F14` | `#1C0D06` | Footer / contact plate |
+
 ---
 
 ## For Tableau / external charts
@@ -56,10 +69,12 @@ Tableau accepts hex directly (Edit Colors → custom). Suggested derivations fro
 |-----|------|-------|
 | Display / headings (h1–h3) | **Young Serif** | Chunky slab-ish serif. Headings, big numbers, the name lockup. |
 | Body / UI / nav / lists / tables | **Hanken Grotesk** | Warm humanist sans. Chosen for readability at body sizes. Weights: 400/500/700, italic 400. |
-| Hero tagline only | **Cormorant Garamond** *(italic)* | Elegant italic serif, kept as a single accent on the home hero ("I build…"). Loaded on index only. |
-| Mono (data terms) | `ui-monospace, SFMono-Regular, Menlo` | Inline code-style terms only. |
+| Apparatus rows (eyebrows, fig labels, mono badges) | **IBM Plex Mono** | `.68rem` / `.14em` letter-spacing / `uppercase`. Used for section eyebrows, figure captions, colophon fields, CTA buttons, and all document apparatus. Sourced via the `--font-mono` CSS variable. |
+| Mono (data terms) | `ui-monospace, SFMono-Regular, Menlo` | Inline code-style terms in body copy where IBM Plex Mono is not loaded. |
 
-All Google Fonts. The pairing is a **serif display + humanist sans body** (Young Serif headings over Hanken Grotesk body), with one deliberate serif accent on the hero. For Tableau, neither web font is on the Tableau server; fall back to a sturdy sans (e.g. system default / Arial) for body and a serif (Georgia) for titles, and reserve the exact look for exported/static pieces where you control fonts.
+**Retired from homepage (2026-07 refresh):** Cormorant Garamond italic (hero tagline font) and the typewriter-sweep animation (`hero-handwrite` / `hw-text` / `hw-reveal` / `hw-pen`) have been removed. The hero tagline now uses Young Serif italic. Cormorant Garamond is no longer loaded on any page.
+
+All Google Fonts. The pairing is a **serif display + humanist sans body** (Young Serif headings over Hanken Grotesk body). For Tableau, neither web font is on the Tableau server; fall back to a sturdy sans (e.g. system default / Arial) for body and a serif (Georgia) for titles, and reserve the exact look for exported/static pieces where you control fonts.
 
 ### Fluid type scale (`clamp(min, preferred, max)`)
 
@@ -87,6 +102,35 @@ Roughly a 1.25 (major-third) modular ratio. Line-heights: headings tight (1.08�
 
 ---
 
+## Document apparatus
+
+The homepage (and project pages) use a research-document visual language with consistent apparatus conventions. Source: `src/document.css`.
+
+### Figure captions
+
+Format: `Fig. N — Descriptive label` in IBM Plex Mono apparatus style (`.68rem`, `.14em` tracking, uppercase). Positioned below each canvas figure inside `.figure-caption`. The accent color (`--accent`) is used for legend symbols (e.g. triangle `▲`).
+
+### Plate numbering
+
+Work/project cards are "plates": `Plate I`, `Plate II`, `Plate III`, `Plate IV`, `Plate V`. The plate number appears as a `.mono.fig-no` label inside `.plate .body`. Dark plates (Abstract section and Footer) override the token to night-mode values via `--plate-abstract` and `--plate-footer`.
+
+### Section eyebrows
+
+Every section opens with a `.mono.eyebrow-label` tag: format `NN — LABEL` (e.g. `01 — ABSTRACT`, `02 — FIELD NOTES`). Rendered in `--accent` color.
+
+### Colophon
+
+The footer colophon bar (`.colophon`) has three cells in IBM Plex Mono apparatus style:
+- Left: `DOC REF` — document identifier (e.g. `BP-2026-07`)
+- Center: `CURRENT WORK` — active status line
+- Right: `FIELD NOTES` — edition note
+
+### Day/night toggle
+
+The theme toggle button (`.theme-toggle`) renders `◐` (light) or `◑` (dark) followed by `DAY` / `NIGHT` in IBM Plex Mono apparatus style. It writes `bp-theme` to `localStorage` (`'dark'` or `'light'`). On page load, `site.js` reads this key and applies or removes the `.dark` class on `<html>` before first paint, preventing flash.
+
+---
+
 ## One-line summary
 
-Warm earthy four-color palette (terracotta **#BE5A38** for emphasis, caramel **#BE7C4D**, deep brown **#3E1F14**, cream **#F2E9E4**), serif display + sans body (Young Serif headings, Hanken Grotesk body, Cormorant Garamond italic only on the hero), cream/brown backgrounds instead of white/black, italic-jasper for emphasis over bold.
+Warm earthy four-color palette (terracotta **#BE5A38** for emphasis, caramel **#BE7C4D**, deep brown **#3E1F14**, cream **#F2E9E4**), serif display + humanist sans body (Young Serif headings, Hanken Grotesk body, IBM Plex Mono for apparatus rows), research-document visual language (figure captions, plate numbering, section eyebrows, colophon), cream/brown backgrounds instead of white/black, italic-jasper for emphasis over bold.
