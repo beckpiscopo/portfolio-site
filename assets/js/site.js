@@ -6,12 +6,6 @@
   const root = document.documentElement;
   root.classList.add('js');
 
-  // Dark mode: auto by hour (19:00–06:59 dark), plus manual toggle.
-  const hour = new Date().getHours();
-  if (hour >= 19 || hour < 7) root.classList.add('dark');
-  const darkToggle = document.getElementById('dark-toggle');
-  if (darkToggle) darkToggle.addEventListener('click', () => root.classList.toggle('dark'));
-
   // Case-study pages have no #hero: dock the sidebar (skip the scroll morph).
   // The home page HAS a #hero and manages --p itself via its own scroll script,
   // so we leave it alone here.
