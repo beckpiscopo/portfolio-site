@@ -127,12 +127,12 @@ nav a:focus {
      --display-font   →  var(--font-serif-display)
      "IBM Plex Mono"  →  var(--font-mono)
      html[data-theme="dark"] → .dark
-*//* ---------- base ---------- */.mono {
+*//* ---------- ink routing: adapts van-dyke to dark mode without touching literal token ---------- */:root { --doc-ink: var(--color-van-dyke); }.dark  { --doc-ink: var(--color-isabelline); }/* ---------- base ---------- */.mono {
   font-family: var(--font-mono);
   font-size: .68rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-van-dyke) 68%, transparent);
+  color: color-mix(in srgb, var(--doc-ink) 68%, transparent);
 }a { color: inherit; }/* ================= HERO SHEET ================= */.sheet { min-height: calc(100vh - 3.4rem); display: flex; flex-direction: column; }.meta-top {
   display: flex;
   justify-content: space-between;
@@ -146,7 +146,7 @@ nav a:focus {
 }.meta-top .nav { display: flex; gap: 1.6rem; }.meta-top .nav a { text-decoration: none; transition: color .15s; }.meta-top .nav a:hover { color: var(--accent); }.meta-top .lockup {
   font-family: var(--font-serif-display);
   font-size: 1.05rem;
-  color: var(--color-van-dyke);
+  color: var(--doc-ink);
   letter-spacing: 0;
   text-transform: none;
   text-decoration: none;
@@ -169,7 +169,7 @@ nav a:focus {
   font-weight: 400;
   font-size: 1.06rem;
   line-height: 1.6;
-  color: color-mix(in srgb, var(--color-van-dyke) 62%, transparent);
+  color: color-mix(in srgb, var(--doc-ink) 62%, transparent);
   margin-top: 1.6rem;
   max-width: 30em;
 }.cta {
@@ -182,12 +182,12 @@ nav a:focus {
   font-size: .72rem;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: var(--color-van-dyke);
+  color: var(--doc-ink);
   text-decoration: none;
   border: 1px solid var(--hairline);
   padding: .8rem 1.2rem;
   transition: background .18s, color .18s;
-}.cta:hover { background: var(--color-van-dyke); color: var(--color-isabelline); }.figure-cell {
+}.cta:hover { background: var(--doc-ink); color: var(--color-background); }.figure-cell {
   border-left: 1px solid var(--hairline);
   display: flex;
   flex-direction: column;
@@ -265,7 +265,7 @@ nav a:focus {
   -o-object-position: top center;
      object-position: top center;
   filter: sepia(.08) saturate(.95);
-}.plate .body { padding: 1.5rem 1.6rem 1.7rem; flex: 1; display: flex; flex-direction: column; }.plate .fig-no { display: block; margin-bottom: .9rem; }.plate h3 { font-family: var(--font-serif-display); font-weight: 400; font-size: 1.35rem; margin-bottom: .6rem; }.plate p { font-size: .97rem; line-height: 1.6; color: color-mix(in srgb, var(--color-van-dyke) 82%, transparent); }.plate .stack { margin-top: auto; padding-top: 1.2rem; }.plate .go {
+}.plate .body { padding: 1.5rem 1.6rem 1.7rem; flex: 1; display: flex; flex-direction: column; }.plate .fig-no { display: block; margin-bottom: .9rem; }.plate h3 { font-family: var(--font-serif-display); font-weight: 400; font-size: 1.35rem; margin-bottom: .6rem; }.plate p { font-size: .97rem; line-height: 1.6; color: color-mix(in srgb, var(--doc-ink) 82%, transparent); }.plate .stack { margin-top: auto; padding-top: 1.2rem; }.plate .go {
   margin-top: .9rem;
   text-decoration: none;
   font-family: var(--font-mono);
@@ -299,13 +299,13 @@ nav a:focus {
 }.refs .title:hover { color: var(--accent); }.refs .sub {
   font-style: italic;
   font-size: .98rem;
-  color: color-mix(in srgb, var(--color-van-dyke) 62%, transparent);
+  color: color-mix(in srgb, var(--doc-ink) 62%, transparent);
   margin-top: .25rem;
 }.refs .year {
   margin-left: auto;
   font-family: var(--font-mono);
   font-size: .72rem;
-  color: color-mix(in srgb, var(--color-van-dyke) 55%, transparent);
+  color: color-mix(in srgb, var(--doc-ink) 55%, transparent);
   padding-top: .35rem;
 }/* ================= FOOTER / FINAL PLATE ================= */.footer {
   background: var(--plate-footer);
@@ -355,7 +355,7 @@ nav a:focus {
   font-size: .62rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--color-van-dyke);
+  color: var(--doc-ink);
   cursor: pointer;
   padding: .35rem .6rem;
   margin-left: 1.4rem;
@@ -368,7 +368,7 @@ nav a:focus {
     color-mix(in srgb, var(--color-caramel) 8%, transparent);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-van-dyke) 40%, transparent);
+  color: color-mix(in srgb, var(--doc-ink) 40%, transparent);
 }/* ---------- atmospheric abstract plate ---------- */#abstract {
   /* scoped ink flip: always night-mode inside #abstract */
   --color-van-dyke: #F2E9E4;

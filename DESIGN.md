@@ -116,18 +116,18 @@ Work/project cards are "plates": `Plate I`, `Plate II`, `Plate III`, `Plate IV`,
 
 ### Section eyebrows
 
-Every section opens with a `.mono.eyebrow-label` tag: format `NN — LABEL` (e.g. `01 — ABSTRACT`, `02 — FIELD NOTES`). Rendered in `--accent` color.
+Every section opens with a `.mono.eyebrow-label` tag: format `NN — LABEL` (e.g. `01 — ABSTRACT`, `02 — Plates I–V`). Rendered in `--accent` color.
 
 ### Colophon
 
 The footer colophon bar (`.colophon`) has three cells in IBM Plex Mono apparatus style:
-- Left: `DOC REF` — document identifier (e.g. `BP-2026-07`)
+- Left: `DOC REF` — document identifier (e.g. `BP-2026`)
 - Center: `CURRENT WORK` — active status line
 - Right: `FIELD NOTES` — edition note
 
 ### Day/night toggle
 
-The theme toggle button (`.theme-toggle`) renders `◐` (light) or `◑` (dark) followed by `DAY` / `NIGHT` in IBM Plex Mono apparatus style. It writes `bp-theme` to `localStorage` (`'dark'` or `'light'`). On page load, `site.js` reads this key and applies or removes the `.dark` class on `<html>` before first paint, preventing flash.
+The theme toggle button (`.theme-toggle`) renders `◐` (light) or `◑` (dark) followed by `DAY` / `NIGHT` in IBM Plex Mono apparatus style. It writes `bp-theme` to `localStorage` (`'dark'` or `'light'`). On page load, `theme.js` reads this key and applies or removes the `.dark` class on `<html>` before first paint, preventing flash.
 
 ---
 

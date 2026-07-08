@@ -12,13 +12,17 @@
      html[data-theme="dark"] → .dark
 */
 
+/* ---------- ink routing: adapts van-dyke to dark mode without touching literal token ---------- */
+:root { --doc-ink: var(--color-van-dyke); }
+.dark  { --doc-ink: var(--color-isabelline); }
+
 /* ---------- base ---------- */
 .mono {
   font-family: var(--font-mono);
   font-size: .68rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-van-dyke) 68%, transparent);
+  color: color-mix(in srgb, var(--doc-ink) 68%, transparent);
 }
 
 a { color: inherit; }
@@ -43,7 +47,7 @@ a { color: inherit; }
 .meta-top .lockup {
   font-family: var(--font-serif-display);
   font-size: 1.05rem;
-  color: var(--color-van-dyke);
+  color: var(--doc-ink);
   letter-spacing: 0;
   text-transform: none;
   text-decoration: none;
@@ -74,7 +78,7 @@ a { color: inherit; }
   font-weight: 400;
   font-size: 1.06rem;
   line-height: 1.6;
-  color: color-mix(in srgb, var(--color-van-dyke) 62%, transparent);
+  color: color-mix(in srgb, var(--doc-ink) 62%, transparent);
   margin-top: 1.6rem;
   max-width: 30em;
 }
@@ -88,13 +92,13 @@ a { color: inherit; }
   font-size: .72rem;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: var(--color-van-dyke);
+  color: var(--doc-ink);
   text-decoration: none;
   border: 1px solid var(--hairline);
   padding: .8rem 1.2rem;
   transition: background .18s, color .18s;
 }
-.cta:hover { background: var(--color-van-dyke); color: var(--color-isabelline); }
+.cta:hover { background: var(--doc-ink); color: var(--color-background); }
 
 .figure-cell {
   border-left: 1px solid var(--hairline);
@@ -213,7 +217,7 @@ section { border-top: 1px solid var(--hairline-soft); }
 .plate .body { padding: 1.5rem 1.6rem 1.7rem; flex: 1; display: flex; flex-direction: column; }
 .plate .fig-no { display: block; margin-bottom: .9rem; }
 .plate h3 { font-family: var(--font-serif-display); font-weight: 400; font-size: 1.35rem; margin-bottom: .6rem; }
-.plate p { font-size: .97rem; line-height: 1.6; color: color-mix(in srgb, var(--color-van-dyke) 82%, transparent); }
+.plate p { font-size: .97rem; line-height: 1.6; color: color-mix(in srgb, var(--doc-ink) 82%, transparent); }
 .plate .stack { margin-top: auto; padding-top: 1.2rem; }
 .plate .go {
   margin-top: .9rem;
@@ -265,14 +269,14 @@ section { border-top: 1px solid var(--hairline-soft); }
 .refs .sub {
   font-style: italic;
   font-size: .98rem;
-  color: color-mix(in srgb, var(--color-van-dyke) 62%, transparent);
+  color: color-mix(in srgb, var(--doc-ink) 62%, transparent);
   margin-top: .25rem;
 }
 .refs .year {
   margin-left: auto;
   font-family: var(--font-mono);
   font-size: .72rem;
-  color: color-mix(in srgb, var(--color-van-dyke) 55%, transparent);
+  color: color-mix(in srgb, var(--doc-ink) 55%, transparent);
   padding-top: .35rem;
 }
 
@@ -361,7 +365,7 @@ body, .meta-top, .plate { transition: background-color .35s ease, color .35s eas
   font-size: .62rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--color-van-dyke);
+  color: var(--doc-ink);
   cursor: pointer;
   padding: .35rem .6rem;
   margin-left: 1.4rem;
@@ -385,7 +389,7 @@ html.reveal-init .reveal.visible { opacity: 1; transform: none; }
     color-mix(in srgb, var(--color-caramel) 8%, transparent);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-van-dyke) 40%, transparent);
+  color: color-mix(in srgb, var(--doc-ink) 40%, transparent);
 }
 
 /* ---------- atmospheric abstract plate ---------- */
