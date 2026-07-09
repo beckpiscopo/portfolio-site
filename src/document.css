@@ -396,11 +396,6 @@ body, .meta-top { transition: background-color .35s ease, color .35s ease, borde
 
 .pageno { color: var(--accent); }
 
-/* ---------- scroll reveal ---------- */
-html.reveal-init .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
-html.reveal-init .reveal.visible { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { html.reveal-init .reveal { opacity: 1; transform: none; transition: none; } }
-
 /* ---------- thumb placeholder (missing figure, used inside #plate-preview) ---------- */
 .plate-preview .thumb-placeholder {
   position: absolute; inset: 0;
@@ -532,7 +527,12 @@ html.deck-on .scene {
   padding: 4.6rem 0 3.4rem;   /* clear the fixed nav + strip */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+}
+html.deck-on .scene > .sec-body,
+html.deck-on .scene > .hero-block,
+html.deck-on .scene > .footer-cta {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 html.deck-on .scene.above { transform: translateY(-26px); }
 html.deck-on .scene.active {
@@ -578,9 +578,6 @@ html.deck-on #stage[data-plate="dark"] ~ #deck-strip .mono { color: rgba(242,233
   transition: border-color .15s, color .15s;
 }
 #deck-strip button:hover { border-color: var(--accent); color: var(--accent); }
-
-/* deck owns entrances — neutralize scroll-reveal */
-html.deck-on .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
 
 /* reduced motion: instant cuts */
 @media (prefers-reduced-motion: reduce) {

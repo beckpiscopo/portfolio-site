@@ -358,7 +358,7 @@ nav a:focus {
   background: var(--color-background);
   border-bottom: 1px solid var(--hairline);
   z-index: 10;
-}.pageno { color: var(--accent); }/* ---------- scroll reveal ---------- */html.reveal-init .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }html.reveal-init .reveal.visible { opacity: 1; transform: none; }@media (prefers-reduced-motion: reduce) { html.reveal-init .reveal { opacity: 1; transform: none; transition: none; } }/* ---------- thumb placeholder (missing figure, used inside #plate-preview) ---------- */.plate-preview .thumb-placeholder {
+}.pageno { color: var(--accent); }/* ---------- thumb placeholder (missing figure, used inside #plate-preview) ---------- */.plate-preview .thumb-placeholder {
   position: absolute; inset: 0;
   background:
     repeating-linear-gradient(0deg, transparent, transparent 23px, var(--hairline-soft) 24px),
@@ -463,7 +463,11 @@ nav a:focus {
   padding: 4.6rem 0 3.4rem;   /* clear the fixed nav + strip */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+}html.deck-on .scene > .sec-body,
+html.deck-on .scene > .hero-block,
+html.deck-on .scene > .footer-cta {
+  margin-top: auto;
+  margin-bottom: auto;
 }html.deck-on .scene.above { transform: translateY(-26px); }html.deck-on .scene.active {
   opacity: 1;
   pointer-events: auto;
@@ -490,7 +494,7 @@ nav a:focus {
   cursor: pointer;
   padding: .3rem .55rem;
   transition: border-color .15s, color .15s;
-}#deck-strip button:hover { border-color: var(--accent); color: var(--accent); }/* deck owns entrances — neutralize scroll-reveal */html.deck-on .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }/* reduced motion: instant cuts */@media (prefers-reduced-motion: reduce) {
+}#deck-strip button:hover { border-color: var(--accent); color: var(--accent); }/* reduced motion: instant cuts */@media (prefers-reduced-motion: reduce) {
   html.deck-on .scene, html.deck-on #stage { transition: none; }
 }/* programmatic focus targets (scene headings on nav) — not tab stops, no ring needed */html.deck-on .scene [tabindex="-1"]:focus { outline: none; }/* deck-mode vertical density: keep every scene composed within a normal laptop viewport */html.deck-on .sec-body { padding-top: 2rem; padding-bottom: 2rem; }html.deck-on .sec-body h2 { margin-bottom: 1.6rem; }html.deck-on #abstract .sec-body { padding-top: 2rem; }html.deck-on .plate-list a { padding-top: .8rem; padding-bottom: .8rem; grid-template-columns: 5.2rem minmax(16rem, 1fr) auto; }html.deck-on .plate-list .t .d { font-size: .82rem; }/* ! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)

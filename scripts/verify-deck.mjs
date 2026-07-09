@@ -84,6 +84,33 @@ const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new'
   await page.close();
 }
 
+/* --- wheel advance --- */
+{
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1728, height: 960 });
+  await page.goto(URL, { waitUntil: 'domcontentloaded' });
+  await new Promise(r => setTimeout(r, 4200)); // let intro play
+  await page.mouse.wheel({ deltaY: 150 });
+  await new Promise(r => setTimeout(r, 1300));
+  const active = await page.evaluate(() => document.querySelector('.scene.active')?.id);
+  check('wheel advance → abstract', active === 'abstract', `got ${active}`);
+  await page.close();
+}
+
+/* --- plates hover preview --- */
+{
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1728, height: 960 });
+  await page.goto(URL + '#work', { waitUntil: 'domcontentloaded' });
+  await new Promise(r => setTimeout(r, 1500));
+  await page.hover('#plate-list a[href="projects/noeron.html"]');
+  await new Promise(r => setTimeout(r, 200));
+  const src = await page.evaluate(() => document.getElementById('plate-preview-img')?.src || '');
+  const cap = await page.evaluate(() => document.getElementById('plate-preview-cap')?.textContent || '');
+  check('plates hover: noeron preview', src.includes('noeron') && cap.includes('Plate II'), `src=${src} cap=${cap}`);
+  await page.close();
+}
+
 await browser.close();
 console.log(failures === 0 ? '\nALL CHECKS PASSED' : `\n${failures} FAILURES`);
 process.exit(failures === 0 ? 0 : 1);

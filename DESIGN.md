@@ -120,10 +120,11 @@ Every section opens with a `.mono.eyebrow-label` tag: format `NN — LABEL` (e.g
 
 ### Colophon
 
-The footer colophon bar (`.colophon`) has three cells in IBM Plex Mono apparatus style:
-- Left: `DOC REF` — document identifier (e.g. `BP-2026`)
-- Center: `CURRENT WORK` — active status line
-- Right: `FIELD NOTES` — edition note
+The footer colophon bar (`.colophon`) has four cells in IBM Plex Mono apparatus style:
+- `DOC REF` — document identifier (e.g. `BP-2026`)
+- `OBSERVED FROM` — location line
+- `CURRENT WORK` — active status line
+- `FIELD NOTES` — edition note
 
 ### Day/night toggle
 
@@ -164,11 +165,12 @@ Focus only moves to the incoming scene's heading on *user-initiated* navigation 
 
 - **<901px**: `scenes.js` returns before doing anything; the page is the plain stacked document (all six sections render in flow, deck strip stays `hidden`).
 - **`prefers-reduced-motion: reduce`**: formation morphs cut instantly (no spring heat, no transition duration) instead of animating.
-- **No `#net` canvas / <2 scenes found**: controller no-ops, same stacked fallback.
+- **No `#net` canvas**: `figure-engine.js` no-ops (the engine itself, not the controller).
+- **`#stage` missing / <2 scenes found**: `scenes.js` controller no-ops, same stacked fallback.
 
 ### Verifying
 
-`python3 -m http.server 8741` from the repo root, then `node scripts/verify-deck.mjs` (expects Chrome at the hardcoded path in the script). Covers: deck boot, full keyboard walk through all six scenes, hash tracking, formation state, walk-back, dark-theme screenshot, hash deep-link, mobile fallback, and reduced motion. All 15 checks must print `PASS`.
+`python3 -m http.server 8741` from the repo root, then `node scripts/verify-deck.mjs` (expects Chrome at the hardcoded path in the script). Covers: deck boot, full keyboard walk through all six scenes, hash tracking, formation state, walk-back, dark-theme screenshot, hash deep-link, mobile fallback, reduced motion, wheel advance, and plates hover preview. All 17 checks must print `PASS`.
 
 ---
 

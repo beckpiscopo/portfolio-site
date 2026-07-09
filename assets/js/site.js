@@ -45,9 +45,10 @@
 
   // Click-to-zoom lightbox for content images (charts, screenshots).
   // Images wrapped in a link (e.g. home-page project thumbnails) are skipped
-  // so they keep navigating instead of zooming.
+  // so they keep navigating instead of zooming. The plate preview thumbnail
+  // has its own hover behavior and shouldn't be captured either.
   const zoomImgs = Array.from(document.querySelectorAll('main img'))
-    .filter((img) => !img.closest('a'));
+    .filter((img) => !img.closest('a') && !img.closest('#plate-preview'));
   if (zoomImgs.length) {
     const lightbox = document.createElement('div');
     lightbox.className = 'lightbox';

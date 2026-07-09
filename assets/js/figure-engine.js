@@ -54,6 +54,7 @@
   wrap.addEventListener('pointerdown', e => {
     if (!interactive) return;
     const r = canvas.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
     const x = e.clientX - r.left, y = e.clientY - r.top;
     for (let k = 0; k < 6; k++) {
       if (nodes.length >= MAX_N) cull();
@@ -263,6 +264,10 @@
       }
     } else {
       FORMS[formation].assign();
+      if (REDUCED) {
+        for (const n of nodes) { n.x = n.hx; n.y = n.hy; n.vx = 0; n.vy = 0; }
+        requestAnimationFrame(frame);
+      }
     }
   }
 
