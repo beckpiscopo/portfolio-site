@@ -445,6 +445,53 @@ nav a:focus {
   .colophon > div:last-child { text-align: left; }
   /* Body padding */
   .sec-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+}/* ================= SCENE DECK (html.deck-on, ≥901px, JS on) ================= */html.deck-on { overflow: hidden; }html.deck-on body { overflow: hidden; }html.deck-on .meta-top { position: fixed; top: 0; left: 0; right: 0; }html.deck-on #stage {
+  position: fixed;
+  inset: 0;
+  background: var(--color-background);
+  transition: background-color .65s ease;
+}html.deck-on #stage[data-plate="dark"] { background: var(--plate-abstract); }html.deck-on #net { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }html.deck-on .scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-top: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(26px);
+  transition: opacity .65s ease, transform .65s ease;
+  overflow-y: auto;
+  padding: 4.6rem 0 3.4rem;   /* clear the fixed nav + strip */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}html.deck-on .scene.above { transform: translateY(-26px); }html.deck-on .scene.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  z-index: 2;
+}/* scenes are windows onto the stage — their own plates go transparent */html.deck-on #abstract { background: transparent; }html.deck-on #contact.footer { background: transparent; min-height: 0; }html.deck-on #home { min-height: 0; }html.deck-on .hero-block { padding-bottom: 2rem; }/* dark-plate ink for the whole scene body (abstract already self-scopes;
+   contact inherits from .footer rules) *//* the deck strip */html.deck-on #deck-strip {
+  display: flex;
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 10;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: .8rem 2.5rem;
+  border-top: 1px solid var(--hairline-soft);
+  background: transparent;
+}html.deck-on #stage[data-plate="dark"] ~ #deck-strip { border-color: rgba(242,233,228,.18); }html.deck-on #stage[data-plate="dark"] ~ #deck-strip .mono { color: rgba(242,233,228,.62); }#deck-strip .deck-arrows { display: flex; gap: .5rem; }#deck-strip button {
+  background: none;
+  border: 1px solid var(--hairline-soft);
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  color: inherit;
+  cursor: pointer;
+  padding: .3rem .55rem;
+  transition: border-color .15s, color .15s;
+}#deck-strip button:hover { border-color: var(--accent); color: var(--accent); }/* deck owns entrances — neutralize scroll-reveal */html.deck-on .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }/* reduced motion: instant cuts */@media (prefers-reduced-motion: reduce) {
+  html.deck-on .scene, html.deck-on #stage { transition: none; }
 }/* ! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
