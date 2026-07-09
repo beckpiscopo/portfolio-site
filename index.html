@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beck Piscopo — Research Intelligence Systems</title>
-  <script src="assets/js/theme.js?v=20260707a"></script>
-  <link href="dist/output.css?v=20260708d" rel="stylesheet">
+  <script src="assets/js/theme.js?v=20260708d"></script>
+  <link href="dist/output.css?v=20260708e" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:ital,wght@0,300..700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -17,25 +17,45 @@
 <!-- ============ STICKY NAV ============ -->
 <div class="meta-top">
   <a class="lockup" href="#">Beck Piscopo</a>
-  <span class="mono">St. Petersburg, FL</span>
-  <span class="nav mono">
+  <nav class="nav mono">
     <a href="#abstract">About</a>
     <a href="#work">Work</a>
     <a href="#writing">Writing</a>
     <a href="assets/pdf/v2_light_resume_2025.pdf" target="_blank" rel="noopener">Resume</a>
     <a href="#contact">Contact</a>
-    <span class="pageno" id="pageno">01 / 05</span>
-  </span>
-  <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle night mode">&#9680; Night</button>
+  </nav>
+  <div class="meta-tools">
+    <span class="pageno mono" id="pageno">01 / 05</span>
+    <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle night mode">&#9680; Night</button>
+  </div>
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">&#9776; Menu</button>
+  <div id="mobile-menu">
+    <a href="#abstract">About</a>
+    <a href="#work">Work</a>
+    <a href="#writing">Writing</a>
+    <a href="assets/pdf/v2_light_resume_2025.pdf" target="_blank" rel="noopener">Resume</a>
+    <a href="#contact">Contact</a>
+    <button class="theme-toggle" id="theme-toggle-btn-mobile" aria-label="Toggle night mode">&#9680; Night</button>
+  </div>
 </div>
 
 <!-- ============ HERO SHEET ============ -->
 <div class="sheet">
   <div class="main">
     <div class="headline-cell">
-      <h1>I build <span class="em">research intelligence systems</span> — instruments for discovering what matters.</h1>
-      <p class="subline">Scattered information becomes connected context. Connected context becomes judgment.</p>
-      <a class="cta" href="#work">View Field Notes <span>→</span></a>
+      <div class="headline-inner">
+        <span class="hero-eyebrow mono">Doc BP-2026 · Field Notes on Research Intelligence</span>
+        <h1>I build <span class="em">research intelligence systems</span> — instruments for discovering what matters.</h1>
+        <p class="subline">Scattered information becomes connected context.<br>Connected context becomes judgment.</p>
+        <div class="hero-actions">
+          <a class="cta cta-solid" href="#work">View Case Studies <span>→</span></a>
+          <a class="cta" href="#contact">Start a conversation <span>→</span></a>
+        </div>
+      </div>
+      <div class="headline-caption">
+        <a class="mono continue-cue" href="#abstract">Continued in Abstract — p. 02 <span>↓</span></a>
+        <span class="mono">Beck Piscopo · 2026</span>
+      </div>
     </div>
 
     <div class="figure-cell">
@@ -58,12 +78,12 @@
     <span class="eyebrow-label mono">01 — Curious, yet practical</span>
     <h2>Abstract</h2>
     <div class="abstract">
-      <p class="lead">I find great satisfaction in employing my skills to solve problems that <span class="em">actually need solutions</span> — and in communicating complex ideas in the other person's language.</p>
+      <p class="lead">As a deeply curious-yet-practical person, I find great satisfaction in employing my skills to solve problems that <span class="em">actually need solutions</span>. Being able to effectively communicate complex ideas means understanding what the other person needs to know, and being able to speak their language. This is a skill, maybe even an art, that I have intentionally cultivated throughout my life, and I hope you'll find it demonstrated in my portfolio projects and writing.</p>
       <div class="detail">
         <p>My portfolio consists of projects that I created because I needed them to exist:</p>
         <ul class="origins">
           <li><span class="no">i.</span><span>I built <a href="projects/noeron.html">Noeron</a> because I wanted to remove the friction between consuming scientific podcasts and validating the claims being made.</span></li>
-          <li><span class="no">ii.</span><span>While shopping for a new house, I found the existing platforms didn't provide the data I needed, so I conducted my own <a href="projects/st-pete.html">St. Pete property-risk analysis</a>.</span></li>
+          <li><span class="no">ii.</span><span>While shopping for a new house, I found the existing platforms didn't provide the data I needed to make an informed decision, so I conducted my own <a href="projects/st-pete.html">St. Pete property-risk analysis</a>.</span></li>
           <li><span class="no">iii.</span><span>I ran the same open-data pipeline on the region's jobs numbers to see what the economy is built on — a <a href="projects/tampa-labor.html">Tampa Bay labor-market analysis</a>.</span></li>
         </ul>
       </div>
@@ -216,13 +236,15 @@
   </div>
   <div class="colophon">
     <div class="mono"><span class="k">Doc Ref</span><span class="v">BP-2026</span></div>
+    <div class="mono"><span class="k">Observed From</span><span class="v">St. Petersburg, FL · 27.77° N, 82.64° W</span></div>
     <div class="mono"><span class="k">Current Work</span><span class="v">Noeron · Morphic · Decision Intelligence</span></div>
     <div class="mono"><span class="k">Field Notes</span><span class="v">E-0001</span></div>
   </div>
 </footer>
 
+  <script src="assets/js/mobile-nav.js?v=20260708d" defer></script>
   <script src="assets/js/site.js?v=20260707a"></script>
-  <script src="assets/js/fig1-graph.js?v=20260707a" defer></script>
+  <script src="assets/js/fig1-graph.js?v=20260709a" defer></script>
   <script src="assets/js/abstract-plate.js?v=20260707a" defer></script>
   <script src="assets/js/fig8-orbit.js?v=20260707a" defer></script>
   <script src="assets/js/reveal.js?v=20260707a" defer></script>
