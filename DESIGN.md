@@ -131,6 +131,47 @@ The theme toggle button (`.theme-toggle`) renders `◐` (light) or `◑` (dark) 
 
 ---
 
+## Scene deck (homepage, ≥901px viewports)
+
+The homepage (`index.html`) is a six-scene deck on desktop: one persistent canvas figure (`#net`, `assets/js/figure-engine.js`) morphs between named formations behind six full-viewport `.scene` sections inside `#stage`. `assets/js/scenes.js` is the controller — it boots the deck (`html.deck-on`), and below `901px` it does nothing, leaving the original stacked scrolling document as the fallback (verified by `scripts/verify-deck.mjs`'s mobile check).
+
+### Scenes → formations
+
+| # | id | Formation | Plate | Notes |
+|---|----|-----------|-------|-------|
+| 01 | `home` | `constellation` | light | Fig. 1 hero; hub-and-spoke "what matters" marker |
+| 02 | `abstract` | `dispersal` | dark | atmo/grain canvases layered over the faded network |
+| 03 | `work` | `margins` | light | table of plates; hover swaps the preview figure |
+| 04 | `activity` | `grid` | light | GitHub contribution heatmap |
+| 05 | `writing` | `rows` | light | references list |
+| 06 | `contact` | `orbit` | dark | mail CTA + colophon; `<footer>` landmark |
+
+`FigureEngine.setFormation(name)` re-targets every node's home position; springs (with a short post-switch "heat" window — `heatUntil`, 900ms, ×2.2 stiffness) carry the morph. Each scene's `data-formation` / `data-plate` attributes drive this from `scenes.js`'s `apply()`.
+
+### Inputs
+
+`go(n)` is the single entry point; every input path funnels through it with a transition lock (`DUR` + `SETTLE`) so nothing can double-advance:
+
+- **Wheel** — accumulates `deltaY` past `THRESHOLD` (90); resets to 0 when clamped at the first/last scene so momentum can't pile up at the boundary. Scene-internal scroll (e.g. long Abstract copy) wins until its own top/bottom edge.
+- **Touch** — vertical swipe ≥60px on tablets above the mobile breakpoint.
+- **Keyboard** — `ArrowUp/Down`, `PageUp/Down`, `Space`, `Home`, `End`. Ignored while typing in a form field.
+- **Hash** — in-page `<a href="#id">` clicks and `hashchange` (e.g. a fresh load at `/#activity` boots straight into that scene — deep links work because `go()` is seeded from `location.hash` on boot).
+- **Strip arrows** — `#deck-prev` / `#deck-next` in the caption strip chrome.
+
+Focus only moves to the incoming scene's heading on *user-initiated* navigation — the initial boot `go()` does not steal focus. Inactive scenes are both `aria-hidden` and `inert`, so their links/buttons drop out of tab order.
+
+### Fallbacks
+
+- **<901px**: `scenes.js` returns before doing anything; the page is the plain stacked document (all six sections render in flow, deck strip stays `hidden`).
+- **`prefers-reduced-motion: reduce`**: formation morphs cut instantly (no spring heat, no transition duration) instead of animating.
+- **No `#net` canvas / <2 scenes found**: controller no-ops, same stacked fallback.
+
+### Verifying
+
+`python3 -m http.server 8741` from the repo root, then `node scripts/verify-deck.mjs` (expects Chrome at the hardcoded path in the script). Covers: deck boot, full keyboard walk through all six scenes, hash tracking, formation state, walk-back, dark-theme screenshot, hash deep-link, mobile fallback, and reduced motion. All 15 checks must print `PASS`.
+
+---
+
 ## One-line summary
 
 Warm earthy four-color palette (terracotta **#BE5A38** for emphasis, caramel **#BE7C4D**, deep brown **#3E1F14**, cream **#F2E9E4**), serif display + humanist sans body (Young Serif headings, Hanken Grotesk body, IBM Plex Mono for apparatus rows), research-document visual language (figure captions, plate numbering, section eyebrows, colophon), cream/brown backgrounds instead of white/black, italic-jasper for emphasis over bold.

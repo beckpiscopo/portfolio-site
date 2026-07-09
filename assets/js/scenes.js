@@ -32,6 +32,7 @@
       s.classList.toggle('active', j === i);
       s.classList.toggle('above', j < i);
       s.setAttribute('aria-hidden', j === i ? 'false' : 'true');
+      s.inert = j !== i;
     });
     const s = scenes[i];
     if (pageno) pageno.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(scenes.length).padStart(2, '0');
@@ -44,13 +45,17 @@
 
   function go(n) {
     n = Math.max(0, Math.min(scenes.length - 1, n));
-    if (n === cur || locked) return;
+    if (n === cur) { acc = 0; return; }
+    if (locked) return;
     locked = true;
     lastGo = performance.now();
+    const wasBoot = cur === -1;
     cur = n;
     apply(n);
-    const h = scenes[n].querySelector('h1, h2, .big');
-    if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+    if (!wasBoot) {
+      const h = scenes[n].querySelector('h1, h2, .big');
+      if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+    }
     setTimeout(() => { locked = false; acc = 0; }, DUR + SETTLE);
   }
 
