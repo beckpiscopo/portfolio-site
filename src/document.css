@@ -412,6 +412,7 @@ html.reveal-init .reveal.visible { opacity: 1; transform: none; }
   font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
   color: color-mix(in srgb, var(--doc-ink) 40%, transparent);
 }
+.thumb-placeholder[hidden] { display: none; }
 
 /* ---------- atmospheric abstract plate ---------- */
 #abstract {
@@ -585,3 +586,13 @@ html.deck-on .reveal { opacity: 1 !important; transform: none !important; transi
 @media (prefers-reduced-motion: reduce) {
   html.deck-on .scene, html.deck-on #stage { transition: none; }
 }
+
+/* programmatic focus targets (scene headings on nav) — not tab stops, no ring needed */
+html.deck-on .scene [tabindex="-1"]:focus { outline: none; }
+
+/* deck-mode vertical density: keep every scene composed within a normal laptop viewport */
+html.deck-on .sec-body { padding-top: 2rem; padding-bottom: 2rem; }
+html.deck-on .sec-body h2 { margin-bottom: 1.6rem; }
+html.deck-on #abstract .sec-body { padding-top: 2rem; }
+html.deck-on .plate-list a { padding-top: .8rem; padding-bottom: .8rem; grid-template-columns: 5.2rem minmax(16rem, 1fr) auto; }
+html.deck-on .plate-list .t .d { font-size: .82rem; }
