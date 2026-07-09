@@ -25,7 +25,7 @@
     <a href="#contact">Contact</a>
   </nav>
   <div class="meta-tools">
-    <span class="pageno mono" id="pageno">01 / 05</span>
+    <span class="pageno mono" id="pageno">01 / 06</span>
     <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle night mode">&#9680; Night</button>
   </div>
   <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">&#9776; Menu</button>
@@ -39,183 +39,164 @@
   </div>
 </div>
 
-<!-- ============ HERO SHEET ============ -->
-<div class="sheet">
-  <div class="main">
-    <div class="headline-cell">
-      <div class="headline-inner">
-        <span class="hero-eyebrow mono">Doc BP-2026 · Field Notes on Research Intelligence</span>
-        <h1>I build <span class="em">research intelligence systems</span> — instruments for discovering what matters.</h1>
-        <p class="subline">Scattered information becomes connected context.<br>Connected context becomes judgment.</p>
-        <div class="hero-actions">
-          <a class="cta cta-solid" href="#work">View Case Studies <span>→</span></a>
-          <a class="cta" href="#contact">Start a conversation <span>→</span></a>
+<!-- ============ STAGE / SCENES ============ -->
+<main id="stage">
+  <canvas id="net" aria-hidden="true"></canvas>
+
+  <!-- 01 · Field Notes -->
+  <section class="scene" id="home" data-formation="constellation" data-plate="light"
+    data-fig="Fig. 1 — Structure emerges through relation. Marker tracks densest structure."
+    data-hint="▲ what matters · cursor — gather · click — add observation">
+    <div class="hero-block">
+      <span class="hero-eyebrow mono">Doc BP-2026 · Field Notes on Research Intelligence</span>
+      <h1>I build <span class="em">research intelligence systems</span> — instruments for discovering what matters.</h1>
+      <p class="subline">Scattered information becomes connected context.<br>Connected context becomes judgment.</p>
+      <div class="hero-actions">
+        <a class="cta cta-solid" href="#work">View Case Studies <span>→</span></a>
+        <a class="cta" href="#contact">Start a conversation <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · Abstract -->
+  <section class="scene" id="abstract" data-formation="dispersal" data-plate="dark"
+    data-fig="Fig. 2 — Dispersal. Scattered information, awaiting relation."
+    data-hint="">
+    <canvas class="atmo" id="atmo" aria-hidden="true"></canvas>
+    <div class="grain" id="grain" aria-hidden="true"></div>
+    <div class="sec-body">
+      <span class="eyebrow-label mono">02 — Curious, yet practical</span>
+      <h2>Abstract</h2>
+      <div class="abstract">
+        <p class="lead">As a deeply curious-yet-practical person, I find great satisfaction in employing my skills to solve problems that <span class="em">actually need solutions</span>. Being able to effectively communicate complex ideas means understanding what the other person needs to know, and being able to speak their language. This is a skill, maybe even an art, that I have intentionally cultivated throughout my life, and I hope you'll find it demonstrated in my portfolio projects and writing.</p>
+        <div class="detail">
+          <p>My portfolio consists of projects that I created because I needed them to exist:</p>
+          <ul class="origins">
+            <li><span class="no">i.</span><span>I built <a href="projects/noeron.html">Noeron</a> because I wanted to remove the friction between consuming scientific podcasts and validating the claims being made.</span></li>
+            <li><span class="no">ii.</span><span>While shopping for a new house, I found the existing platforms didn't provide the data I needed to make an informed decision, so I conducted my own <a href="projects/st-pete.html">St. Pete property-risk analysis</a>.</span></li>
+            <li><span class="no">iii.</span><span>I ran the same open-data pipeline on the region's jobs numbers to see what the economy is built on — a <a href="projects/tampa-labor.html">Tampa Bay labor-market analysis</a>.</span></li>
+          </ul>
         </div>
       </div>
-      <div class="headline-caption">
-        <a class="mono continue-cue" href="#abstract">Continued in Abstract — p. 02 <span>↓</span></a>
-        <span class="mono">Beck Piscopo · 2026</span>
-      </div>
     </div>
+  </section>
 
-    <div class="figure-cell">
-      <div class="figure-canvas-wrap">
-        <canvas id="net" aria-hidden="true"></canvas>
-      </div>
-      <div class="figure-caption">
-        <span class="mono">Fig. 1 — Structure emerges through relation. Marker tracks densest structure.</span>
-        <span class="mono legend"><span class="tri">▲</span>&nbsp;What matters<br>cursor — gather · click — add observation</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============ ABSTRACT ============ -->
-<section id="abstract" class="reveal" data-sec="01">
-  <canvas class="atmo" id="atmo" aria-hidden="true"></canvas>
-  <div class="grain" id="grain" aria-hidden="true"></div>
-  <div class="sec-body">
-    <span class="eyebrow-label mono">01 — Curious, yet practical</span>
-    <h2>Abstract</h2>
-    <div class="abstract">
-      <p class="lead">As a deeply curious-yet-practical person, I find great satisfaction in employing my skills to solve problems that <span class="em">actually need solutions</span>. Being able to effectively communicate complex ideas means understanding what the other person needs to know, and being able to speak their language. This is a skill, maybe even an art, that I have intentionally cultivated throughout my life, and I hope you'll find it demonstrated in my portfolio projects and writing.</p>
-      <div class="detail">
-        <p>My portfolio consists of projects that I created because I needed them to exist:</p>
-        <ul class="origins">
-          <li><span class="no">i.</span><span>I built <a href="projects/noeron.html">Noeron</a> because I wanted to remove the friction between consuming scientific podcasts and validating the claims being made.</span></li>
-          <li><span class="no">ii.</span><span>While shopping for a new house, I found the existing platforms didn't provide the data I needed to make an informed decision, so I conducted my own <a href="projects/st-pete.html">St. Pete property-risk analysis</a>.</span></li>
-          <li><span class="no">iii.</span><span>I ran the same open-data pipeline on the region's jobs numbers to see what the economy is built on — a <a href="projects/tampa-labor.html">Tampa Bay labor-market analysis</a>.</span></li>
+  <!-- 03 · Selected Work -->
+  <section class="scene" id="work" data-formation="margins" data-plate="light"
+    data-fig="Fig. 3 — Table of plates. Five instruments, 2025–2026."
+    data-hint="hover — preview · click — open case study">
+    <div class="sec-body">
+      <span class="eyebrow-label mono">03 — Plates I–V</span>
+      <h2>Selected Work</h2>
+      <div class="plates-index">
+        <ul class="plate-list" id="plate-list">
+          <li class="on">
+            <a href="projects/st-pete.html" data-thumb="assets/img/projects/st-pete.png" data-cap="Plate I · Fig. 2 — Parcel-level catastrophe model">
+              <span class="no mono">Plate I</span>
+              <span class="t">St. Pete Property-Risk Analysis
+                <span class="d">A from-scratch flood catastrophe model. Sees what Zillow and Redfin can't.</span></span>
+              <span class="stack mono">DuckDB · dbt · FastAPI · MapLibre</span>
+            </a>
+          </li>
+          <li>
+            <a href="projects/noeron.html" data-thumb="assets/img/projects/noeron.png" data-cap="Plate II · Fig. 3 — Knowledge layer for podcasts">
+              <span class="no mono">Plate II</span>
+              <span class="t">Noeron
+                <span class="d">Detects scientific claims in podcasts, validates them against the literature.</span></span>
+              <span class="stack mono">Gemini 3 · Python · Next.js · Supabase</span>
+            </a>
+          </li>
+          <li>
+            <a href="projects/tampa-labor.html" data-thumb="assets/img/projects/tampa-labor.png" data-cap="Plate III · Fig. 4 — What the metro runs on">
+              <span class="no mono">Plate III</span>
+              <span class="t">Tampa Bay Labor-Market Analysis
+                <span class="d">What the economy actually runs on — and why where people work isn't where they live.</span></span>
+              <span class="stack mono">BLS OEWS · Census ACS · DuckDB · marimo</span>
+            </a>
+          </li>
+          <li>
+            <a href="projects/morphic.html" data-thumb="assets/img/projects/morphic.png" data-cap="Plate IV · Fig. 5 — Cross-domain research engine">
+              <span class="no mono">Plate IV</span>
+              <span class="t">Morphic
+                <span class="d">Extracts structural patterns from a 150+ paper corpus, routes them to specialist agents.</span></span>
+              <span class="stack mono">Multi-agent · Pattern extraction</span>
+            </a>
+          </li>
+          <li>
+            <a data-cap="Plate V · Fig. 6 — Geopolitical supply-chain risk">
+              <span class="no mono">Plate V</span>
+              <span class="t">Critical Minerals Intelligence
+                <span class="d">Interactive mapping, automated news monitoring, HHI-based supply-chain risk scoring.</span></span>
+              <span class="stack mono">Mapping · News monitoring · HHI</span>
+            </a>
+          </li>
         </ul>
+        <figure class="plate-preview" id="plate-preview">
+          <div class="frame">
+            <img src="assets/img/projects/st-pete.png" alt="Selected plate preview" id="plate-preview-img">
+            <div class="thumb-placeholder" id="plate-preview-empty" hidden>No figure on file</div>
+          </div>
+          <figcaption class="mono" id="plate-preview-cap">Plate I · Fig. 2 — Parcel-level catastrophe model</figcaption>
+        </figure>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ PLATES / SELECTED WORK ============ -->
-<section id="work" class="reveal" data-sec="02">
-  <div class="sec-body">
-    <span class="eyebrow-label mono">02 — Plates I–V</span>
-    <h2>Selected Work</h2>
-    <div class="plates-grid">
-
-      <div class="plate featured reveal">
-        <div class="thumb">
-          <img src="assets/img/projects/st-pete.png" alt="St. Pete Property-Risk Analysis screenshot" loading="lazy">
+  <!-- 04 · Observation Log -->
+  <section class="scene" id="activity" data-formation="grid" data-plate="light"
+    data-fig="Fig. 4 — Observation log, Jan – Jun 2026."
+    data-hint="">
+    <div class="sec-body">
+      <span class="eyebrow-label mono">04 — Jan – Jun 2026</span>
+      <h2>Observation Log</h2>
+      <div class="obs-frame">
+        <div class="obs-canvas-wrap">
+          <div class="heatmap-wrap">
+            <div id="heatmap" class="heatmap"></div>
+          </div>
         </div>
-        <div class="body">
-          <span class="mono fig-no">Plate I · Fig. 2 — Parcel-level catastrophe model</span>
-          <h3>St. Pete Property-Risk Analysis</h3>
-          <p>A parcel-level property-risk analysis of St. Petersburg, FL — a from-scratch flood catastrophe model plus surge, rainfall, and sewer-overflow vulnerability layers, built on county assessor, Census, FEMA, and city infrastructure data. Sees what Zillow and Redfin can't.</p>
-          <span class="stack mono">DuckDB · dbt · FastAPI · MapLibre</span>
-          <a class="go" href="projects/st-pete.html">View case study →</a>
+        <div class="obs-caption">
+          <span class="mono" id="heatmap-caption">Loading GitHub activity…</span>
+          <span class="mono"><a href="https://github.com/beckpiscopo" target="_blank" rel="noopener">View on GitHub ↗</a></span>
         </div>
-      </div>
-
-      <div class="plate reveal">
-        <div class="thumb">
-          <img src="assets/img/projects/noeron.png" alt="Noeron screenshot" loading="lazy">
-        </div>
-        <div class="body">
-          <span class="mono fig-no">Plate II · Fig. 3 — Knowledge layer for podcasts</span>
-          <h3>Noeron</h3>
-          <p>Detects scientific claims made in a podcast episode, then validates those claims against the academic literature.</p>
-          <span class="stack mono">Gemini 3 · Python · Next.js · Supabase</span>
-          <a class="go" href="projects/noeron.html">View case study →</a>
-        </div>
-      </div>
-
-      <div class="plate reveal">
-        <div class="thumb">
-          <img src="assets/img/projects/tampa-labor.png" alt="Tampa Bay Labor-Market Analysis chart" loading="lazy">
-        </div>
-        <div class="body">
-          <span class="mono fig-no">Plate III · Fig. 4 — What the metro runs on</span>
-          <h3>Tampa Bay Labor-Market Analysis</h3>
-          <p>What the Tampa Bay economy actually runs on, from BLS and Census data — and why where people work isn't where they live.</p>
-          <span class="stack mono">BLS OEWS · Census ACS · DuckDB · marimo</span>
-          <a class="go" href="projects/tampa-labor.html">View case study →</a>
-        </div>
-      </div>
-
-      <div class="plate reveal">
-        <div class="thumb">
-          <img src="assets/img/projects/morphic.png" alt="Morphic screenshot" loading="lazy">
-        </div>
-        <div class="body">
-          <span class="mono fig-no">Plate IV · Fig. 5 — Cross-domain research engine</span>
-          <h3>Morphic</h3>
-          <p>Extracts structural patterns from a 150+ paper corpus and routes them to autonomous domain-specialist agents that synthesize insights no single field could reach.</p>
-          <span class="stack mono">Multi-agent · Pattern extraction</span>
-          <a class="go" href="projects/morphic.html">View case study →</a>
-        </div>
-      </div>
-
-      <div class="plate reveal">
-        <div class="thumb">
-          <div class="thumb-placeholder">Plate V — No figure on file</div>
-        </div>
-        <div class="body">
-          <span class="mono fig-no">Plate V · Fig. 6 — Geopolitical supply-chain risk</span>
-          <h3>Critical Minerals Intelligence</h3>
-          <p>A geopolitical analysis platform with interactive mapping, automated news monitoring, and HHI-based supply-chain risk scoring.</p>
-          <span class="stack mono">Mapping · News monitoring · HHI</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ OBSERVATION LOG ============ -->
-<section id="activity" class="reveal" data-sec="03">
-  <div class="sec-body">
-    <span class="eyebrow-label mono">03 — Jan – Jun 2026</span>
-    <h2>Observation Log</h2>
-    <div class="obs-frame">
-      <div class="obs-canvas-wrap">
-        <div class="heatmap-wrap">
-          <div id="heatmap" class="heatmap"></div>
-        </div>
-      </div>
-      <div class="obs-caption">
-        <span class="mono" id="heatmap-caption">Loading GitHub activity…</span>
-        <span class="mono"><a href="https://github.com/beckpiscopo" target="_blank" rel="noopener">View on GitHub ↗</a></span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ REFERENCES ============ -->
-<section id="writing" class="reveal" data-sec="04">
-  <div class="sec-body">
-    <span class="eyebrow-label mono">04 — Selected writing</span>
-    <h2>References</h2>
-    <ul class="refs">
-      <li>
-        <span class="no">[1]</span>
-        <span>
-          <a class="title" href="https://beckpiscopo.substack.com/p/the-case-for-quantum-bioelectricity" target="_blank" rel="noopener">The Case for Quantum Bioelectricity</a>
-          <div class="sub">How Decentralized Science Can Propel Emerging Fields</div>
-        </span>
-        <span class="year">2026</span>
-      </li>
-      <li>
-        <span class="no">[2]</span>
-        <span>
-          <a class="title" href="https://beckpiscopo.substack.com/p/the-desci-solution" target="_blank" rel="noopener">The DeSci Solution</a>
-          <div class="sub">Moving Beyond the Limitations of Traditional Science</div>
-        </span>
-        <span class="year">2026</span>
-      </li>
-    </ul>
-  </div>
-</section>
+  <!-- 05 · References -->
+  <section class="scene" id="writing" data-formation="rows" data-plate="light"
+    data-fig="Fig. 5 — Selected writing."
+    data-hint="">
+    <div class="sec-body">
+      <span class="eyebrow-label mono">05 — Selected writing</span>
+      <h2>References</h2>
+      <ul class="refs">
+        <li>
+          <span class="no">[1]</span>
+          <span>
+            <a class="title" href="https://beckpiscopo.substack.com/p/the-case-for-quantum-bioelectricity" target="_blank" rel="noopener">The Case for Quantum Bioelectricity</a>
+            <div class="sub">How Decentralized Science Can Propel Emerging Fields</div>
+          </span>
+          <span class="year">2026</span>
+        </li>
+        <li>
+          <span class="no">[2]</span>
+          <span>
+            <a class="title" href="https://beckpiscopo.substack.com/p/the-desci-solution" target="_blank" rel="noopener">The DeSci Solution</a>
+            <div class="sub">Moving Beyond the Limitations of Traditional Science</div>
+          </span>
+          <span class="year">2026</span>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-<!-- ============ FOOTER / FINAL PLATE ============ -->
-<footer class="footer reveal" id="contact" data-sec="05">
-  <div class="footer-main">
+  <!-- 06 · Correspondence -->
+  <section class="scene footer" id="contact" data-formation="orbit" data-plate="dark"
+    data-fig="Fig. 6 — Open orbit. New bodies welcome."
+    data-hint="◆ you, perhaps">
     <div class="footer-cta">
-      <span class="eyebrow-label mono">05 — Correspondence</span>
+      <span class="eyebrow-label mono">06 — Correspondence</span>
       <p class="big">If you'd like to explore how I can help <span class="em">your team</span>, let's connect.</p>
       <a class="cta" href="mailto:beckpiscopo@gmail.com" style="margin-top:2.6rem">Start a conversation <span>→</span></a>
       <div class="footer-channels mono">
@@ -224,29 +205,30 @@
         <a href="https://beckpiscopo.substack.com/" target="_blank" rel="noopener">Substack ↗</a>
       </div>
     </div>
-    <div class="footer-fig">
-      <div class="orbit-wrap">
-        <canvas id="orbit" aria-hidden="true"></canvas>
-      </div>
-      <div class="figure-caption">
-        <span class="mono">Fig. 8 — Open orbit. New bodies welcome.</span>
-        <span class="mono legend" style="color:var(--color-caramel)">&#9670;&nbsp;You, perhaps</span>
-      </div>
+    <div class="colophon">
+      <div class="mono"><span class="k">Doc Ref</span><span class="v">BP-2026</span></div>
+      <div class="mono"><span class="k">Observed From</span><span class="v">St. Petersburg, FL · 27.77° N, 82.64° W</span></div>
+      <div class="mono"><span class="k">Current Work</span><span class="v">Noeron · Morphic · Decision Intelligence</span></div>
+      <div class="mono"><span class="k">Field Notes</span><span class="v">E-0001</span></div>
     </div>
-  </div>
-  <div class="colophon">
-    <div class="mono"><span class="k">Doc Ref</span><span class="v">BP-2026</span></div>
-    <div class="mono"><span class="k">Observed From</span><span class="v">St. Petersburg, FL · 27.77° N, 82.64° W</span></div>
-    <div class="mono"><span class="k">Current Work</span><span class="v">Noeron · Morphic · Decision Intelligence</span></div>
-    <div class="mono"><span class="k">Field Notes</span><span class="v">E-0001</span></div>
-  </div>
-</footer>
+  </section>
+</main>
+
+<!-- deck caption strip (chrome; hidden unless the deck boots) -->
+<div id="deck-strip" hidden>
+  <span class="mono" id="strip-caption"></span>
+  <span class="mono" id="strip-hint"></span>
+  <span class="deck-arrows">
+    <button id="deck-prev" class="mono" aria-label="Previous scene">↑</button>
+    <button id="deck-next" class="mono" aria-label="Next scene">↓</button>
+  </span>
+</div>
 
   <script src="assets/js/mobile-nav.js?v=20260708d" defer></script>
   <script src="assets/js/site.js?v=20260707a"></script>
   <script src="assets/js/figure-engine.js?v=20260709b" defer></script>
   <script src="assets/js/abstract-plate.js?v=20260707a" defer></script>
-  <script src="assets/js/fig8-orbit.js?v=20260707a" defer></script>
+  <script src="assets/js/plates.js?v=20260709b" defer></script>
   <script src="assets/js/reveal.js?v=20260707a" defer></script>
   <script>
     // Render the GitHub contribution heatmap from the baked-in snapshot.
