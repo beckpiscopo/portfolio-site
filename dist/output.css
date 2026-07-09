@@ -473,7 +473,10 @@ html.deck-on .scene > .footer-cta {
   pointer-events: auto;
   transform: none;
   z-index: 2;
-}/* scenes are windows onto the stage — their own plates go transparent */html.deck-on #abstract { background: transparent; }html.deck-on #contact.footer { background: transparent; min-height: 0; }html.deck-on #home { min-height: 0; }html.deck-on .hero-block { padding-bottom: 2rem; }/* dark-plate ink for the whole scene body (abstract already self-scopes;
+}/* scenes are windows onto the stage — their own plates go transparent */html.deck-on #abstract { background: transparent; }html.deck-on #contact.footer { background: transparent; min-height: 0; }/* baseline #home uses align-items:flex-end for bottom anchoring in row
+   direction; the deck's column direction would reinterpret it as
+   right-align. Re-anchor: left via align-items, bottom via one-sided
+   auto margin (overrides the centered default above). */html.deck-on #home { min-height: 0; align-items: flex-start; }html.deck-on .hero-block { padding-bottom: 2rem; }html.deck-on .scene > .hero-block { margin-top: auto; margin-bottom: 0; }/* dark-plate ink for the whole scene body (abstract already self-scopes;
    contact inherits from .footer rules) *//* the deck strip */html.deck-on #deck-strip {
   display: flex;
   position: fixed;
