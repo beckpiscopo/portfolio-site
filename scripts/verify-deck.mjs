@@ -111,6 +111,33 @@ const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new'
   await page.close();
 }
 
+/* --- dispersal: exploded constellation geometry --- */
+{
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1728, height: 960 });
+  await page.goto(URL + '#abstract', { waitUntil: 'domcontentloaded' });
+  await new Promise(r => setTimeout(r, 2500));
+  const dbg = await page.evaluate(() => window.FigureEngine.getDebug());
+  check('dispersal: formation active', dbg.formation === 'dispersal');
+  check('dispersal: ghost centers present', dbg.ghostCenters.length >= 2, `got ${dbg.ghostCenters.length}`);
+  check('dispersal: ghost centers in bounds',
+    dbg.ghostCenters.every(g => g.x >= 0 && g.x <= dbg.size.w && g.y >= 0 && g.y <= dbg.size.h));
+  // clustered, not uniform: mean distance from each non-dust home to its
+  // nearest exploded center. Exploded gaussian spread tops out ~88px
+  // (spread ≤40 × 2.2), so the mean sits well under 160; uniform scatter
+  // on a 1728×960 canvas over ≤6 centers baselines at ~200+.
+  let sum = 0;
+  for (const h of dbg.homes) {
+    let best = Infinity;
+    for (const c of dbg.explodedCenters) best = Math.min(best, Math.hypot(h.x - c.x, h.y - c.y));
+    sum += best;
+  }
+  const mean = sum / dbg.homes.length;
+  check('dispersal: homes clustered (not uniform)', mean < 160, `mean=${mean.toFixed(1)}px`);
+  await page.screenshot({ path: 'scripts/out/dispersal-exploded.png' });
+  await page.close();
+}
+
 await browser.close();
 console.log(failures === 0 ? '\nALL CHECKS PASSED' : `\n${failures} FAILURES`);
 process.exit(failures === 0 ? 0 : 1);

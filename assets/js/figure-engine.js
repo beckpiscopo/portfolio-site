@@ -44,6 +44,8 @@
   let interactive = true;
   let heatUntil = -1;
   const orbit = { cx: 0, cy: 0, rx: 0, ry: 0 };
+  /* exploded-diagram apparatus: former centroids + where their clusters went */
+  const ghost = { items: [], vis: 0, target: 0 };
 
   const mouse = { x: -9999, y: -9999, active: false };
   wrap.addEventListener('pointermove', e => {
@@ -144,9 +146,32 @@
   }
 
   function assignDispersal() {
+    ghost.items = [];
+    let cx = 0, cy = 0, wsum = 0;
+    for (const c of clusters) { cx += c.x * c.weight; cy += c.y * c.weight; wsum += c.weight; }
+    cx /= wsum; cy /= wsum;
+    const M = Math.max(PAD + 26, Math.min(W, H) * 0.08);
+    const exploded = clusters.map(c => {
+      const dx = c.x - cx, dy = c.y - cy;
+      const f = 1.6 + Math.random() * 0.3;
+      const ex = Math.max(M, Math.min(W - M, cx + dx * f));
+      const ey = Math.max(M, Math.min(H - M, cy + dy * f));
+      ghost.items.push({ x: c.x, y: c.y, r: Math.max(18, c.spread * 2), ex, ey });
+      return { x: ex, y: ey, spread: c.spread * 2.2 };
+    });
     for (const n of nodes) {
-      n.hx = PAD + Math.random() * (W - PAD * 2);
-      n.hy = PAD + Math.random() * (H - PAD * 2);
+      if (n.dust) {
+        n.hx = PAD + Math.random() * (W - PAD * 2);
+        n.hy = PAD + Math.random() * (H - PAD * 2);
+        continue;
+      }
+      let bi = 0, bd = Infinity;
+      for (let i = 0; i < clusters.length; i++) {
+        const d = Math.hypot(clusters[i].x - n.hx, clusters[i].y - n.hy);
+        if (d < bd) { bd = d; bi = i; }
+      }
+      const p = clusterSample(exploded[bi]);
+      n.hx = p.x; n.hy = p.y;
     }
   }
 
@@ -234,7 +259,20 @@
       }
     }
   }
-  window.FigureEngine = { setFormation, get formation() { return formation; } };
+  window.FigureEngine = {
+    setFormation,
+    get formation() { return formation; },
+    getDebug() {
+      return {
+        formation,
+        ghostVis: ghost.vis,
+        ghostCenters: ghost.items.map(g => ({ x: g.x, y: g.y })),
+        explodedCenters: ghost.items.map(g => ({ x: g.ex, y: g.ey })),
+        homes: nodes.filter(n => !n.dust).map(n => ({ x: n.hx, y: n.hy })),
+        size: { w: W, h: H },
+      };
+    },
+  };
 
   function resize() {
     W = canvas.clientWidth; H = canvas.clientHeight;
@@ -263,6 +301,7 @@
         }
       }
     } else {
+      if (formation === 'dispersal') layout();
       FORMS[formation].assign();
       if (REDUCED) {
         for (const n of nodes) { n.x = n.hx; n.y = n.hy; n.vx = 0; n.vy = 0; }
