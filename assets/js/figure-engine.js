@@ -46,6 +46,7 @@
   const orbit = { cx: 0, cy: 0, rx: 0, ry: 0 };
   /* exploded-diagram apparatus: former centroids + where their clusters went */
   const ghost = { items: [], vis: 0, target: 0 };
+  const GHOST_LEADERS = true;   /* A/B: leader lines from ghost to exploded cluster */
 
   const mouse = { x: -9999, y: -9999, active: false };
   wrap.addEventListener('pointermove', e => {
@@ -247,9 +248,10 @@
     f.assign();
     edgeTarget = f.edges; hubTarget = f.hub;
     stageAlphaTarget = f.alpha; interactive = f.interactive;
+    ghost.target = name === 'dispersal' ? 1 : 0;
     if (REDUCED) {
       for (const n of nodes) { n.x = n.hx; n.y = n.hy; n.vx = 0; n.vy = 0; }
-      edgeVis = f.edges; hubVis = f.hub; stageAlpha = f.alpha;
+      edgeVis = f.edges; hubVis = f.hub; stageAlpha = f.alpha; ghost.vis = ghost.target;
       requestAnimationFrame(frame);
     } else {
       heatUntil = performance.now() + 900;
@@ -348,6 +350,7 @@
     edgeVis += (edgeTarget - edgeVis) * 0.05;
     hubVis += (hubTarget - hubVis) * 0.05;
     stageAlpha += (stageAlphaTarget - stageAlpha) * 0.05;
+    ghost.vis += (ghost.target - ghost.vis) * 0.02;
     const E = edgeFade * edgeVis;          /* effective edge visibility */
     const HV = ig * hubVis;                /* effective hub visibility */
 
@@ -480,6 +483,35 @@
     }
 
     const inkA = dark ? 'rgba(242,233,228,' : 'rgba(62,31,20,';
+
+    /* ghost apparatus — where structure used to be (dispersal only) */
+    if (ghost.vis > 0.01 && ghost.items.length) {
+      const ga = 0.27 * ghost.vis * stageAlpha;   /* ≈0.15 ink at rest (stageAlpha .55) */
+      ctx.strokeStyle = inkA + ga.toFixed(3) + ')';
+      ctx.lineWidth = 0.7;
+      for (const g of ghost.items) {
+        ctx.setLineDash([4, 5]);
+        ctx.beginPath(); ctx.arc(g.x, g.y, g.r, 0, Math.PI * 2); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(g.x - 5, g.y); ctx.lineTo(g.x + 5, g.y);
+        ctx.moveTo(g.x, g.y - 5); ctx.lineTo(g.x, g.y + 5);
+        ctx.stroke();
+        if (GHOST_LEADERS) {
+          const dx = g.ex - g.x, dy = g.ey - g.y;
+          const d = Math.hypot(dx, dy);
+          if (d > g.r + 12) {
+            ctx.setLineDash([1.5, 4]);
+            ctx.beginPath();
+            ctx.moveTo(g.x + (dx / d) * g.r, g.y + (dy / d) * g.r);
+            ctx.lineTo(g.x + dx * 0.7, g.y + dy * 0.7);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+        }
+      }
+    }
+
     for (let i = 0; i < nodes.length; i++) {
       const n = nodes[i];
       let r = i === hi ? n.r + 1.8 * HV : n.r;

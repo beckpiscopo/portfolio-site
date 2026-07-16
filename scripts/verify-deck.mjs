@@ -134,7 +134,25 @@ const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new'
   }
   const mean = sum / dbg.homes.length;
   check('dispersal: homes clustered (not uniform)', mean < 160, `mean=${mean.toFixed(1)}px`);
+  check('dispersal: ghosts eased in', dbg.ghostVis > 0.8, `vis=${dbg.ghostVis.toFixed(2)}`);
+  // leave the formation: ghosts ease back out
+  await page.keyboard.press('ArrowUp');
+  await new Promise(r => setTimeout(r, 3000));
+  const vis2 = await page.evaluate(() => window.FigureEngine.getDebug().ghostVis);
+  check('dispersal: ghosts eased out on exit', vis2 < 0.15, `vis=${vis2.toFixed(2)}`);
   await page.screenshot({ path: 'scripts/out/dispersal-exploded.png' });
+  await page.close();
+}
+
+/* --- dispersal: reduced-motion ghost snap --- */
+{
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1728, height: 960 });
+  await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+  await page.goto(URL + '#abstract', { waitUntil: 'domcontentloaded' });
+  await new Promise(r => setTimeout(r, 800));
+  const vis = await page.evaluate(() => window.FigureEngine.getDebug().ghostVis);
+  check('dispersal: reduced-motion ghost snap', vis === 1, `vis=${vis}`);
   await page.close();
 }
 
