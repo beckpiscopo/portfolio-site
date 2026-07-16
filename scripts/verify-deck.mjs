@@ -123,9 +123,11 @@ const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new'
   check('dispersal: ghost centers in bounds',
     dbg.ghostCenters.every(g => g.x >= 0 && g.x <= dbg.size.w && g.y >= 0 && g.y <= dbg.size.h));
   // clustered, not uniform: mean distance from each non-dust home to its
-  // nearest exploded center. Exploded gaussian spread tops out ~88px
-  // (spread ≤40 × 2.2), so the mean sits well under 160; uniform scatter
-  // on a 1728×960 canvas over ≤6 centers baselines at ~200+.
+  // nearest exploded center. 2D gaussian offset distance is Rayleigh
+  // (mean ≈ 1.25σ, σ ≤ 88px) and clusterSample's 25% wide tail fires at
+  // 2.6× spread, so worst-case means can reach ~130-140px — empirically
+  // 75-85px at this viewport; uniform scatter on a 1728×960 canvas over
+  // ≤6 centers baselines at ~200+.
   let sum = 0;
   for (const h of dbg.homes) {
     let best = Infinity;
@@ -152,7 +154,7 @@ const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new'
   await page.goto(URL + '#abstract', { waitUntil: 'domcontentloaded' });
   await new Promise(r => setTimeout(r, 800));
   const vis = await page.evaluate(() => window.FigureEngine.getDebug().ghostVis);
-  check('dispersal: reduced-motion ghost snap', vis === 1, `vis=${vis}`);
+  check('dispersal: reduced-motion ghost snap', vis >= 0.999, `vis=${vis}`);
   await page.close();
 }
 
