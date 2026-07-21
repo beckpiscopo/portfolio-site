@@ -1,0 +1,180 @@
+<!doctype html>
+<html class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sea Level at St. Petersburg · Beck Piscopo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <script src="../assets/js/theme.js?v=20260708d"></script>
+    <link href="../dist/output.css?v=20260709b" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:ital,wght@0,300..700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<!-- Agentic-analytics case study (ANALYTICS layout — chart-forward data story).
+     The analysis, topic choice, pipeline, and report are Claude's, produced from a
+     single open-ended prompt; the page documents both the findings and the agent's
+     verification workflow. Charts are static PNGs in assets/img/charts/, generated
+     from reports/chart_data.json in the sealevel-stpete run (numbers match the
+     machine-verified claims ledger, run 20260709T235503Z-f29400d7). -->
+<body class="min-h-screen">
+<!-- ============ STICKY NAV ============ -->
+<div class="meta-top">
+  <a class="lockup" href="../index.html">Beck Piscopo</a>
+  <nav class="nav mono">
+    <a href="../index.html#abstract">About</a>
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#writing">Writing</a>
+    <a href="../assets/pdf/v2_light_resume_2025.pdf" target="_blank" rel="noopener">Resume</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+  <div class="meta-tools">
+    <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle night mode">&#9680; Night</button>
+  </div>
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">&#9776; Menu</button>
+  <div id="mobile-menu">
+    <a href="../index.html#abstract">About</a>
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#writing">Writing</a>
+    <a href="../assets/pdf/v2_light_resume_2025.pdf" target="_blank" rel="noopener">Resume</a>
+    <a href="../index.html#contact">Contact</a>
+    <button class="theme-toggle" id="theme-toggle-btn-mobile" aria-label="Toggle night mode">&#9680; Night</button>
+  </div>
+</div>
+
+  <div>
+    <main class="max-w-4xl mx-auto px-6 py-16 md:py-24">
+      <a class="link" href="/#work">← Projects</a>
+
+      <h1 class="font-bold mt-5 mb-3">Sea Level at St. Petersburg</h1>
+      <p class="lead italic mb-8 max-w-3xl">I told Claude to analyze anything it wanted. It chose the tide gauge downtown — and built a machine-verified case that the water is rising faster.</p>
+
+      <!-- Metadata -->
+      <dl class="flex flex-wrap gap-x-10 gap-y-3 mb-5 pb-6 border-b border-faint-soft">
+        <div>
+          <dt class="text-sm uppercase tracking-wide opacity-50">Role</dt>
+          <dd class="text-lg">Claude (topic, pipeline, analysis, report) · Me (one prompt, review)</dd>
+        </div>
+        <div>
+          <dt class="text-sm uppercase tracking-wide opacity-50">Timeline</dt>
+          <dd class="text-lg">Agentic experiment · 2026</dd>
+        </div>
+        <div>
+          <dt class="text-sm uppercase tracking-wide opacity-50">Stack</dt>
+          <dd class="text-lg">NOAA CO-OPS · DuckDB · Python · claims ledger</dd>
+        </div>
+      </dl>
+
+      <section class="mb-16 md:mb-20 max-w-3xl">
+        <h2 class="font-bold mb-5">The experiment</h2>
+        <p class="mb-5">
+          This case study is different from the others on this site: the analysis isn't mine. I've been exploring agentic analytics — where the useful line sits between doing every step myself and handing the whole thing to an agent — and as a fun exercise, I gave Claude a single open-ended instruction: pick a topic, any topic, and run a real analysis on it. No dataset, no question, no direction.
+        </p>
+        <p class="mb-5">
+          It chose sea level rise in St. Petersburg — the 79-year record from NOAA tide gauge 8726520, a few miles from where I live. What came back wasn't just a report. It was a report where every numbered conclusion is bound to a claims ledger and re-verifiable against the warehouse with one command. The findings below are Claude's; so is the verification machinery. My job was to read it and try to poke holes.
+        </p>
+      </section>
+
+      <section class="mb-16 md:mb-20">
+        <h2 class="font-bold mb-5 max-w-3xl">The data</h2>
+        <div class="max-w-3xl">
+          <p class="mb-5">One source, chosen for depth over breadth: NOAA CO-OPS monthly mean sea level at station 8726520 in downtown St. Petersburg, 1947 to mid-2026. The record is effectively complete — 953 of 954 calendar months present (only December 2009 is missing) — so the trends aren't gap artifacts. Values are <em>relative</em> sea level, which includes land motion; that's deliberate, because flooding responds to the sum, not just the ocean.</p>
+          <p class="mb-5">The seasonal cycle at this gauge swings about 210&nbsp;mm from the February trough to the September peak — larger than decades of trend — so all trend math runs on deseasonalized monthly anomalies, with the trend windows fixed before any slope was computed.</p>
+          <p class="text-lg"><a class="link" href="#data-sources">See the source and provenance ↓</a></p>
+        </div>
+      </section>
+
+      <section class="mb-16 md:mb-20">
+        <h2 class="font-bold mb-5 max-w-3xl">What the analysis found</h2>
+
+        <h3 class="mb-3 max-w-3xl">The rise is real, and it's accelerating</h3>
+        <p class="max-w-3xl">Over the full 1947–2025 record, relative sea level rose at +3.1&nbsp;mm per year. Narrow the window and the rate climbs: +5.6&nbsp;mm/yr since 1993, +6.6&nbsp;mm/yr since 2010 — more than double the long-run rate. The last decade (2016–2025) stands about 231&nbsp;mm — roughly nine inches — above the first decade of the record.</p>
+        <figure class="figure">
+          <div class="figure-frame"><img src="../assets/img/charts/sealevel-acceleration.png" alt="Scatter of 953 deseasonalized monthly sea-level anomalies at St. Petersburg, 1947 to 2026, with three OLS trend lines: +3.1 mm/yr for 1947–2025, +5.6 mm/yr for 1993–2025, and +6.6 mm/yr for 2010–2025, each steeper than the last."></div>
+          <figcaption class="figcaption">Deseasonalized monthly anomalies with fixed-window OLS trends (NOAA 8726520). Each successive window is steeper — the recent rate is 2.1× the full-record rate.</figcaption>
+        </figure>
+
+        <h3 class="mb-3 mt-14 max-w-3xl">The extremes are entirely new</h3>
+        <p class="max-w-3xl">Define an extreme month as an anomaly above +150&nbsp;mm — roughly the top 6% of all months in the record. From 1947 through 2009, there were zero. Since 2010 there have been 57, and 40 of those came in 2020 or later. The threshold is a framing choice made after seeing the data (and flagged as such in the decision log), but the threshold-free version says the same thing: all 20 of the highest monthly water levels in 79 years occurred in 2012 or later.</p>
+        <figure class="figure">
+          <div class="figure-frame"><img src="../assets/img/charts/sealevel-extremes.png" alt="Scatter of monthly sea-level anomalies from 1947 to 2026 with a dashed line at +150 mm; no points exceed the line before 2010, while 57 highlighted points exceed it from 2010 onward."></div>
+          <figcaption class="figcaption">Monthly anomalies against the +150&nbsp;mm extreme threshold. Zero exceedances in 63 years, then 57 in 16.</figcaption>
+        </figure>
+
+        <h3 class="mb-3 mt-14 max-w-3xl">The water peaks exactly when the storms come</h3>
+        <p class="max-w-3xl">The seasonal cycle tops out in September at +101&nbsp;mm above the annual mean — the same month the Atlantic hurricane season peaks. Every millimeter of long-run rise stacks on top of a seasonal high that already coincides with peak storm-surge risk. That coincidence is the practical reason a downtown tide gauge matters more than a global average.</p>
+        <figure class="figure">
+          <div class="figure-frame"><img src="../assets/img/charts/sealevel-seasonal.png" alt="Bar chart of the monthly sea-level climatology at St. Petersburg; a shaded band marks the June-through-November Atlantic hurricane season, and the September bar, highlighted, peaks at +101 mm."></div>
+          <figcaption class="figcaption">Monthly climatology (mm vs. annual mean). The September peak lands at the height of hurricane season.</figcaption>
+        </figure>
+      </section>
+
+      <section class="mb-16 md:mb-20 max-w-3xl">
+        <h2 class="font-bold mb-5">The process — how the agent kept itself honest</h2>
+        <p class="mb-5">The part I actually wanted to study wasn't the sea level; it was the workflow. Unprompted, Claude didn't just write an analysis — it built the machinery to check one, then ran itself through it:</p>
+        <ul class="flex flex-col gap-4 mb-6">
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>Checksummed snapshots.</strong> The raw NOAA pulls are pinned by SHA-256 in a run manifest, with every dropped row accounted for by reason (this run: zero drops, one genuinely missing month).</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>A decision log with pre-data / post-data flags.</strong> Every analytical choice — trend windows, the ≥10-month rule for annual means, keeping NOAA's seven "inferred" months — is written down and flagged by whether it was made before or after seeing results. The one post-data choice (the +150&nbsp;mm threshold) is labeled as framing, with a threshold-free companion claim beside it.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>A claims ledger.</strong> Each numbered conclusion lives in a YAML file with the SQL query and tolerance that proves it, bound to a checksum of the warehouse. <code>verify-claims</code> re-runs all of them in seconds; a stale or edited report fails loudly instead of quietly lying.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span><strong>An independent verifier.</strong> The staging rules are reimplemented a second time, on purpose, so a bug can't verify itself. That redundancy caught a real one: Python rounds half-to-even, DuckDB rounds half-away-from-zero, and exactly two annual means (1978 and 2015) landed on the boundary. Re-running the pipeline's own code forever would never have surfaced it.</span></li>
+        </ul>
+        <p class="mb-5">The most interesting incident was self-inflicted. Drafting the presentation, the agent typed a provenance fingerprint from memory — a fabricated value — and its own rule ("provenance values are injected from the manifest, never typed") caught it before publication. Its workflow notes name the failure mode directly:</p>
+        <blockquote class="border-l-2 border-faint pl-5 italic opacity-80 mb-6">
+          "Narrative drift is my most frequent personal failure mode, and the claims-ledger design catches exactly it. … The single highest-value component, for an agent operator, is the claims ledger: it is the only layer that constrains what the narrative is allowed to say."
+          <span class="not-italic block mt-2 text-sm opacity-70">— Claude, workflow notes for this run</span>
+        </blockquote>
+        <p class="mb-6">By the agent's own accounting, roughly a third of the code does analysis and two-thirds does evidence and verification. For throwaway exploration that ratio would be absurd; for conclusions someone might act on, it's cheap.</p>
+        <ul class="flex flex-wrap gap-2 text-base">
+          <li class="border border-faint rounded px-3 py-1">NOAA CO-OPS API</li>
+          <li class="border border-faint rounded px-3 py-1">DuckDB</li>
+          <li class="border border-faint rounded px-3 py-1">Python · pandas</li>
+          <li class="border border-faint rounded px-3 py-1">ETL contracts</li>
+          <li class="border border-faint rounded px-3 py-1">claims.yaml ledger</li>
+          <li class="border border-faint rounded px-3 py-1">independent verifier</li>
+          <li class="border border-faint rounded px-3 py-1">run manifests</li>
+        </ul>
+      </section>
+
+      <section class="max-w-3xl">
+        <h2 class="font-bold mb-5">What I learned about the sweet spot</h2>
+        <ul class="flex flex-col gap-4">
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>An agent produces analysis faster than a human can review it — which means it produces <em>wrong</em> analysis faster than a human can review it. The fix isn't reading harder; it's making verification cheap. Here the agent spends hours and I audit in minutes, with failures that name the invariant, the stage, and the delta.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>The sweet spot isn't a fixed division of labor — it's a contract. I didn't pick the topic, the method, or the checks, but I can inspect every decision after the fact because the workflow forces them to be written down and flagged. "Trust the agent" became "check the agent," at three price points, each under a minute.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>The agent's most dangerous failure mode is narrative, not arithmetic: prose drifting away from what the queries say. The claims ledger is the only layer that constrains the story — which is exactly why it's the layer I'd keep if I could keep only one.</span></li>
+          <li class="flex gap-3"><span class="accent select-none" aria-hidden="true">—</span><span>Left to choose anything, it chose something local, consequential, and checkable — and the result is a finding I actually care about: the water three miles from my house is rising at double the historical rate, and the months that flood didn't exist before 2010.</span></li>
+        </ul>
+      </section>
+
+      <section id="data-sources" class="mt-16 md:mt-20 pt-10 border-t border-faint-soft scroll-mt-20">
+        <h2 class="font-bold mb-5 max-w-3xl">Data &amp; provenance</h2>
+        <p class="text-lg opacity-80 mb-6 max-w-3xl">One source, one station, machine-verified conclusions. Every claim on this page traces to a run manifest and can be re-checked against the warehouse.</p>
+        <div class="overflow-x-auto mb-6">
+          <table class="data-table">
+            <thead>
+              <tr><th>Source</th><th>Grain</th><th>Provider</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Monthly mean sea level, station 8726520 (St. Petersburg)</td><td>station × month, 1947–2026</td><td>NOAA CO-OPS</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-lg opacity-80 max-w-3xl mono text-sm">run 20260709T235503Z-f29400d7 · 953/954 months · all claims verified 2026-07-09 · re-check: <code>python3 aa.py verify-claims</code></p>
+      </section>
+
+      <footer class="mt-16 pt-8 border-t border-faint-soft max-w-3xl">
+        <a class="link text-lg" href="/#work">← Back to all projects</a>
+      </footer>
+    </main>
+  </div>
+
+  <script src="../assets/js/mobile-nav.js?v=20260708d" defer></script>
+  <script src="../assets/js/site.js?v=20260707a"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
